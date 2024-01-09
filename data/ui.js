@@ -30,9 +30,7 @@ const defaultCompositions = [
 //       // Add more notes as needed
 //     ],
 //   },
-  
-  
-  // Add more default compositions as needed
+
 ];
 
 function cargarComposiciones() {
