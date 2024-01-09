@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html lang="es">
+    <head>
+        <title>Simulador de Acordeon | Huellas del Maestro</title>
+        <link rel="icon" type="image/x-icon" href="favicon.jpg">
+        <meta name="Author" content="evaldo.vega@gmail.com">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link rel="stylesheet" href="lib/estilo.css"/>
+        <link rel="stylesheet" href="ui.css"/>
+        <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js" integrity="sha512-zMfrMAZYAlNClPKjN+JMuslK/B6sPM09BGvrWlW+cymmPmsUT1xJF3P4kxI3lOh9zypakSgWaTpY6vDJY/3Dig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </head>
+    <body>
+    <div class="cargando" id="app-container">
+        <div class="menu">
+            <div class="control" id="cambiar-mano">
+                <div class="opcion seleccionada" id="mano-derecha">Derecha</div>
+                <div class="opcion" id="mano-izquierda">Izquierda</div>
+            </div>
+            <div class="control" id="cambiar-tono">
+                <div class="opcion seleccionada" id="tono-adg">ADG</div>
+                <div class="opcion" id="tono-5l">5L</div>
+                <div class="opcion" id="tono-gcf">GCF</div>
+            </div>
+            <div class="control" id="cambiar-modo">
+                <div class="opcion seleccionada" id="modo-teclado">
+                    <span class="material-symbols-outlined">
+                        keyboard
+                    </span>
+                </div>
+                <div class="opcion" id="modo-notas">
+                    <span class="material-symbols-outlined">
+                        music_note
+                    </span>
+                </div>
+                <div class="opcion" id="modo-numero">
+                    <span class="material-symbols-outlined">
+                        123
+                    </span>
+                </div>
+            </div>
+    
+            <div id="composiciones">
+                <div class="fila" style="border-bottom: 1px solid silver;padding:16px">
+                    <span class="material-symbols-outlined">
+                    queue_music
+                    </span>
+                    <span>Composiciones</span>
+                </div>
+                <div class="contenido">
+                </div>
+                <div id="grabar" class="grabar">
+                    <span class="text"></span>
+                    <span class="material-symbols-outlined">
+                    playlist_add
+                    </span>
+                </div>
+            </div>
+            <img class="logo" src="logo.jpg"/>
+           
+            <div class="pie">
+                <img class="bandera"/>
+                <span>Valledupar</span>
+                <span>Cesar</span>
+                <span>Colombia</span>
+            </div>
+        </div>
+        <div class="contenidor">
+            <div id="acordeon" style="width:60vw;height: 60vw;margin:0 auto;overflow: hidden;display:flex;justify-content: center;">
+            </div>
+
+           
+        </div>
+       
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js" integrity="sha512-Siyxh4gyNM5SaERNa9BOZSPcu/auHyFUWn9OVFD7MxI3/dVPQklE7tfqS+pLmPHF1zo6UdDaJAp/thihrf0c7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="lib/Acordeon.js"></script>
+    <script src="ui.js"></script>
+    </body>
+</html>
