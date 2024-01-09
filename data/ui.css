@@ -64,7 +64,7 @@ body{
     user-select: none;
 }
 .control .opcion.seleccionada{
-    background-color: silver;
+    background-color: rgb(197, 207, 217);
     border-radius: 32px;
 }
 
@@ -126,9 +126,12 @@ body{
 #grabar.grabar .text::before{
    content: "Empezar a grabar";
 }
+
+
 #grabar.grabando .text::before{
-    content:"Grabando..."
+    content:"Detener grabación..."
 }
+
 
 #composiciones{
     border-radius: 32px;
