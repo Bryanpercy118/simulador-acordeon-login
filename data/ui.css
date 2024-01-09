@@ -47,6 +47,15 @@ body{
     background: linear-gradient(90deg, rgba(222,222,222,1) 0%, rgba(255,255,255,1) 4%);
 }
 
+#acordeon{
+    width:60vw;
+    height: 60vw;
+    margin:auto auto;
+    overflow: hidden;
+    display:flex;
+    justify-content: center;
+}
+
 .fila{
     display: flex;
     align-items: center;
@@ -134,6 +143,7 @@ body{
 #grabar img{
     max-width: 70%;
 }
+
 #grabar.grabar .text::before{
    content: "Empezar a grabar";
 }
