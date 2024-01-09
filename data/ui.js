@@ -10,32 +10,60 @@
             }
         },true)
 
-        let composiciones=[]
+        let composiciones = [];
 
-        function cargarComposiciones(){
-            $("#composiciones .contenido").html('')
-            composiciones=Object.keys({...localStorage}).filter(l=>l.includes("acordeon")).map(key=>({nombre:key.split('-')[1],cancion:JSON.parse(localStorage.getItem(key))}))
-    
-            
-            composiciones.forEach((composicion,index)=>{
-                $("#composiciones .contenido").append($(`
-                    <div class="composicion">
-                        <span class="nombre">${composicion.nombre}</span>
-                        <div class="acciones">
-                            <span class="reproducir material-symbols-outlined"  data-index="${index}" title="Reproducir">play_arrow</span>
-                            <span class="practicar material-symbols-outlined" data-index="${index}" title="Practicar">school</span>
-                            <span class="borrar material-symbols-outlined" data-index="${index}" title="Eliminar">delete_forever</span>
-                        </div>
-                        <div class="progreso">
-                            <div class="porcentaje"></div>
-                        </div>
-                    </div>
-                `))
-            })
-        }
-        
-        
-        cargarComposiciones()
+// Define default compositions
+const defaultCompositions = [
+  {
+    nombre: "Cancion 1",
+    cancion: [
+      { tecla: "D", inicio: 1093, fin: 2007, duracion: 914 },
+      { tecla: "S", inicio: 1944, fin: 2151, duracion: 207 },
+      // Add more notes as needed
+    ],
+  },
+  {
+    nombre: "Canción 2",
+    cancion: [
+      { tecla: "S", inicio: 2360, fin: 2471, duracion: 111 },
+      { tecla: "D", inicio: 2376, fin: 2552, duracion: 176 },
+      // Add more notes as needed
+    ],
+  },
+  
+  
+  // Add more default compositions as needed
+];
+
+function cargarComposiciones() {
+  $("#composiciones .contenido").html('');
+
+  // Merge default compositions with local storage compositions
+  composiciones = [
+    ...defaultCompositions,
+    ...Object.keys({ ...localStorage }).filter((l) => l.includes("acordeon")).map(key => ({ nombre: key.split('-')[1], cancion: JSON.parse(localStorage.getItem(key)) }))
+  ];
+
+  composiciones.forEach((composicion, index) => {
+    $("#composiciones .contenido").append($(
+      `<div class="composicion">
+          <span class="nombre">${composicion.nombre}</span>
+          <div class="acciones">
+              <span class="reproducir material-symbols-outlined"  data-index="${index}" title="Reproducir">play_arrow</span>
+              <span class="practicar material-symbols-outlined" data-index="${index}" title="Practicar">school</span>
+              <span class="borrar material-symbols-outlined" data-index="${index}" title="Eliminar">delete_forever</span>
+          </div>
+          <div class="progreso">
+              <div class="porcentaje"></div>
+          </div>
+      </div>`
+    ));
+  });
+}
+
+// Call cargarComposiciones to display default and local storage compositions
+cargarComposiciones();
+
 
         $("body").on("click",".acciones .reproducir",function(){
             const ele = this
