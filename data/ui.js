@@ -24,7 +24,7 @@
                         <div class="acciones">
                             <span class="reproducir material-symbols-outlined"  data-index="${index}" title="Reproducir">play_arrow</span>
                             <span class="practicar material-symbols-outlined" data-index="${index}" title="Practicar">school</span>
-                            <span class="borrar material-symbols-outlined" data-index="${index}">delete_forever</span>
+                            <span class="borrar material-symbols-outlined" data-index="${index}" title="Eliminar">delete_forever</span>
                         </div>
                         <div class="progreso">
                             <div class="porcentaje"></div>

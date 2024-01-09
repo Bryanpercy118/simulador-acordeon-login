@@ -113,16 +113,18 @@ body{
     gap:4px;
     justify-content: center;
     user-select: none;
+    cursor: pointer;
 }
 #grabar:hover {
     cursor: pointer;
+    background-color: rgb(197, 207, 217);
 }
 
 #grabar img{
     max-width: 70%;
 }
 #grabar.grabar .text::before{
-   content: "Componer";
+   content: "Empezar a grabar";
 }
 #grabar.grabando .text::before{
     content:"Grabando..."
