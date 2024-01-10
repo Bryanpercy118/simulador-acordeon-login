@@ -1,5 +1,7 @@
 <!DOCTYPE HTML>
 <html lang="es">
+
+    <!-- Cabecera -->
     <head>
         <title>Simulador de Acordeon | Huellas del Maestro</title>
         <link rel="icon" type="image/x-icon" href="favicon.jpg">
@@ -15,78 +17,85 @@
         <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js" integrity="sha512-zMfrMAZYAlNClPKjN+JMuslK/B6sPM09BGvrWlW+cymmPmsUT1xJF3P4kxI3lOh9zypakSgWaTpY6vDJY/3Dig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
+
+    <!-- Cuerpo de la pagina -->
     <body>
-    <div class="cargando" id="app-container">
-        <!-- Panel izquierda -->
-        <div class="menu">  
-           
+        <div class="cargando" id="app-container">
+            <!-- Panel izquierda -->
+            <div class="menu">  
+            
+                <div class="control" id="cambiar-mano">
+                    <div class="opcion seleccionada" id="mano-derecha">Derecha</div>
+                    <div class="opcion" id="mano-izquierda">Izquierda</div>
+                </div>
 
-            <div class="control" id="cambiar-mano">
-                <div class="opcion seleccionada" id="mano-derecha">Derecha</div>
-                <div class="opcion" id="mano-izquierda">Izquierda</div>
+
+                <div class="control" id="cambiar-tono">
+                    <div class="opcion seleccionada" id="tono-adg">ADG</div>
+                    <div class="opcion" id="tono-5l">5L</div>
+                    <div class="opcion" id="tono-gcf">GCF</div>
+                </div>
+
+
+                <div class="control" id="cambiar-modo">
+                    <div class="opcion seleccionada" id="modo-teclado">
+                        <span class="material-symbols-outlined">
+                            keyboard
+                        </span>
+                    </div>
+                    <div class="opcion" id="modo-notas">
+                        <span class="material-symbols-outlined">
+                            music_note
+                        </span>
+                    </div>
+                    <div class="opcion" id="modo-numero">
+                        <span class="material-symbols-outlined">
+                            123
+                        </span>
+                    </div>
+                </div>
+        
+                <div id="composiciones">
+                    <div class="fila" style="border-bottom: 1px solid silver;padding:16px">
+                        <span class="material-symbols-outlined">
+                        queue_music
+                        </span>
+                        <span>Lista de grabaciones</span>
+                    </div>
+                    <div class="contenido">
+                    </div>
+                    <div id="grabar" class="grabar">
+                        <span class="text"></span>
+                        <span class="material-symbols-outlined">sound_sampler</span>
+                    </div>
+                </div>
+
+                <!-- Logo de Huellas del Maestro -->
+                <!-- <img class="logo" src="logo.jpg"/> -->
+
+                
+                <!-- Bandera - Link Colombia-->
+                <a  class="link-pie" href="https://n9.cl/valledupar-cesar-col" target="_blank">
+                    <div class="pie" >
+                        <img class="bandera"/>
+                        <span>Valledupar,</span>
+                        <span>Cesar-</span>
+                        <span>Colombia</span>
+                    </div>
+                </a>
             </div>
-            <div class="control" id="cambiar-tono">
-                <div class="opcion seleccionada" id="tono-adg">ADG</div>
-                <div class="opcion" id="tono-5l">5L</div>
-                <div class="opcion" id="tono-gcf">GCF</div>
+
+            <!-- Contenido - Acordeon -->
+            <div class="contenidor">
+                <div id="acordeon"></div>
+                <!-- <div id="acordeon" style="width:60vw;height: 60vw;margin:0 auto;overflow: hidden;display:flex;justify-content: center;"></div> -->
             </div>
-            <div class="control" id="cambiar-modo">
-                <div class="opcion seleccionada" id="modo-teclado">
-                    <span class="material-symbols-outlined">
-                        keyboard
-                    </span>
-                </div>
-                <div class="opcion" id="modo-notas">
-                    <span class="material-symbols-outlined">
-                        music_note
-                    </span>
-                </div>
-                <div class="opcion" id="modo-numero">
-                    <span class="material-symbols-outlined">
-                        123
-                    </span>
-                </div>
-            </div>
-    
-            <div id="composiciones">
-                <div class="fila" style="border-bottom: 1px solid silver;padding:16px">
-                    <span class="material-symbols-outlined">
-                    queue_music
-                    </span>
-                    <span>Lista de grabaciones</span>
-                </div>
-                <div class="contenido">
-                </div>
-                <div id="grabar" class="grabar">
-                    <span class="text"></span>
-                    <span class="material-symbols-outlined">sound_sampler</span>
-                </div>
-            </div>
-            <!-- <img class="logo" src="logo.jpg"/> -->
-          <a  class="link-pie" href="https://n9.cl/valledupar-cesar-col" target="_blank">
-            <div class="pie" >
-                <img class="bandera"/>
-                <span>Valledupar,</span>
-                <span>Cesar-</span>
-                <span>Colombia</span>
-            </div></a>
         </div>
 
-         <!-- Panel derecha -->
-        <div class="contenidor">
-            <div id="acordeon">
-            </div>
-
-            <!-- <div id="acordeon" style="width:60vw;height: 60vw;margin:0 auto;overflow: hidden;display:flex;justify-content: center;">
-            </div> -->
-        </div>
-    </div>
-
-     <!-- Script de sonido-acordeon -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js" integrity="sha512-Siyxh4gyNM5SaERNa9BOZSPcu/auHyFUWn9OVFD7MxI3/dVPQklE7tfqS+pLmPHF1zo6UdDaJAp/thihrf0c7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="lib/Acordeon.js"></script>
-    <script src="ui.js"></script>
-    
-    
+        <!-- Script de sonido-acordeon -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js" integrity="sha512-Siyxh4gyNM5SaERNa9BOZSPcu/auHyFUWn9OVFD7MxI3/dVPQklE7tfqS+pLmPHF1zo6UdDaJAp/thihrf0c7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="lib/Acordeon.js"></script>
+        <script src="ui.js"></script>
     </body>
+    
 </html>
