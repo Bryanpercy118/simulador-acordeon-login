@@ -19,7 +19,7 @@ const defaultCompositions = [
 //     cancion: [
 //       { tecla: "D", inicio: 1093, fin: 2007, duracion: 914 },
 //       { tecla: "S", inicio: 1944, fin: 2151, duracion: 207 },
-//       // Add more notes as needed
+//      
 //     ],
 //   },
 //   {
@@ -27,7 +27,7 @@ const defaultCompositions = [
 //     cancion: [
 //       { tecla: "S", inicio: 2360, fin: 2471, duracion: 111 },
 //       { tecla: "D", inicio: 2376, fin: 2552, duracion: 176 },
-//       // Add more notes as needed
+//       
 //     ],
 //   },
 
