@@ -4,7 +4,7 @@
     <!-- Cabecera de la pagina -->
     <head>
         <title>Simulador de Acordeon | Huellas del Maestro</title>
-        <link rel="icon" type="image/x-icon" href="favicon.jpg">
+        <link rel="icon" type="image/x-icon" href="icono.png">
         <meta name="Author" content="huellasdelmaestro.com">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -27,16 +27,16 @@
                 
                 <!-- cambio de mano -->
                 <div class="control" id="cambiar-mano">
-                    <div class="opcion seleccionada" id="mano-derecha">Derecha</div>
-                    <div class="opcion" id="mano-izquierda">Izquierda</div>
+                    <div class="opcion seleccionada" id="mano-derecha" title="Seleccionar pitos">Derecha</div>
+                    <div class="opcion" id="mano-izquierda" title="Seleccionar bajo">Izquierda</div>
                 </div>
-
+                
 
                 <!-- cambio de tono -->
                 <div class="control" id="cambiar-tono">
-                    <div class="opcion seleccionada" id="tono-adg">ADG</div>
-                    <div class="opcion" id="tono-5l">5L</div>
-                    <div class="opcion" id="tono-gcf">GCF</div>
+                    <div class="opcion seleccionada" title= "Seleccionar ADG (La, Re, Sol)" id="tono-adg">ADG</div>
+                    <div class="opcion" title= "Seleccionar 5 Letras (Si bemol, Mi bemol, La bemol)" id="tono-5l">5L</div>
+                    <div class="opcion" title= "Seleccionar GCF (Sol, Do, Fa)"  id="tono-gcf">GCF</div>
                 </div>
 
 
@@ -44,21 +44,21 @@
                 <div class="control" id="cambiar-modo">
 
                     <!-- modo teclado -->
-                    <div class="opcion seleccionada" id="modo-teclado">
+                    <div class="opcion seleccionada" title="Modo de teclado" id="modo-teclado">
                         <span class="material-symbols-outlined">
                             keyboard
                         </span>
                     </div>
 
                     <!-- modo simbolos -->
-                    <div class="opcion" id="modo-notas">
+                    <div class="opcion" title="Notas musicales" id="modo-notas">
                         <span class="material-symbols-outlined">
                             music_note
                         </span>
                     </div>
 
                     <!-- modo numeros -->
-                    <div class="opcion" id="modo-numero">
+                    <div class="opcion" title="Modo númerico" id="modo-numero">
                         <span class="material-symbols-outlined">
                             123
                         </span>
