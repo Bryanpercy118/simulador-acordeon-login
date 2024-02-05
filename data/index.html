@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="es">
 
-    <!-- Cabecera -->
+    <!-- Cabecera de la pagina -->
     <head>
         <title>Simulador de Acordeon | Huellas del Maestro</title>
         <link rel="icon" type="image/x-icon" href="favicon.jpg">
-        <meta name="Author" content="evaldo.vega@gmail.com">
+        <!-- <meta name="Author" content="evaldo.vega@gmail.com"> -->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,15 +21,18 @@
     <!-- Cuerpo de la pagina -->
     <body>
         <div class="cargando" id="app-container">
-            <!-- Panel izquierda -->
+
+            <!-- Barra lateral izquierda -->
             <div class="menu">  
-            
+                
+                <!-- cambio de mano -->
                 <div class="control" id="cambiar-mano">
                     <div class="opcion seleccionada" id="mano-derecha">Derecha</div>
                     <div class="opcion" id="mano-izquierda">Izquierda</div>
                 </div>
 
 
+                <!-- cambio de tono -->
                 <div class="control" id="cambiar-tono">
                     <div class="opcion seleccionada" id="tono-adg">ADG</div>
                     <div class="opcion" id="tono-5l">5L</div>
@@ -37,17 +40,24 @@
                 </div>
 
 
+                <!-- cambio de modo  -->
                 <div class="control" id="cambiar-modo">
+
+                    <!-- modo teclado -->
                     <div class="opcion seleccionada" id="modo-teclado">
                         <span class="material-symbols-outlined">
                             keyboard
                         </span>
                     </div>
+
+                    <!-- modo simbolos -->
                     <div class="opcion" id="modo-notas">
                         <span class="material-symbols-outlined">
                             music_note
                         </span>
                     </div>
+
+                    <!-- modo numeros -->
                     <div class="opcion" id="modo-numero">
                         <span class="material-symbols-outlined">
                             123
@@ -55,15 +65,22 @@
                     </div>
                 </div>
         
+                <!-- Barra lateral izquierda -->
                 <div id="composiciones">
+
+                    <!-- lista de canciones -->
                     <div class="fila" style="border-bottom: 1px solid silver;padding:16px">
                         <span class="material-symbols-outlined">
                         queue_music
                         </span>
                         <span>Lista de grabaciones</span>
                     </div>
+
+                    <!-- contenido de las ccanciones -->
                     <div class="contenido">
                     </div>
+
+                    <!-- boton de grabar -->
                     <div id="grabar" class="grabar">
                         <span class="text"></span>
                         <span class="material-symbols-outlined">sound_sampler</span>
@@ -71,10 +88,13 @@
                 </div>
 
                 <!-- Logo de Huellas del Maestro -->
-                <img class="logo" src="logo.jpg"/>
+                <a  href="https://huellasdelmaestro.com" target="_blank">
+                    <img class="logo" src="logo.jpg"/>
+                </a>
+                
 
                 
-                <!-- Bandera - Link Colombia-->
+                <!-- Ubicación - Colombia-->
                 <a  class="link-pie" href="https://n9.cl/valledupar-cesar-col" target="_blank">
                     <div class="pie" >
                         <img class="bandera"/>
