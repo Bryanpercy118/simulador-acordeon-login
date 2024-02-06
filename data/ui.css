@@ -52,6 +52,7 @@ body{
     height: 100vh;
     position: relative;
     padding:10px;
+    background-color: rgb(245, 250, 255);
 }
 
 /* Contenido */

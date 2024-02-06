@@ -14,14 +14,14 @@
 
 // Define default compositions
 const defaultCompositions = [
-  {
-    nombre: "Cancion 1",
-    cancion: [
-      { tecla: "D", inicio: 1093, fin: 2007, duracion: 914 },
-      { tecla: "S", inicio: 1944, fin: 2151, duracion: 207 },
+//   {
+//     nombre: "Cancion 1",
+//     cancion: [
+//       { tecla: "D", inicio: 1093, fin: 2007, duracion: 914 },
+//       { tecla: "S", inicio: 1944, fin: 2151, duracion: 207 },
      
-    ],
-  },
+//     ],
+//   },
 //   {
 //     nombre: "Canción 2",
 //     cancion: [
