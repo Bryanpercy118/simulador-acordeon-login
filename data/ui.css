@@ -7,14 +7,16 @@ body{
     box-sizing: border-box;
 }
 
-.logo{
+.logo {
     position: absolute;
-    bottom: 25px;
-    width: 50%;
-    left:50%;
-    margin-left:-30%;
+    bottom: auto; /* Eliminar bottom para que el posicionamiento sea relativo al contenedor */
+    width: 30%; /* Ajustar el tamaño del logo */
+    left: 50%;
+    margin: 20px;
+    margin-left: -15%; /* Ajustar el margen izquierdo */
     text-align: center;
 }
+
 
 .pie{
     position: absolute;
@@ -46,7 +48,7 @@ body{
 .contenidor{
     flex:1;
     background: rgb(222,222,222);
-    background: linear-gradient(90deg, rgba(222,222,222,1) 0%, rgba(255,255,255,1) 4%);
+    background: linear-gradient(90deg, rgb(203, 224, 243) 0%, rgb(237, 247, 255) 4%);
 }
 
 #acordeon{
@@ -87,7 +89,7 @@ body{
 }
 
 .control .opcion.seleccionada{
-    background-color: rgb(197, 207, 217);
+    background-color: rgb(203, 224, 243);
     border-radius: 6px;
 }
 
@@ -120,7 +122,7 @@ body{
     right: 0;
     position: fixed;
     bottom: 0;
-    background-color: rgba(255,255,255,.5);
+    background-color: rgba(255, 255, 255, 0.5);
     z-index: 999;
 }
 
@@ -142,7 +144,7 @@ body{
 
 #grabar:hover {
     cursor: pointer;
-    background-color: rgb(197, 207, 217);
+    background-color: rgb(203, 224, 243);
 }
 
 #grabar img{

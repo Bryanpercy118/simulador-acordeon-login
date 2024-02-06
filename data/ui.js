@@ -47,9 +47,9 @@ function cargarComposiciones() {
       `<div class="composicion">
           <span class="nombre">${composicion.nombre}</span>
           <div class="acciones">
-              <span class="reproducir material-symbols-outlined"  data-index="${index}" title="Reproducir">play_arrow</span>
-              <span class="practicar material-symbols-outlined" data-index="${index}" title="Practicar">school</span>
-              <span class="borrar material-symbols-outlined" data-index="${index}" title="Eliminar">delete_forever</span>
+              <span class="reproducir material-symbols-outlined"  data-index="${index}" title="Reproducir">resume</span>
+              <span class="practicar material-symbols-outlined" data-index="${index}" title="Practicar">stadia_controller</span>
+              <span class="borrar material-symbols-outlined" data-index="${index}" title="Eliminar">delete</span>
           </div>
           <div class="progreso">
               <div class="porcentaje"></div>
@@ -90,8 +90,8 @@ cargarComposiciones();
             
            
             Swal.fire(
-                'Practica',
-                `Al cerrarse esta ventana, debes tocar ${composicion.nombre}`,
+                `Exámen de ${composicion.nombre}`,
+                `Prepárese para tocar la canción con su teclado.`,
                 "info"
             ).then(()=>{
                 Acordeon.grabar()
@@ -105,7 +105,7 @@ cargarComposiciones();
                     const score = Acordeon.evaluar(composicion.cancion,cancion)
                     porcentaje.removeClass("animar-porcentaje")
                     Swal.fire(
-                        'Score obtenido!',
+                        'Puntaje obtenido!',
                         `${score}%`,
                         score<=30 ? "warning":"success"
                     )
@@ -128,7 +128,7 @@ cargarComposiciones();
                 this.classList.add("grabar")
                 this.classList.remove("grabando")
                 const cancion = Acordeon.detenerGrabacion()
-                const nombre = prompt("Dale un nombre a tu composición")
+                const nombre = prompt("Dale un nombre a tu canción")
                 if(nombre){
                     localStorage.setItem(`acordeon-${nombre}`,JSON.stringify(cancion))
                     cargarComposiciones()
