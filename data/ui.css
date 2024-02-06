@@ -91,6 +91,7 @@ body{
 .control .opcion.seleccionada{
     background-color: rgb(203, 224, 243);
     border-radius: 6px;
+    font-weight: bold; 
 }
 
 .control .opcion:hover{
