@@ -1,3 +1,6 @@
+
+/*------------- Body --------------- */
+
 body{
     overflow: hidden;
     font-family: 'Roboto', sans-serif;
@@ -8,40 +11,40 @@ body{
 }
 
 
-/* Logo de HM */
-.logo {
-    position: absolute;
-    bottom: auto; /* Eliminar bottom para que el posicionamiento sea relativo al contenedor */
-    width: 30%; /* Ajustar el tamaño del logo */
-    left: 50%;
-    margin: 20px;
-    margin-left: -15%; /* Ajustar el margen izquierdo */
-    text-align: center;
-}
 
 
-/* footer */
-
-.pie{
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
+/* ------------- Cargando la página --------------- */
+#app-container{
     display: flex;
-    align-items: center;
-    font-size: 12px;
-    gap:4px;
-    cursor: pointer;
+    flex-direction: row;
+    position: relative;
 }
 
-.link-pie{
-    color: rgb(0, 0, 0);
+#app-container.cargando::before{
+    content: "Espere por favor...";
+    z-index: 9999;
+    position: relative;
+    text-align: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    bottom: 0;
 }
 
-/* Bandera de colombia - footer */
-.bandera{
-    content:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFwAAABcCAMAAADUMSJqAAAAG1BMVEX/zQDIEC4AMIf/zwDeuBsySHYALYgDLX+6Ezd7vh7cAAAAQElEQVRoge3MgQ2AIAADsIkK/H+xVywxpD2gCQAAAHC0uyhPUd6izKKMIrlcLpfLT85XUXZRriK5XC6Xy+U/zD/IdSIl2Z11wwAAAABJRU5ErkJggg==);
-    width:20px;
+#app-container.cargando::after{
+    content: " ";
+    top: 0;
+    left: 0;
+    right: 0;
+    position: fixed;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 999;
 }
+
+
+
 
 /* menu de la izquierda */
 .menu{
@@ -56,25 +59,6 @@ body{
     flex:1;
     background: rgb(222,222,222);
     background: linear-gradient(90deg, rgb(203, 224, 243) 0%, rgb(237, 247, 255) 4%);
-}
-
-
-/* estilo acordeon */
-#acordeon{
-    width:60vw;
-    height: 60vw;
-    margin:auto auto;
-    overflow: hidden;
-    display:flex;
-    justify-content: center;
-}
-
-
-/* Titulo de la lista de canciones */
-.fila{
-    display: flex;
-    align-items: center;
-    gap:4px;
 }
 
 /* Control: Opciones del menu */
@@ -110,91 +94,15 @@ body{
     cursor: pointer;
 }
 
-/* ---------------------------- */
-#app-container{
+/* Titulo de la lista de canciones */
+.fila{
     display: flex;
-    flex-direction: row;
-    position: relative;
-}
-
-#app-container.cargando::before{
-    content: "Espere por favor...";
-    z-index: 9999;
-    position: relative;
-    text-align: center;
-    top: 0;
-    left: 0;
-    right: 0;
-    position: fixed;
-    bottom: 0;
-}
-
-#app-container.cargando::after{
-    content: " ";
-    top: 0;
-    left: 0;
-    right: 0;
-    position: fixed;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.5);
-    z-index: 999;
-}
-
-
-/* Grabación */
-#grabar{
-    border-radius: 12px;
-    border:1px solid silver;
-    border-bottom: none;
-    padding: 9px;
-    text-align: center;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 2px;
-    background-color: white;
-    display: flex;
-    flex-direction: row;
+    align-items: center;
     gap:4px;
-    justify-content: center;
-    user-select: none;
-    cursor: pointer;
-    /* display: none; */
-}
-
-#grabar:hover {
-    cursor: pointer;
-    background-color: rgb(203, 224, 243);
-}
-
-#grabar img{
-    max-width: 70%;
-}
-
-#grabar.grabar .text::before{
-   content: "Empezar a grabar";
-}
-
-#grabar.grabando .text::before{
-    content:"Detener grabación...";
 }
 
 
-/* Estilos para los íconos */
-.reproducir {
-    color: green; 
-    font-size: 22px;
-}
-
-.practicar {
-    color: rgb(79, 102, 145); 
-    font-size: 22px;
-}
-
-.borrar {
-    color: red;
-    font-size: 22px;
-}
-
-
-/* canciones */
+/* ------------- canciones ---------------*/
 #composiciones{
     border-radius: 12px;
     border:1px solid silver;
@@ -281,3 +189,108 @@ body{
     flex-direction: row;
     justify-content: space-around;
 }
+
+/* Estilos para los íconos */
+.reproducir {
+    color: green; 
+    font-size: 22px;
+}
+
+.practicar {
+    color: rgb(79, 102, 145); 
+    font-size: 22px;
+}
+
+.borrar {
+    color: red;
+    font-size: 22px;
+}
+
+/* Grabación */
+#grabar{
+    border-radius: 12px;
+    border:1px solid silver;
+    border-bottom: none;
+    padding: 9px;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 2px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    gap:4px;
+    justify-content: center;
+    user-select: none;
+    cursor: pointer;
+    /* display: none; */
+}
+
+#grabar:hover {
+    cursor: pointer;
+    background-color: rgb(203, 224, 243);
+}
+
+#grabar img{
+    max-width: 70%;
+}
+
+#grabar.grabar .text::before{
+   content: "Empezar a grabar";
+}
+
+#grabar.grabando .text::before{
+    content:"Detener grabación...";
+}
+
+/* estilo acordeon */
+#acordeon{
+    width:60vw;
+    height: 60vw;
+    margin:auto auto;
+    overflow: hidden;
+    display:flex;
+    justify-content: center;
+}
+
+
+
+
+/* ------------- footer -------------- */
+
+/* Logo de HM */
+.logo {
+    position: absolute;
+    bottom: auto; /* Eliminar bottom para que el posicionamiento sea relativo al contenedor */
+    width: 30%; /* Ajustar el tamaño del logo */
+    left: 50%;
+    margin: 20px;
+    margin-left: -15%; /* Ajustar el margen izquierdo */
+    text-align: center;
+}
+
+.pie{
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    gap:4px;
+    cursor: pointer;
+}
+
+.link-pie{
+    color: rgb(0, 0, 0);
+}
+
+/* Bandera de colombia - footer */
+.bandera{
+    content:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFwAAABcCAMAAADUMSJqAAAAG1BMVEX/zQDIEC4AMIf/zwDeuBsySHYALYgDLX+6Ezd7vh7cAAAAQElEQVRoge3MgQ2AIAADsIkK/H+xVywxpD2gCQAAAHC0uyhPUd6izKKMIrlcLpfLT85XUXZRriK5XC6Xy+U/zD/IdSIl2Z11wwAAAABJRU5ErkJggg==);
+    width:20px;
+}
+
+
+
+
+
+
+
