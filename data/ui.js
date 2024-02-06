@@ -19,7 +19,7 @@ const defaultCompositions = [
 //     cancion: [
 //       { tecla: "D", inicio: 1093, fin: 2007, duracion: 914 },
 //       { tecla: "S", inicio: 1944, fin: 2151, duracion: 207 },
-//      
+     
 //     ],
 //   },
 //   {
