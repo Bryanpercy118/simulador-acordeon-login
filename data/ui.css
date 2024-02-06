@@ -159,6 +159,20 @@ body{
     content:"Detener grabación...";
 }
 
+/* Estilos para los íconos */
+.reproducir {
+    color: green; 
+}
+
+.practicar {
+    color: rgb(79, 102, 145); 
+}
+
+.borrar {
+    color: red; 
+}
+
+
 #composiciones{
     border-radius: 12px;
     border:1px solid silver;
@@ -237,5 +251,5 @@ body{
     width: 30%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
 }
