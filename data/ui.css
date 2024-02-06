@@ -55,11 +55,23 @@ body{
     background-color: rgb(245, 250, 255);
 }
 
-/* Contenido */
+/* Contenido  del acordeon*/
 .contenidor{
     flex:1;
     background: rgb(222,222,222);
     background: linear-gradient(90deg, rgb(203, 224, 243) 0%, rgb(237, 247, 255) 4%);
+    padding: 20px;
+}
+
+
+/* estilo acordeon */
+#acordeon{
+    width:60vw;
+    height: 60vw;
+    margin:auto auto;
+    overflow: hidden;
+    display:flex;
+    justify-content: center;
 }
 
 /* Control: Opciones del menu */
@@ -242,15 +254,6 @@ body{
     content:"Detener grabación...";
 }
 
-/* estilo acordeon */
-#acordeon{
-    width:60vw;
-    height: 60vw;
-    margin:auto auto;
-    overflow: hidden;
-    display:flex;
-    justify-content: center;
-}
 
 
 
