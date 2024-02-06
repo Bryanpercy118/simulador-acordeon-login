@@ -162,14 +162,17 @@ body{
 /* Estilos para los íconos */
 .reproducir {
     color: green; 
+    font-size: 22px;
 }
 
 .practicar {
     color: rgb(79, 102, 145); 
+    font-size: 22px;
 }
 
 .borrar {
-    color: red; 
+    color: red;
+    font-size: 22px;
 }
 
 
@@ -181,7 +184,7 @@ body{
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content:end;
 }
 
 #composiciones .contenido{
