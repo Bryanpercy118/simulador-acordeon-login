@@ -45,7 +45,7 @@ function cargarComposiciones() {
   composiciones.forEach((composicion, index) => {
     $("#composiciones .contenido").append($(
       `<div class="composicion">
-          <span class="nombre">${composicion.nombre}</span>
+          <span class="nombre" title="${composicion.nombre}">${composicion.nombre}</span>
           <div class="acciones">
               <span class="reproducir material-symbols-outlined"  data-index="${index}" title="Escuchar canción">resume</span>
               <span class="practicar material-symbols-outlined" data-index="${index}" title="Comenzar exámen">stadia_controller</span>
