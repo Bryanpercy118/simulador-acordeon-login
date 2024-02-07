@@ -47,34 +47,58 @@ body{
 
 
 /* menu de la izquierda */
-.menu{
-    width:320px;
+#menu-toggle {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    z-index: 1000; /* Asegúrate de que esté por encima del contenido del menú */
+}
+
+
+/* Estilo del menú y acordeón */
+.menu {
+    width: 250px;
     height: 100vh;
-    position: relative;
-    padding:10px;
-    background-color: rgb(245, 250, 255);
+    position: absolute;
+    padding: 10px;
+    background-color: white;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
 }
 
-/* Contenido  del acordeon*/
-.contenidor{
-    flex:1;
-    background: rgb(222,222,222);
-    background: linear-gradient(90deg, rgb(203, 224, 243) 0%, rgb(237, 247, 255) 4%);
+.menu.open {
+    transform: translateX(0);
+}
+
+.contenidor {
+    flex: 1;
+    background: white;
+    background: white;
     padding: 20px;
+    margin-left: 50px; /* Cambiar el margen izquierdo a 0 */
+    transition: margin-left 0.3s ease; /* Agregar transición para suavizar el cambio */
 }
 
+/* Cuando el menú está abierto, ajusta el margen izquierdo del contenido */
+.menu.open ~ #app-container .contenidor {
+    margin-left: 320px; /* Vuelve al margen original cuando el menú se abre */
+}
 
-/* estilo acordeon */
-#acordeon{
-    width:60vw;
+/* Estilo del acordeón */
+#acordeon {
+    width: 60vw;
     height: 60vw;
-    margin:auto auto;
+    margin: auto auto;
     overflow: hidden;
-    display:flex;
+    display: flex;
     justify-content: center;
 }
 
-/* Control: Opciones del menu */
+
+
+
+/* ------------------- Control: Opciones del menu ----------------*/
 .control{
     padding:4px;
     border:1px solid rgb(149, 168, 182);
@@ -280,6 +304,7 @@ body{
     font-size: 12px;
     gap:4px;
     cursor: pointer;
+    
 }
 
 .link-pie{

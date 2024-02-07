@@ -1,3 +1,15 @@
+// Seleccionamos el botón de menú y el menú en el DOM
+const menuToggle = document.getElementById('menu-toggle');
+const menu = document.querySelector('.menu');
+
+// Agregamos un event listener para el clic en el botón de menú
+menuToggle.addEventListener('click', function() {
+    // Alternamos la clase para mostrar u ocultar el menú
+    menu.classList.toggle('open');
+});
+
+
+
 
         $("#composiciones .contenido").niceScroll({cursorcolor:"#00F",autohidemode:'hover'})
 
