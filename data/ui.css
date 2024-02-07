@@ -58,7 +58,7 @@ body{
 
 /* Estilo del menú y acordeón */
 .menu {
-    width: 250px;
+    width: 290px;
     height: 100vh;
     position: absolute;
     padding: 10px;
@@ -76,7 +76,7 @@ body{
     background: white;
     background: white;
     padding: 20px;
-    margin-left: 50px; /* Cambiar el margen izquierdo a 0 */
+    margin-left: 80px; /* Cambiar el margen izquierdo a 0 */
     transition: margin-left 0.3s ease; /* Agregar transición para suavizar el cambio */
 }
 
@@ -295,20 +295,22 @@ body{
     text-align: center;
 }
 
+.link-pie{
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
 .pie{
     position: absolute;
     bottom: 10px;
     width: 100%;
     display: flex;
     align-items: center;
+    justify-content: center; 
     font-size: 12px;
-    gap:4px;
+    gap:5px;
     cursor: pointer;
     
-}
-
-.link-pie{
-    color: rgb(0, 0, 0);
 }
 
 /* Bandera de colombia - footer */
