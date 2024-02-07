@@ -89,12 +89,16 @@ body{
 #acordeon {
     width: 60vw;
     height: 60vw;
-    margin: auto auto;
+    margin: auto;
     overflow: hidden;
     display: flex;
     justify-content: center;
 }
-
+.seccion {
+    width: 100%; /* Ancho de cada sección al 100% del contenedor */
+    max-width: 400px; /* Ancho máximo de cada sección */
+    margin: 10px; /* Margen entre cada sección */
+}
 
 
 
