@@ -281,7 +281,6 @@ body{
 
 
 
-
 /* ------------- footer -------------- */
 
 /* Logo de HM */
@@ -290,7 +289,7 @@ body{
     bottom: auto; /* Eliminar bottom para que el posicionamiento sea relativo al contenedor */
     width: 30%; /* Ajustar el tamaño del logo */
     left: 50%;
-    margin: 20px;
+    margin: 40px auto;
     margin-left: -15%; /* Ajustar el margen izquierdo */
     text-align: center;
 }
@@ -318,10 +317,4 @@ body{
     content:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFwAAABcCAMAAADUMSJqAAAAG1BMVEX/zQDIEC4AMIf/zwDeuBsySHYALYgDLX+6Ezd7vh7cAAAAQElEQVRoge3MgQ2AIAADsIkK/H+xVywxpD2gCQAAAHC0uyhPUd6izKKMIrlcLpfLT85XUXZRriK5XC6Xy+U/zD/IdSIl2Z11wwAAAABJRU5ErkJggg==);
     width:20px;
 }
-
-
-
-
-
-
 
