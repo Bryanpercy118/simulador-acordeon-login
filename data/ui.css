@@ -58,7 +58,7 @@ body{
 
 /* Estilo del menú y acordeón */
 .menu {
-    width: 290px;
+    width: 250px;
     height: 100vh;
     position: absolute;
     padding: 10px;
