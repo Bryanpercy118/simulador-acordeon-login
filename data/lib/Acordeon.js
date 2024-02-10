@@ -181,11 +181,11 @@ const Acordeon = (()=>{
         }
 
         score=Math.round((score/esperado.length)*100)
-        if(score<=30){
-            //abucheos.volume.value=100
+        if(score<60){
+            // abucheos.volume.value=100
             abucheos.start()
         }
-        if(score>30){
+        if(score>=60){
             aplausos.start()
         }
         return score
@@ -298,6 +298,7 @@ const Acordeon = (()=>{
 
         teclas_presionadas.delete(tecla)
 
+        // este
         // if(tecla_has_sonido.get(MANO).has(tecla) || tecla=='ESCAPE'){
         //     teclas_presionadas.delete(tecla)
         // }
@@ -647,3 +648,5 @@ const Acordeon = (()=>{
         KEYBOARD
     }
 })()
+
+
