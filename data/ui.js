@@ -29,22 +29,19 @@ let composiciones = [];
 
 // Lista de canciones
 const defaultCompositions = [
-//   {
-//     nombre: "Cancion 1",
-//     cancion: [
-//       { tecla: "D", inicio: 1093, fin: 2007, duracion: 914 },
-//       { tecla: "S", inicio: 1944, fin: 2151, duracion: 207 },
+  {
+    // nombre: "Cancion 1",
+    // cancion: [
+    //   { tecla: "D", inicio: 1093, fin: 2007, duracion: 914 },
+    //   { tecla: "S", inicio: 1944, fin: 2151, duracion: 207 },
      
-//     ],
-//   },
-//   {
-//     nombre: "Canción 2",
-//     cancion: [
-//       { tecla: "S", inicio: 2360, fin: 2471, duracion: 111 },
-//       { tecla: "D", inicio: 2376, fin: 2552, duracion: 176 },
-//       
-//     ],
-//   },
+    // ],
+
+   
+  },
+
+
+
 
 ];
 
