@@ -283,6 +283,31 @@ body{
 }
 
 
+/* Estilos para la barra de progreso predeterminada */
+.swal-overlay {
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+.swal-title {
+    font-size: 30px; 
+}
+
+.swal-progress-bar-custom {
+    background-color: #1C3252 !important;
+}
+
+.countdown {
+    font-size: 150px; /* Tamaño del número en el contador */
+    color: white   ; /* Color del número en el contador */
+}
+
+.custom-swal-message {
+    color: #1C3252; /* Color del texto */
+    background-color: transparent !important; /* Color de fondo */
+}
+
+
+
 
 
 /* ------------- footer -------------- */

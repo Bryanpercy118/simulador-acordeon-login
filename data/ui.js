@@ -24557,29 +24557,65 @@ $("body").on("click",".acciones .practicar",function(){
     
     
     // Mensaje informativo antes del examen
-    Swal.fire(
-        `Exámen de ${composicion.nombre}`,
-        `Prepárese para tocar la canción con su teclado.`,
-        "info"
-    ).then(()=>{
-        Acordeon.grabar()
+    Swal.fire({
+        title: `Examen de ${composicion.nombre}`,
+        html: `
+        <div>
+            <p>Prepárese para tocar la canción con su teclado.</p>
+            <p id="countdown">3</p>
+        </div>
+    `,
+    icon: "info",
+    showConfirmButton: false,
+    timer: 4000, // Tiempo de visualización del mensaje en milisegundos (2 segundos)
+    timerProgressBar: true, // Barra de progreso que muestra el tiempo restante
+    allowOutsideClick: false, 
+        didOpen: () => {
+            let countdown = 2; // Cuenta regresiva inicial
+            const countdownInterval = setInterval(() => {
+            const countdownElement = document.getElementById('countdown');
+            if (countdownElement) {
+                countdownElement.textContent = countdown === 0 ? '¡Ya!' : countdown; // Actualizar el número en el contador
+            }
 
-        porcentaje.css({'animation-duration':duracion+'ms'}).addClass("animar-porcentaje")
+            countdown--; // Disminuir el contador en cada iteración
+        }, 1000);
+        }
+    }).then(() => {
+        Acordeon.grabar(); // Iniciar la grabación después del conteo regresivo
+        porcentaje.css({'animation-duration': duracion + 'ms'}).addClass("animar-porcentaje");
 
-        // Mostrar puntaje
-        setTimeout(()=>{
-            const cancion = Acordeon.detenerGrabacion()
-            const score = Acordeon.evaluar(composicion.cancion,cancion)
-            porcentaje.removeClass("animar-porcentaje")
-            Swal.fire(
-                'Puntaje obtenido!',
-                `${score}%`,
-                score<60 ? "warning":"success"
-            )
-            
-            
-        },duracion+100)
-    })
+        // Mostrar puntaje después de la duración especificada
+        setTimeout(() => {
+            const cancion = Acordeon.detenerGrabacion();
+            const score = Acordeon.evaluar(composicion.cancion, cancion);
+            porcentaje.removeClass("animar-porcentaje");
+
+            let mensaje;
+            if (score >= 60) {
+                mensaje = '¡Felicidades! Has pasado el examen con un puntaje del ' + score + '%.';
+            } else {
+                mensaje = '¡Sigue practicando! Obtuviste un puntaje del ' + score + '%.';
+            }
+
+            Swal.fire({
+                title: mensaje,
+                icon: score >= 60 ? 'success' : 'warning',
+                showConfirmButton: true,
+                confirmButtonText: 'Aceptar',
+                showClass: {
+                    popup: 'animated fadeInDown faster' // Animación de entrada
+                },
+                hideClass: {
+                    popup: 'animated fadeOutUp faster' // Animación de salida
+                }
+            });
+        }, duracion + 100);
+    });
+    
+    
+    
+    
 
 })
 
