@@ -32,7 +32,7 @@ const Acordeon = (()=>{
     const   TECLA_CERRAR_ACORDEON       =   'ESCAPE'
     let     ACORDEON_ABIERTO            =   1
     const   teclas_presionadas          =   new Map();  
-    let   teclas_sueltas                =   []
+    let   teclas_sueltas              =   []
 
     const tecla_has_sonido=new Map([
         [MANO_DERECHA,new Map([
@@ -181,6 +181,7 @@ const Acordeon = (()=>{
         }
 
         score=Math.round((score/esperado.length)*100)
+    
         if(score<60){
             // abucheos.volume.value=100
             abucheos.start()
@@ -298,7 +299,6 @@ const Acordeon = (()=>{
 
         teclas_presionadas.delete(tecla)
 
-        // este
         // if(tecla_has_sonido.get(MANO).has(tecla) || tecla=='ESCAPE'){
         //     teclas_presionadas.delete(tecla)
         // }
@@ -316,12 +316,12 @@ const Acordeon = (()=>{
                 liberadas.push(tecla)
             }
         })
-        ACORDEON_ABIERTO=0 
+        ACORDEON_ABIERTO=0  
         liberadas.forEach((tecla)=>{
             presionar(tecla)
         })
-        acordeon.classList.remove("C")
-        acordeon.classList.add("A")
+        acordeon.classList.remove("A")
+        acordeon.classList.add("C")
         console.log(teclas_presionadas.get("ESCAPE"))
     }
 
@@ -648,5 +648,3 @@ const Acordeon = (()=>{
         KEYBOARD
     }
 })()
-
-
