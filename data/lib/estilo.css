@@ -206,7 +206,7 @@ body{
 }
 .nota:hover .modo,.nota.selected .modo{
     transform: translate(1.4px,-2px);
-    background: linear-gradient(90deg, rgb(183 179 129) 0%, rgba(15,123,218,1));
+    background: #6d90d1   ;
 }
 
 .nota .modo{
