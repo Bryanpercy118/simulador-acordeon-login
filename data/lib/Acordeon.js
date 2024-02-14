@@ -23,6 +23,7 @@ const Acordeon = (()=>{
     let diapason=null
     let bajos=null
     let foles=null
+    let fuelleAbierto = true; // Variable para controlar si el fuelle está abierto o cerrado
 
     let     MANO                        =   MANO_DERECHA
     let     reproduciendo               =   false
@@ -135,10 +136,20 @@ const Acordeon = (()=>{
         grabando=true
     }
 
-    const detenerGrabacion=()=>{
-        grabando=false
-        return teclas_sueltas
+    // const detenerGrabacion=()=>{
+    //     grabando=false
+    //     return teclas_sueltas
+    // }
+
+    const detenerGrabacion = () => {
+        grabando = false;
+        // Liberar todas las teclas presionadas durante la grabación
+        teclas_presionadas.forEach((tiempo, tecla) => {
+            liberar(tecla);
+        });
+        return teclas_sueltas;
     }
+    
 
 
     const ciclo=(timeStamp)=>{
@@ -255,26 +266,50 @@ const Acordeon = (()=>{
         return {x,y};
     }
 
-    const presionar=(tecla)=>{
-        if(teclas_presionadas.has(tecla)){
-            return
+    // const presionar=(tecla)=>{
+    //     if(teclas_presionadas.has(tecla)){
+    //         return
+    //     }
+
+    //     if(tecla_has_sonido.get(MANO).has(tecla)){
+    //         const nota=tecla_has_sonido.get(MANO).get(tecla)
+    //         document.getElementById(`${MANO}-nota-${nota}`).classList.add('selected')
+    //         sonidos.get(nota)[ACORDEON_ABIERTO].loop=true
+    //         sonidos.get(nota)[ACORDEON_ABIERTO].start()
+    //     } 
+
+    //     if(reproduciendo){
+    //         return
+    //     }
+
+    //     if(tecla_has_sonido.get(MANO).has(tecla)){
+    //         teclas_presionadas.set(tecla,new Date().getTime()-tiempo_inicio)
+    //     }
+    // }
+
+    const presionar = (tecla) => {
+        if (teclas_presionadas.has(tecla)) {
+            return;
         }
-
-        if(tecla_has_sonido.get(MANO).has(tecla)){
-            const nota=tecla_has_sonido.get(MANO).get(tecla)
-            document.getElementById(`${MANO}-nota-${nota}`).classList.add('selected')
-            sonidos.get(nota)[ACORDEON_ABIERTO].loop=true
-            sonidos.get(nota)[ACORDEON_ABIERTO].start()
-        } 
-
-        if(reproduciendo){
-            return
+    
+        if (tecla_has_sonido.get(MANO).has(tecla)) {
+            const nota = tecla_has_sonido.get(MANO).get(tecla);
+            document.getElementById(`${MANO}-nota-${nota}`).classList.add('selected');
+            if (!grabando) { // Solo reproducir sonidos si no se está grabando
+                sonidos.get(nota)[ACORDEON_ABIERTO].loop = true;
+                sonidos.get(nota)[ACORDEON_ABIERTO].start();
+            }
         }
-
-        if(tecla_has_sonido.get(MANO).has(tecla)){
-            teclas_presionadas.set(tecla,new Date().getTime()-tiempo_inicio)
+    
+        if (reproduciendo) {
+            return;
+        }
+    
+        if (tecla_has_sonido.get(MANO).has(tecla)) {
+            teclas_presionadas.set(tecla, new Date().getTime() - tiempo_inicio);
         }
     }
+    
 
     const liberar=(tecla)=>{
 
@@ -306,99 +341,162 @@ const Acordeon = (()=>{
     }
 
     const cerrarAcordeon=()=>{
+
+        if (fuelleAbierto) {
+            teclas_presionadas.set('ESCAPE',new Date().getTime()-tiempo_inicio)
         
-        teclas_presionadas.set('ESCAPE',new Date().getTime()-tiempo_inicio)
+            const liberadas=[]
+            teclas_presionadas.forEach((tiempo,tecla)=>{
+                if(tecla!='ESCAPE'){
+                    liberar(tecla)
+                    liberadas.push(tecla)
+                }
+            })
+            ACORDEON_ABIERTO=0  
+            liberadas.forEach((tecla)=>{
+                presionar(tecla)
+            })
+            acordeon.classList.remove("A")
+            acordeon.classList.add("C")
+            console.log(teclas_presionadas.get("ESCAPE"))
+            
+            fuelleAbierto = false; // Actualizar el estado del fuelle a cerrado
+        }
         
-        const liberadas=[]
-        teclas_presionadas.forEach((tiempo,tecla)=>{
-            if(tecla!='ESCAPE'){
-                liberar(tecla)
-                liberadas.push(tecla)
-            }
-        })
-        ACORDEON_ABIERTO=0  
-        liberadas.forEach((tecla)=>{
-            presionar(tecla)
-        })
-        acordeon.classList.remove("A")
-        acordeon.classList.add("C")
-        console.log(teclas_presionadas.get("ESCAPE"))
+        
     }
 
     const abrirAcordeon=()=>{
-        if(grabando){
-            const inicio = teclas_presionadas.get('ESCAPE')
-            const fin = new Date().getTime()-tiempo_inicio
-            const duracion = fin-inicio
-            teclas_sueltas.push({tecla:'ESCAPE',inicio,fin,duracion})
-        }
-        teclas_presionadas.delete('ESCAPE')
 
-        const liberadas=[]
-        teclas_presionadas.forEach((tiempo,tecla)=>{
-            if(tecla!='ESCAPE'){
-                liberar(tecla)
-                liberadas.push(tecla)
+        if (!fuelleAbierto) {
+            if(grabando){
+                const inicio = teclas_presionadas.get('ESCAPE')
+                const fin = new Date().getTime()-tiempo_inicio
+                const duracion = fin-inicio
+                teclas_sueltas.push({tecla:'ESCAPE',inicio,fin,duracion})
             }
-        })
-        ACORDEON_ABIERTO=1 
-        liberadas.forEach((tecla)=>{
-            presionar(tecla)
-        })
-        acordeon.classList.remove("C")
-        acordeon.classList.add("A")
+            teclas_presionadas.delete('ESCAPE')
+    
+            const liberadas=[]
+            teclas_presionadas.forEach((tiempo,tecla)=>{
+                if(tecla!='ESCAPE'){
+                    liberar(tecla)
+                    liberadas.push(tecla)
+                }
+            })
+            ACORDEON_ABIERTO=1 
+            liberadas.forEach((tecla)=>{
+                presionar(tecla)
+            })
+            acordeon.classList.remove("C")
+            acordeon.classList.add("A")
+            
+            fuelleAbierto = true; // Actualizar el estado del fuelle a abierto
+        }
+
+        
     }
 
-    function keyup(event) {
+   
+    
+    
+
+    // function keyup(event) {
+    //     if (event.defaultPrevented) {
+    //         return;
+    //     }
+    //     let keyValue = event.key.toUpperCase();
+    //     if(keyValue=='DEAD'){
+    //         keyValue='´'
+    //     }
+    //     if (["SPACE",'CONTROL'].includes(keyValue)) {
+    //         return;
+    //     }
+    //     KEYBOARD[keyValue]=false
+    //     if(keyValue ==  TECLA_CERRAR_ACORDEON && ACORDEON_ABIERTO==0){
+    //         abrirAcordeon()
+    //         return
+    //     }
+    //     liberar(keyValue)
+    // }
+
+
+
+    // function keydown(event) {
+    //     if (event.defaultPrevented) {
+    //         return;
+    //     }
+       
+    //     let keyValue = event.key.toUpperCase();
+    //     if(keyValue=='DEAD'){
+    //         keyValue='´'
+    //     }
+    //     if (["SPACE",'CONTROL'].includes(keyValue)) {
+    //         return;
+    //     }
+
+    //     KEYBOARD[keyValue]=true
+
+    //     if(keyValue ==  TECLA_CERRAR_ACORDEON && ACORDEON_ABIERTO==1){
+    //         cerrarAcordeon()
+    //         return
+    //     }
         
+    //     presionar(keyValue)
+
+    // }
+
+
+    function keyup(event) {
         if (event.defaultPrevented) {
             return;
         }
-
+    
         let keyValue = event.key.toUpperCase();
-        if(keyValue=='DEAD'){
-            keyValue='´'
+        if (keyValue == 'DEAD') {
+            keyValue = '´';
         }
-
-        if (["SPACE",'CONTROL'].includes(keyValue)) {
+    
+        if (["SPACE", 'CONTROL'].includes(keyValue)) {
             return;
         }
-
-        KEYBOARD[keyValue]=false
-
-        if(keyValue ==  TECLA_CERRAR_ACORDEON && ACORDEON_ABIERTO==0){
-            abrirAcordeon()
-            return
-        }
-
-        liberar(keyValue)
-
+    
+        KEYBOARD[keyValue] = false;
+    
+        // Liberar la tecla presionada
+        liberar(keyValue);
     }
-
+    
     function keydown(event) {
         if (event.defaultPrevented) {
             return;
         }
-       
+    
         let keyValue = event.key.toUpperCase();
-        if(keyValue=='DEAD'){
-            keyValue='´'
+        if (keyValue == 'DEAD') {
+            keyValue = '´';
         }
-        if (["SPACE",'CONTROL'].includes(keyValue)) {
+        if (["SPACE", 'CONTROL'].includes(keyValue)) {
             return;
         }
-
-        KEYBOARD[keyValue]=true
-
-        if(keyValue ==  TECLA_CERRAR_ACORDEON && ACORDEON_ABIERTO==1){
-            cerrarAcordeon()
-            return
+    
+        KEYBOARD[keyValue] = true;
+    
+        // Procesar la tecla presionada
+        if (keyValue == TECLA_CERRAR_ACORDEON && ACORDEON_ABIERTO == 1) {
+            cerrarAcordeon();
+            return;
         }
-        
-        presionar(keyValue)
-
+    
+        if (keyValue == TECLA_CERRAR_ACORDEON && ACORDEON_ABIERTO == 0) {
+            abrirAcordeon();
+            return;
+        }
+    
+        presionar(keyValue);
     }
-
+    
+    
     const tocarConLaDerecha=()=>{
         acordeon.classList.remove(`mano-${MANO}`)
         MANO=MANO_DERECHA
