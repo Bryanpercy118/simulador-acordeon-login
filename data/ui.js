@@ -28,10 +28,7 @@ let composiciones = [];
 
 
 // Lista de canciones
-const defaultCompositions = [
-  
- 
- ];
+const defaultCompositions = canciones;
 
 // mostrar las canciones
 function cargarComposiciones() {
