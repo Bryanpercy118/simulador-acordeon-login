@@ -47,7 +47,9 @@ function cargarComposiciones() {
             `<div class="composicion">
                 <span class="nombre" title="${composicion.nombre}">${composicion.nombre}</span>
                 <div class="acciones">
+                <span class="reproducir material-symbols-outlined" data-index="${index}" title="Escuchar canción">resume</span>
                     <span class="practicar material-symbols-outlined" data-index="${index}" title="Comenzar exámen">stadia_controller</span>
+                    <span class="borrar material-symbols-outlined" data-index="${index}" title="Eliminar">delete</span>
                     </div>
                 <div class="progreso">
                     <div class="porcentaje"></div>
