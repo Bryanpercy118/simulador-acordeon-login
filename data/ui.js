@@ -116,36 +116,93 @@ $("body").on("click",".acciones .practicar",function(){
     
     
     // Mensaje informativo antes del examen
-    Swal.fire({
-        title: `Examen de ${composicion.nombre}`,
-        html: `
-        <div>
-            <p>Prepárese para tocar la canción con su teclado.</p>
-        </div>
-    `,
-    icon: "info",
-    showConfirmButton: false,
-    timer: 3000, // Tiempo de visualización del mensaje en milisegundos (2 segundos)
-    timerProgressBar: true, // Barra de progreso que muestra el tiempo restante
-    allowOutsideClick: false, 
+    // Swal.fire({
+    //     title: `Examen de ${composicion.nombre}`,
+    //     html: `
+    //     <div>
+    //         <p>Prepárese para tocar la canción con su teclado.</p>
+    //     </div>
+    // `,
+    // icon: "info",
+    // showConfirmButton: false,
+    // timer: 3000, // Tiempo de visualización del mensaje en milisegundos (2 segundos)
+    // timerProgressBar: true, // Barra de progreso que muestra el tiempo restante
+    // allowOutsideClick: false, 
         
-    }).then(() => {
-        Acordeon.grabar(); // Iniciar la grabación después del conteo regresivo
-        porcentaje.css({'animation-duration': duracion + 'ms'}).addClass("animar-porcentaje");
+    // }).then(() => {
+    //     Acordeon.grabar(); // Iniciar la grabación después del conteo regresivo
+    //     porcentaje.css({'animation-duration': duracion + 'ms'}).addClass("animar-porcentaje");
 
+    //     // Mostrar puntaje después de la duración especificada
+    //     setTimeout(() => {
+    //         const cancion = Acordeon.detenerGrabacion();
+    //         const score = Acordeon.evaluar(composicion.cancion, cancion);
+    //         porcentaje.removeClass("animar-porcentaje");
+
+    //         let mensaje;
+    //         if (score >= 60) {
+    //             mensaje = '¡Felicidades! Has pasado el examen con un puntaje del ' + score + '%.';
+    //         } else {
+    //             mensaje = '¡Sigue practicando! Obtuviste un puntaje del ' + score + '%.';
+    //         }
+
+    //         Swal.fire({
+    //             title: mensaje,
+    //             icon: score >= 60 ? 'success' : 'warning',
+    //             showConfirmButton: true,
+    //             confirmButtonText: 'Aceptar',
+    //             showClass: {
+    //                 popup: 'animated fadeInDown faster' // Animación de entrada
+    //             },
+    //             hideClass: {
+    //                 popup: 'animated fadeOutUp faster' // Animación de salida
+    //             }
+    //         });
+    //     }, duracion + 100);
+    // });
+    
+    let countdown = 3; // Cuenta regresiva inicial
+
+    Swal.fire({
+        html: '<div class="countdown">3</div>', // Contador personalizado con el valor inicial
+        showConfirmButton: false,
+        timer: 3000, // Duración total del contador en milisegundos (3 segundos)
+        timerProgressBar: false,
+        allowOutsideClick: false,
+        customClass: {
+            popup: 'custom-swal-message' // Clase CSS personalizada para el mensaje
+        },
+        willOpen: () => {
+            // Función para actualizar el contador cada segundo
+            const countdownDiv = document.querySelector('.countdown');
+            const timerInterval = setInterval(() => {
+                const currentValue = parseInt(countdownDiv.textContent);
+                if (currentValue > 1) {
+                    countdownDiv.textContent = currentValue - 1; // Disminuir el contador
+                } else {
+                    clearInterval(timerInterval); // Detener el intervalo cuando el contador llega a 1
+                }
+            }, 1000);
+        }
+    }).then(() => {
+        // Ejecutar la siguiente acción después de que el contador llegue a 1
+        Acordeon.grabar(); // Iniciar la grabación después del conteo regresivo
+        const porcentaje = $('.progreso .porcentaje'); // Seleccionar el elemento del porcentaje
+        porcentaje.css({'animation-duration': duracion + 'ms'}).addClass("animar-porcentaje");
+    
         // Mostrar puntaje después de la duración especificada
         setTimeout(() => {
             const cancion = Acordeon.detenerGrabacion();
             const score = Acordeon.evaluar(composicion.cancion, cancion);
             porcentaje.removeClass("animar-porcentaje");
-
+    
             let mensaje;
             if (score >= 60) {
                 mensaje = '¡Felicidades! Has pasado el examen con un puntaje del ' + score + '%.';
             } else {
                 mensaje = '¡Sigue practicando! Obtuviste un puntaje del ' + score + '%.';
             }
-
+    
             Swal.fire({
                 title: mensaje,
                 icon: score >= 60 ? 'success' : 'warning',
@@ -161,6 +218,11 @@ $("body").on("click",".acciones .practicar",function(){
         }, duracion + 100);
     });
     
+    
+
+
+
+
     
     
     
