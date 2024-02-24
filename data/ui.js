@@ -29,11 +29,11 @@ let composiciones = [];
 /* 
 
 a tener en cuenta en la evaluacion
-1. evaluar por tecla
+1. evaluar por tecla  listo
 2. evaluar por proceso de evolucion (pausar y ver cuanto llevo)
 3. con 3 intentos (1 intento, 2 intento, 3 ultimo intento, preparate!!)
 4. informe de los resultados
-5. contador 3,2,1...ya!!
+5. contador 3,2,1...ya!!  listo
 
 */
 
@@ -105,131 +105,220 @@ function liberarTeclas(cancion) {
 }
 
 
-// Click en iniciar examen
-$("body").on("click",".acciones .practicar",function(){
-    let composicion =   composiciones[this.dataset.index]
-    let duracion    =   composicion.cancion.sort((a,b)=>a.inicio-b.inicio)
-    duracion        =   duracion[duracion.length-1].inicio+duracion[duracion.length-1].duracion
-    
-    const ele = this
-    const porcentaje    =   $(ele).parent().parent().find(".progreso .porcentaje")
-    
-    
-    // Mensaje informativo antes del examen
-    // Swal.fire({
-    //     title: `Examen de ${composicion.nombre}`,
-    //     html: `
-    //     <div>
-    //         <p>Prepárese para tocar la canción con su teclado.</p>
-    //     </div>
-    // `,
-    // icon: "info",
-    // showConfirmButton: false,
-    // timer: 3000, // Tiempo de visualización del mensaje en milisegundos (2 segundos)
-    // timerProgressBar: true, // Barra de progreso que muestra el tiempo restante
-    // allowOutsideClick: false, 
-        
-    // }).then(() => {
-    //     Acordeon.grabar(); // Iniciar la grabación después del conteo regresivo
-    //     porcentaje.css({'animation-duration': duracion + 'ms'}).addClass("animar-porcentaje");
+// Click iniciar examen
+$("body").on("click", ".acciones .practicar", function() {
+    let composicion = composiciones[this.dataset.index];
+    let duracion = composicion.cancion.sort((a, b) => a.inicio - b.inicio);
+    duracion = duracion[duracion.length - 1].inicio + duracion[duracion.length - 1].duracion;
 
-    //     // Mostrar puntaje después de la duración especificada
-    //     setTimeout(() => {
-    //         const cancion = Acordeon.detenerGrabacion();
-    //         const score = Acordeon.evaluar(composicion.cancion, cancion);
-    //         porcentaje.removeClass("animar-porcentaje");
+    const ele = this;
+    const porcentaje = $(ele).parent().parent().find(".progreso .porcentaje");
 
-    //         let mensaje;
-    //         if (score >= 60) {
-    //             mensaje = '¡Felicidades! Has pasado el examen con un puntaje del ' + score + '%.';
-    //         } else {
-    //             mensaje = '¡Sigue practicando! Obtuviste un puntaje del ' + score + '%.';
-    //         }
+    let intentosRestantes = 3; // Número de intentos iniciales
 
-    //         Swal.fire({
-    //             title: mensaje,
-    //             icon: score >= 60 ? 'success' : 'warning',
-    //             showConfirmButton: true,
-    //             confirmButtonText: 'Aceptar',
-    //             showClass: {
-    //                 popup: 'animated fadeInDown faster' // Animación de entrada
-    //             },
-    //             hideClass: {
-    //                 popup: 'animated fadeOutUp faster' // Animación de salida
-    //             }
-    //         });
-    //     }, duracion + 100);
-    // });
-    
-    let countdown = 3; // Cuenta regresiva inicial
-
-    Swal.fire({
-        html: '<div class="countdown">3</div>', // Contador personalizado con el valor inicial
-        showConfirmButton: false,
-        timer: 3000, // Duración total del contador en milisegundos (3 segundos)
-        timerProgressBar: false,
-        allowOutsideClick: false,
-        customClass: {
-            popup: 'custom-swal-message' // Clase CSS personalizada para el mensaje
-        },
-        willOpen: () => {
-            // Función para actualizar el contador cada segundo
-            const countdownDiv = document.querySelector('.countdown');
-            const timerInterval = setInterval(() => {
-                const currentValue = parseInt(countdownDiv.textContent);
-                if (currentValue > 1) {
-                    countdownDiv.textContent = currentValue - 1; // Disminuir el contador
-                } else {
-                    clearInterval(timerInterval); // Detener el intervalo cuando el contador llega a 1
-                }
-            }, 1000);
-        }
-    }).then(() => {
-        // Ejecutar la siguiente acción después de que el contador llegue a 1
-        Acordeon.grabar(); // Iniciar la grabación después del conteo regresivo
-        const porcentaje = $('.progreso .porcentaje'); // Seleccionar el elemento del porcentaje
-        porcentaje.css({'animation-duration': duracion + 'ms'}).addClass("animar-porcentaje");
-    
-        // Mostrar puntaje después de la duración especificada
-        setTimeout(() => {
-            const cancion = Acordeon.detenerGrabacion();
-            const score = Acordeon.evaluar(composicion.cancion, cancion);
-            porcentaje.removeClass("animar-porcentaje");
-    
-            let mensaje;
-            if (score >= 60) {
-                mensaje = '¡Felicidades! Has pasado el examen con un puntaje del ' + score + '%.';
-            } else {
-                mensaje = '¡Sigue practicando! Obtuviste un puntaje del ' + score + '%.';
+    function mostrarMensajeIntento() {
+        Swal.fire({
+            title: `Intento ${4 - intentosRestantes}`,
+            text: `Te quedan ${intentosRestantes - 1} intentos`,
+            icon: "info",
+            showConfirmButton: true,
+            confirmButtonText: 'Comenzar',
+            allowOutsideClick: false,
+            showClass: {
+                popup: 'animated fadeInDown faster' // Animación de entrada
+            },
+            hideClass: {
+                popup: 'animated fadeOutUp faster' // Animación de salida
             }
-    
-            Swal.fire({
-                title: mensaje,
-                icon: score >= 60 ? 'success' : 'warning',
-                showConfirmButton: true,
-                confirmButtonText: 'Aceptar',
-                showClass: {
-                    popup: 'animated fadeInDown faster' // Animación de entrada
-                },
-                hideClass: {
-                    popup: 'animated fadeOutUp faster' // Animación de salida
-                }
-            });
-        }, duracion + 100);
-    });
-    
-    
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Agregar el contador después de que se hace clic en Aceptar
+                Swal.fire({
+                    html: '<div class="countdown">3</div>', // Contador personalizado con el valor inicial
+                    showConfirmButton: false,
+                    timer: 3000, // Duración total del contador en milisegundos (3 segundos)
+                    timerProgressBar: false,
+                    allowOutsideClick: false,
+                    customClass: {
+                        popup: 'custom-swal-message' // Clase CSS personalizada para el mensaje
+                    },
+                    willOpen: () => {
+                        // Función para actualizar el contador cada segundo
+                        const countdownDiv = document.querySelector('.countdown');
+                        const timerInterval = setInterval(() => {
+                            const currentValue = parseInt(countdownDiv.textContent);
+                            if (currentValue > 1) {
+                                countdownDiv.textContent = currentValue - 1; // Disminuir el contador
+                            } else {
+                                clearInterval(timerInterval); // Detener el intervalo cuando el contador llega a 1
+                            }
+                        }, 1000);
+                    }
+                }).then(() => {
+                    // Ejecutar la siguiente acción después de que el contador llegue a 1
+                    Acordeon.grabar(); // Iniciar la grabación después del conteo regresivo
+                    const porcentaje = $('.progreso .porcentaje'); // Seleccionar el elemento del porcentaje
+                    porcentaje.css({'animation-duration': duracion + 'ms'}).addClass("animar-porcentaje");
+                
+                    // Mostrar puntaje después de la duración especificada
+                    setTimeout(() => {
+                        const cancion = Acordeon.detenerGrabacion();
+                        const score = Acordeon.evaluar(composicion.cancion, cancion);
+                        porcentaje.removeClass("animar-porcentaje");
+                
+                        let mensaje;
+                        if (score >= 60) {
+                            mensaje = '¡Felicidades! Has pasado el examen con un puntaje del ' + score + '%.';
+                        } else {
+                            mensaje = '¡Sigue practicando! Obtuviste un puntaje del ' + score + '%.';
+                        }
+                
+                        Swal.fire({
+                            title: mensaje,
+                            icon: score >= 60 ? 'success' : 'warning',
+                            showConfirmButton: true,
+                            confirmButtonText: 'Aceptar',
+                            showClass: {
+                                popup: 'animated fadeInDown faster' // Animación de entrada
+                            },
+                            hideClass: {
+                                popup: 'animated fadeOutUp faster' // Animación de salida
+                            }
+                        });
+                    }, duracion + 100);
+                });
+
+                // Decrementar el número de intentos restantes después de que se haya confirmado el inicio del examen
+                intentosRestantes--;
+            }
+        });
+    }
+
+    mostrarMensajeIntento(); // Mostrar el primer mensaje de intento
+
+});
 
 
-
-
+// // Click en iniciar examen
+// $("body").on("click",".acciones .practicar",function(){
+//     let composicion =   composiciones[this.dataset.index]
+//     let duracion    =   composicion.cancion.sort((a,b)=>a.inicio-b.inicio)
+//     duracion        =   duracion[duracion.length-1].inicio+duracion[duracion.length-1].duracion
+    
+//     const ele = this
+//     const porcentaje    =   $(ele).parent().parent().find(".progreso .porcentaje")
     
     
+//     // Mensaje informativo antes del examen
+//     // Swal.fire({
+//     //     title: `Examen de ${composicion.nombre}`,
+//     //     html: `
+//     //     <div>
+//     //         <p>Prepárese para tocar la canción con su teclado.</p>
+//     //     </div>
+//     // `,
+//     // icon: "info",
+//     // showConfirmButton: false,
+//     // timer: 3000, // Tiempo de visualización del mensaje en milisegundos (2 segundos)
+//     // timerProgressBar: true, // Barra de progreso que muestra el tiempo restante
+//     // allowOutsideClick: false, 
+        
+//     // }).then(() => {
+//     //     Acordeon.grabar(); // Iniciar la grabación después del conteo regresivo
+//     //     porcentaje.css({'animation-duration': duracion + 'ms'}).addClass("animar-porcentaje");
+
+//     //     // Mostrar puntaje después de la duración especificada
+//     //     setTimeout(() => {
+//     //         const cancion = Acordeon.detenerGrabacion();
+//     //         const score = Acordeon.evaluar(composicion.cancion, cancion);
+//     //         porcentaje.removeClass("animar-porcentaje");
+
+//     //         let mensaje;
+//     //         if (score >= 60) {
+//     //             mensaje = '¡Felicidades! Has pasado el examen con un puntaje del ' + score + '%.';
+//     //         } else {
+//     //             mensaje = '¡Sigue practicando! Obtuviste un puntaje del ' + score + '%.';
+//     //         }
+
+//     //         Swal.fire({
+//     //             title: mensaje,
+//     //             icon: score >= 60 ? 'success' : 'warning',
+//     //             showConfirmButton: true,
+//     //             confirmButtonText: 'Aceptar',
+//     //             showClass: {
+//     //                 popup: 'animated fadeInDown faster' // Animación de entrada
+//     //             },
+//     //             hideClass: {
+//     //                 popup: 'animated fadeOutUp faster' // Animación de salida
+//     //             }
+//     //         });
+//     //     }, duracion + 100);
+//     // });
+    
+//     let countdown = 3; // Cuenta regresiva inicial
+
+//     Swal.fire({
+//         html: '<div class="countdown">3</div>', // Contador personalizado con el valor inicial
+//         showConfirmButton: false,
+//         timer: 3000, // Duración total del contador en milisegundos (3 segundos)
+//         timerProgressBar: false,
+//         allowOutsideClick: false,
+//         customClass: {
+//             popup: 'custom-swal-message' // Clase CSS personalizada para el mensaje
+//         },
+//         willOpen: () => {
+//             // Función para actualizar el contador cada segundo
+//             const countdownDiv = document.querySelector('.countdown');
+//             const timerInterval = setInterval(() => {
+//                 const currentValue = parseInt(countdownDiv.textContent);
+//                 if (currentValue > 1) {
+//                     countdownDiv.textContent = currentValue - 1; // Disminuir el contador
+//                 } else {
+//                     clearInterval(timerInterval); // Detener el intervalo cuando el contador llega a 1
+//                 }
+//             }, 1000);
+//         }
+//     }).then(() => {
+//         // Ejecutar la siguiente acción después de que el contador llegue a 1
+//         Acordeon.grabar(); // Iniciar la grabación después del conteo regresivo
+//         const porcentaje = $('.progreso .porcentaje'); // Seleccionar el elemento del porcentaje
+//         porcentaje.css({'animation-duration': duracion + 'ms'}).addClass("animar-porcentaje");
+    
+//         // Mostrar puntaje después de la duración especificada
+//         setTimeout(() => {
+//             const cancion = Acordeon.detenerGrabacion();
+//             const score = Acordeon.evaluar(composicion.cancion, cancion);
+//             porcentaje.removeClass("animar-porcentaje");
+    
+//             let mensaje;
+//             if (score >= 60) {
+//                 mensaje = '¡Felicidades! Has pasado el examen con un puntaje del ' + score + '%.';
+//             } else {
+//                 mensaje = '¡Sigue practicando! Obtuviste un puntaje del ' + score + '%.';
+//             }
+    
+//             Swal.fire({
+//                 title: mensaje,
+//                 icon: score >= 60 ? 'success' : 'warning',
+//                 showConfirmButton: true,
+//                 confirmButtonText: 'Aceptar',
+//                 showClass: {
+//                     popup: 'animated fadeInDown faster' // Animación de entrada
+//                 },
+//                 hideClass: {
+//                     popup: 'animated fadeOutUp faster' // Animación de salida
+//                 }
+//             });
+//         }, duracion + 100);
+//     });
     
 
-})
+// })
 
 // Click en borrar examen
+
+
+
 $("body").on("click",".acciones .borrar",function(){
     let composicion =   composiciones[this.dataset.index]
     localStorage.removeItem(`acordeon-${composicion.nombre}`)

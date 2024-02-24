@@ -167,42 +167,73 @@ const Acordeon = (()=>{
         return b + ((i/max) * (e-b));
     }
 
-    const evaluar=(esperado,tocado)=>{
-        console.log(tocado)
-        let score=0
+    // Evaluacion tiempo - teclas
+
+    // const evaluar=(esperado,tocado)=>{
+    //     console.log(tocado)
+    //     let score=0
         
-        for(let i=0;i<esperado.length;i++){
-            const a=esperado[i]
-            const b=tocado[i]
-            if(!b){
-                continue
-            }
-            if(a.tecla!=b.tecla){
-                continue
-            }
+    //     for(let i=0;i<esperado.length;i++){
+    //         const a=esperado[i]
+    //         const b=tocado[i]
+    //         if(!b){
+    //             continue
+    //         }
+    //         if(a.tecla!=b.tecla){
+    //             continue
+    //         }
 
-            const inicio = Math.abs(a.inicio-b.inicio)
-            const duracion = Math.abs(a.duracion-b.duracion)
+    //         const inicio = Math.abs(a.inicio-b.inicio)
+    //         const duracion = Math.abs(a.duracion-b.duracion)
 
-            if(inicio<1000 && duracion<1000){
-                score++
-            }
+    //         if(inicio<1000 && duracion<1000){
+    //             score++
+    //         }
 
             
-        }
+    //     }
 
-        score=Math.round((score/esperado.length)*100)
+    //     score=Math.round((score/esperado.length)*100)
     
-        if(score<60){
-            // abucheos.volume.value=100
-            abucheos.start()
-        }
-        if(score>=60){
-            aplausos.start()
-        }
-        return score
-    }
+    //     if(score<60){
+    //         // abucheos.volume.value=100
+    //         abucheos.start()
+    //     }
+    //     if(score>=60){
+    //         aplausos.start()
+    //     }
+    //     return score
+    // }
 
+
+
+    // Evaluacion teclas
+
+    const evaluar = (esperado, tocado) => {
+        let score = 0;
+        const teclasEsperadas = esperado.map(nota => nota.tecla);
+        const teclasTocadas = tocado.map(nota => nota.tecla);
+    
+        for (let i = 0; i < teclasEsperadas.length; i++) {
+            const teclaEsperada = teclasEsperadas[i];
+            const teclaTocada = teclasTocadas[i];
+    
+            if (teclaTocada && teclaEsperada === teclaTocada) {
+                score++;
+            }
+        }
+    
+        const accuracy = Math.round((score / esperado.length) * 100);
+    
+        if (accuracy < 60) {
+            abucheos.start();
+        } else {
+            aplausos.start();
+        }
+    
+        return accuracy;
+    };
+    
     const botones_diapason=[
         ['1','Z','Do'],
         ['2','X','Do'],
