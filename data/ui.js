@@ -114,7 +114,8 @@ $("body").on("click", ".acciones .practicar", function() {
     const ele = this;
     const porcentaje = $(ele).parent().parent().find(".progreso .porcentaje");
 
-    let intentosRestantes = 3; // Número de intentos iniciales
+    let intentosRestantes = localStorage.getItem('intentosRestantes'); // Obtener el número de intentos restantes almacenado localmente
+    intentosRestantes = intentosRestantes ? parseInt(intentosRestantes) : 3; // Si no hay un valor almacenado, establecer el valor inicial en 3
 
     function mostrarMensajeIntento() {
         Swal.fire({
@@ -190,12 +191,14 @@ $("body").on("click", ".acciones .practicar", function() {
 
                 // Decrementar el número de intentos restantes después de que se haya confirmado el inicio del examen
                 intentosRestantes--;
+
+                // Guardar el número actualizado de intentos restantes en el almacenamiento local
+                localStorage.setItem('intentosRestantes', intentosRestantes);
             }
         });
     }
 
     mostrarMensajeIntento(); // Mostrar el primer mensaje de intento
-
 });
 
 
