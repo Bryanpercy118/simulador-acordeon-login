@@ -237,15 +237,56 @@ body{
     font-size: 22px;
 }
 
-.practicar {
+/* .practicar {
     color: rgb(79, 102, 145); 
     font-size: 22px;
-}
+} */
 
+
+.practicar {
+    /* Propiedades existentes */
+    display: inline-block;
+    width: auto;
+    height: 30px;
+    background-color: rgb(203, 224, 243);
+    border-color:rgb(198, 215, 230);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+  
+    /* Nueva propiedad para hover
+    transition: background-color 0.2s ease-in-out; */
+  }
+  
+/* Estilo para el estado hover */
+.practicar:hover {
+background-color: rgb(92, 118, 143); /* Color más oscuro al pasar el mouse */
+color: white;
+}
+  
+ 
 .borrar {
     color: red;
     font-size: 22px;
 }
+
+/* Estilo para el botón */
+.reiniciar-pagina {
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cursor de puntero al pasar */
+    padding: 0; /* Sin espacio de relleno */
+    cursor: pointer;
+}
+
+/* Estilo para el icono dentro del botón */
+.reiniciar-pagina .material-symbols-outlined {
+    font-size: 24px; /* Tamaño del icono */
+    color: #333; /* Color del icono */
+}
+
+
+
 
 /* Grabación */
 #grabar{

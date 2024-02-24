@@ -57,21 +57,19 @@ function cargarComposiciones() {
             `<div class="composicion">
                 <span class="nombre" title="${composicion.nombre}">${composicion.nombre}</span>
                 <div class="acciones">
-                <span class="reproducir material-symbols-outlined" data-index="${index}" title="Escuchar canción">resume</span>
-                    <span class="practicar material-symbols-outlined" data-index="${index}" title="Comenzar exámen">stadia_controller</span>
-                    <span class="borrar material-symbols-outlined" data-index="${index}" title="Eliminar">delete</span>
-                    </div>
+                    <button class="practicar" data-index="${index}">Iniciar</button>
+                </div>
                 <div class="progreso">
                     <div class="porcentaje"></div>
                 </div>
             </div>`
         ));
     });
-
-
-
-
 }
+
+// <span class="reproducir material-symbols-outlined" data-index="${index}" title="Escuchar canción">resume</span>
+// <span class="borrar material-symbols-outlined" data-index="${index}" title="Eliminar">delete</span>
+                                   
 
 // cargar las canciones
 cargarComposiciones();
@@ -118,88 +116,149 @@ $("body").on("click", ".acciones .practicar", function() {
     intentosRestantes = intentosRestantes ? parseInt(intentosRestantes) : 3; // Si no hay un valor almacenado, establecer el valor inicial en 3
 
     function mostrarMensajeIntento() {
-        Swal.fire({
-            title: `Intento ${4 - intentosRestantes}`,
-            text: `Te quedan ${intentosRestantes - 1} intentos`,
-            icon: "info",
-            showConfirmButton: true,
-            confirmButtonText: 'Comenzar',
-            allowOutsideClick: false,
-            showClass: {
-                popup: 'animated fadeInDown faster' // Animación de entrada
-            },
-            hideClass: {
-                popup: 'animated fadeOutUp faster' // Animación de salida
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Agregar el contador después de que se hace clic en Aceptar
+        if (intentosRestantes > 0) {
+            if (intentosRestantes > 1) {
                 Swal.fire({
-                    html: '<div class="countdown">3</div>', // Contador personalizado con el valor inicial
-                    showConfirmButton: false,
-                    timer: 3000, // Duración total del contador en milisegundos (3 segundos)
-                    timerProgressBar: false,
+                    title: `Intento ${4 - intentosRestantes}`,
+                    text: `Te quedan ${intentosRestantes - 1} intentos`,
+                    icon: "info",
+                    showConfirmButton: true,
+                    confirmButtonText: 'Comenzar',
                     allowOutsideClick: false,
-                    customClass: {
-                        popup: 'custom-swal-message' // Clase CSS personalizada para el mensaje
+                    showClass: {
+                        popup: 'animated fadeInDown faster' // Animación de entrada
                     },
-                    willOpen: () => {
-                        // Función para actualizar el contador cada segundo
-                        const countdownDiv = document.querySelector('.countdown');
-                        const timerInterval = setInterval(() => {
-                            const currentValue = parseInt(countdownDiv.textContent);
-                            if (currentValue > 1) {
-                                countdownDiv.textContent = currentValue - 1; // Disminuir el contador
-                            } else {
-                                clearInterval(timerInterval); // Detener el intervalo cuando el contador llega a 1
-                            }
-                        }, 1000);
+                    hideClass: {
+                        popup: 'animated fadeOutUp faster' // Animación de salida
                     }
-                }).then(() => {
-                    // Ejecutar la siguiente acción después de que el contador llegue a 1
-                    Acordeon.grabar(); // Iniciar la grabación después del conteo regresivo
-                    const porcentaje = $('.progreso .porcentaje'); // Seleccionar el elemento del porcentaje
-                    porcentaje.css({'animation-duration': duracion + 'ms'}).addClass("animar-porcentaje");
-                
-                    // Mostrar puntaje después de la duración especificada
-                    setTimeout(() => {
-                        const cancion = Acordeon.detenerGrabacion();
-                        const score = Acordeon.evaluar(composicion.cancion, cancion);
-                        porcentaje.removeClass("animar-porcentaje");
-                
-                        let mensaje;
-                        if (score >= 60) {
-                            mensaje = '¡Felicidades! Has pasado el examen con un puntaje del ' + score + '%.';
-                        } else {
-                            mensaje = '¡Sigue practicando! Obtuviste un puntaje del ' + score + '%.';
-                        }
-                
-                        Swal.fire({
-                            title: mensaje,
-                            icon: score >= 60 ? 'success' : 'warning',
-                            showConfirmButton: true,
-                            confirmButtonText: 'Aceptar',
-                            showClass: {
-                                popup: 'animated fadeInDown faster' // Animación de entrada
-                            },
-                            hideClass: {
-                                popup: 'animated fadeOutUp faster' // Animación de salida
-                            }
-                        });
-                    }, duracion + 100);
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        iniciarExamen();
+                    }
                 });
+            } else {
+                Swal.fire({
+                    title: `Intento ${4 - intentosRestantes}`,
+                    text: `Este es tu último intento`,
+                    icon: "info",
+                    showConfirmButton: true,
+                    confirmButtonText: 'Comenzar',
+                    allowOutsideClick: false,
+                    showClass: {
+                        popup: 'animated fadeInDown faster' // Animación de entrada
+                    },
+                    hideClass: {
+                        popup: 'animated fadeOutUp faster' // Animación de salida
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        iniciarExamen();
+                    }
+                });
+            }
+        } else {
+            // Si no hay más intentos, mostrar mensaje de alerta
+            Swal.fire({
+                title: '¡Sin intentos disponibles!',
+                text: 'Debes esperar 5 minutos antes de intentarlo de nuevo.',
+                icon: 'warning',
+                confirmButtonText: 'Aceptar',
+                allowOutsideClick: false
+            });
+        }
+    }
 
-                // Decrementar el número de intentos restantes después de que se haya confirmado el inicio del examen
-                intentosRestantes--;
+    function iniciarExamen() {
+        Swal.fire({
+            html: '<div class="countdown">3</div>', // Contador personalizado con el valor inicial
+            showConfirmButton: false,
+            timer: 3000, // Duración total del contador en milisegundos (3 segundos)
+            timerProgressBar: false,
+            allowOutsideClick: false,
+            customClass: {
+                popup: 'custom-swal-message' // Clase CSS personalizada para el mensaje
+            },
+            willOpen: () => {
+                // Función para actualizar el contador cada segundo
+                const countdownDiv = document.querySelector('.countdown');
+                const timerInterval = setInterval(() => {
+                    const currentValue = parseInt(countdownDiv.textContent);
+                    if (currentValue > 1) {
+                        countdownDiv.textContent = currentValue - 1; // Disminuir el contador
+                    } else {
+                        clearInterval(timerInterval); // Detener el intervalo cuando el contador llega a 1
+                    }
+                }, 1000);
+            }
+        }).then(() => {
+            Acordeon.grabar(); // Iniciar la grabación después del conteo regresivo
+            const porcentaje = $('.progreso .porcentaje'); // Seleccionar el elemento del porcentaje
+            porcentaje.css({ 'animation-duration': duracion + 'ms' }).addClass("animar-porcentaje");
 
-                // Guardar el número actualizado de intentos restantes en el almacenamiento local
-                localStorage.setItem('intentosRestantes', intentosRestantes);
+            // Mostrar puntaje después de la duración especificada
+            setTimeout(() => {
+                const cancion = Acordeon.detenerGrabacion();
+                const score = Acordeon.evaluar(composicion.cancion, cancion);
+                porcentaje.removeClass("animar-porcentaje");
+
+                let mensaje;
+                if (score >= 60) {
+                    mensaje = '¡Felicidades! Has pasado el examen con un puntaje del ' + score + '%.';
+                } else {
+                    mensaje = '¡Sigue practicando! Obtuviste un puntaje del ' + score + '%.';
+                }
+
+                Swal.fire({
+                    title: mensaje,
+                    icon: score >= 60 ? 'success' : 'warning',
+                    showConfirmButton: true,
+                    confirmButtonText: 'Aceptar',
+                    showClass: {
+                        popup: 'animated fadeInDown faster' // Animación de entrada
+                    },
+                    hideClass: {
+                        popup: 'animated fadeOutUp faster' // Animación de salida
+                    }
+                });
+            }, duracion + 100);
+
+            // Decrementar el número de intentos restantes después de que se haya confirmado el inicio del examen
+            intentosRestantes--;
+
+            // Guardar el número actualizado de intentos restantes en el almacenamiento local
+            localStorage.setItem('intentosRestantes', intentosRestantes);
+
+            // Si no hay más intentos, bloquear el botón por 5 minutos
+            if (intentosRestantes === 0) {
+                bloquearBotonPorCincoMinutos();
             }
         });
     }
 
+    function bloquearBotonPorCincoMinutos() {
+        // Desactivar el botón
+        $(".acciones .practicar").prop("disabled", true);
+
+        // Establecer un temporizador de 5 minutos para reactivar el botón y restablecer los intentos
+        setTimeout(() => {
+            $(".acciones .practicar").prop("disabled", false);
+            localStorage.setItem('intentosRestantes', 3); // Restablecer los intentos a 3
+        }, 5 * 60 * 1000); // 5 minutos en milisegundos
+    }
+
     mostrarMensajeIntento(); // Mostrar el primer mensaje de intento
 });
+
+
+// Manejar el clic en el botón para reiniciar la página
+$(".reiniciar-pagina").on("click", function() {
+    // Recargar la página
+    location.reload();
+});
+
+
+
+
 
 
 // // Click en iniciar examen
@@ -319,6 +378,10 @@ $("body").on("click", ".acciones .practicar", function() {
 // })
 
 // Click en borrar examen
+
+
+// borrar
+
 
 
 
