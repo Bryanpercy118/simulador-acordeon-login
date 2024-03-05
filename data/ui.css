@@ -286,9 +286,9 @@ color: white;
 }
 
 
-
-
 /* Grabación */
+
+
 #grabar{
     border-radius: 12px;
     border:1px solid rgb(149, 168, 182);
@@ -303,7 +303,7 @@ color: white;
     justify-content: center;
     user-select: none;
     cursor: pointer;
-    /* display: none; */
+     display: none;
 }
 
 #grabar:hover {
@@ -322,6 +322,7 @@ color: white;
 #grabar.grabando .text::before{
     content:"Detener grabación...";
 }
+
 
 
 /* Estilos para la barra de progreso predeterminada */
