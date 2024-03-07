@@ -360,7 +360,7 @@ color: white;
     bottom: auto; /* Eliminar bottom para que el posicionamiento sea relativo al contenedor */
     width: 30%; /* Ajustar el tamaño del logo */
     left: 50%;
-    margin: 40px auto;
+    margin:100px auto;
     margin-left: -15%; /* Ajustar el margen izquierdo */
     text-align: center;
 }
