@@ -67,7 +67,7 @@
         });
     }
 
-    // <span class="reproducir material-symbols-outlined" data-index="${index}" title="Escuchar canción">resume</span>
+   
     // <span class="borrar material-symbols-outlined" data-index="${index}" title="Eliminar">delete</span>
                                     
 
@@ -171,6 +171,7 @@
 
         // iniciar examen
         function iniciarExamen() {
+            
             Swal.fire({
                 html: '<div class="countdown">3</div>', // Contador personalizado con el valor inicial
                 showConfirmButton: false,
@@ -251,8 +252,11 @@
 
         mostrarMensajeIntento(); // Mostrar el primer mensaje de intento
 
-    
+        
+
     });
+
+
 
     
 

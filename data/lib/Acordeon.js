@@ -150,8 +150,6 @@ const Acordeon = (()=>{
         return teclas_sueltas;
     }
     
-
-
     const ciclo=(timeStamp)=>{
   
         window.requestAnimationFrame(ciclo)
@@ -233,6 +231,10 @@ const Acordeon = (()=>{
     
         return accuracy;
     };
+
+
+    
+
     
     const botones_diapason=[
         ['1','Z','Do'],
@@ -407,7 +409,6 @@ const Acordeon = (()=>{
     }
 
    
-    
     function keyup(event) {
         if (event.defaultPrevented) {
             return;
@@ -426,8 +427,6 @@ const Acordeon = (()=>{
         }
         liberar(keyValue)
     }
-
-
 
     function keydown(event) {
         if (event.defaultPrevented) {
@@ -453,9 +452,7 @@ const Acordeon = (()=>{
 
     }
 
-
   
-    
     const tocarConLaDerecha=()=>{
         acordeon.classList.remove(`mano-${MANO}`)
         MANO=MANO_DERECHA
