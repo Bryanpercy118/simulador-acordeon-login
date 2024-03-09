@@ -224,13 +224,16 @@ const Acordeon = (()=>{
         const accuracy = Math.round((score / esperado.length) * 100);
     
         if (accuracy < 60) {
+            // Reproducir sonido de abucheos si la precisión es baja
             abucheos.start();
         } else {
+            // Reproducir sonido de aplausos si la precisión es alta
             aplausos.start();
         }
     
         return accuracy;
     };
+    
 
 
     
