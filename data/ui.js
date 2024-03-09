@@ -30,7 +30,7 @@
 
     a tener en cuenta en la evaluacion
     1. evaluar por tecla  listo
-    2. evaluar por proceso de evolucion (pausar y ver cuanto llevo)
+    2. evaluar por proceso de evolucion (pausar y ver cuanto llevo) listooo
     3. con 3 intentos (1 intento, 2 intento, 3 ultimo intento, preparate!!) listo
     4. informe de los resultados
     5. contador 3,2,1...ya!!  listo
@@ -100,13 +100,27 @@
     }
 
 
+
     // Click iniciar examen
     $("body").on("click", ".acciones .practicar", function() {
-        let composicion = composiciones[this.dataset.index];
+        let ele = this;
+        let isTerminar = $(ele).text() === "Terminar"; // Verificar si el botón está en estado "Terminar"
+
+        if (isTerminar) {
+            // Acciones para finalizar la evaluación
+            terminarExamen(ele);
+        } else {
+            // Acciones para iniciar el examen
+            iniciarExamen(ele);
+        }
+    });
+
+    // Función para iniciar el examen
+    function iniciarExamen(ele) {
+        let composicion = composiciones[ele.dataset.index];
         let duracion = composicion.cancion.sort((a, b) => a.inicio - b.inicio);
         duracion = duracion[duracion.length - 1].inicio + duracion[duracion.length - 1].duracion;
 
-        const ele = this;
         const porcentaje = $(ele).parent().parent().find(".progreso .porcentaje");
 
         let intentosRestantes = localStorage.getItem('intentosRestantes'); // Obtener el número de intentos restantes almacenado localmente
@@ -131,7 +145,14 @@
                         }
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            iniciarExamen();
+                            Acordeon.grabar(); // Iniciar la grabación después del mensaje de confirmación
+                            porcentaje.css({ 'animation-duration': duracion + 'ms' }).addClass("animar-porcentaje");
+
+                            // Cambiar el texto del botón a "Terminar"
+                            $(ele).text("Terminar");
+
+                            // Iniciar el temporizador para detener la grabación y mostrar el resultado
+                            iniciarTemporizador(ele, duracion);
                         }
                     });
                 } else {
@@ -150,7 +171,14 @@
                         }
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            iniciarExamen();
+                            Acordeon.grabar(); // Iniciar la grabación después del mensaje de confirmación
+                            porcentaje.css({ 'animation-duration': duracion + 'ms' }).addClass("animar-porcentaje");
+
+                            // Cambiar el texto del botón a "Terminar"
+                            $(ele).text("Terminar");
+
+                            // Iniciar el temporizador para detener la grabación y mostrar el resultado
+                            iniciarTemporizador(ele, duracion);
                         }
                     });
                 }
@@ -166,92 +194,108 @@
             }
         }
 
-        // iniciar examen
-        function iniciarExamen() {
-            
-            Swal.fire({
-                html: '<div class="countdown">3</div>', // Contador personalizado con el valor inicial
-                showConfirmButton: false,
-                timer: 3000, // Duración total del contador en milisegundos (3 segundos)
-                timerProgressBar: false,
-                allowOutsideClick: false,
-                customClass: {
-                    popup: 'custom-swal-message' // Clase CSS personalizada para el mensaje
-                },
-                willOpen: () => {
+        // Mostrar mensaje de intento
+        mostrarMensajeIntento();
+    }
 
-                    // Función para actualizar el contador cada segundo
-                    const countdownDiv = document.querySelector('.countdown');
-                    const timerInterval = setInterval(() => {
-                        const currentValue = parseInt(countdownDiv.textContent);
-                        if (currentValue > 1) {
-                            countdownDiv.textContent = currentValue - 1; // Disminuir el contador
-                        } else {
-                            clearInterval(timerInterval); // Detener el intervalo cuando el contador llega a 1
-                        }
-                    }, 1000);
-                }
-            }).then(() => {
-                Acordeon.grabar(); // Iniciar la grabación después del conteo regresivo
-                const porcentaje = $('.progreso .porcentaje'); // Seleccionar el elemento del porcentaje
-                porcentaje.css({ 'animation-duration': duracion + 'ms' }).addClass("animar-porcentaje");
+    // Función para iniciar el temporizador y mostrar el resultado del examen
+    function iniciarTemporizador(ele, duracion) {
 
-                // Mostrar puntaje después de la duración especificada
-                setTimeout(() => {
-                    const cancion = Acordeon.detenerGrabacion();
-                    const score = Acordeon.evaluar(composicion.cancion, cancion);
-                    porcentaje.removeClass("animar-porcentaje");
+        Swal.fire({
+            html: '<div class="countdown">3</div>', // Contador personalizado con el valor inicial
+            showConfirmButton: false,
+            timer: 3000, // Duración total del contador en milisegundos (3 segundos)
+            timerProgressBar: false,
+            allowOutsideClick: false,
+            customClass: {
+                popup: 'custom-swal-message' // Clase CSS personalizada para el mensaje
+            },
+            willOpen: () => {
 
-                    let mensaje;
-                    if (score >= 60) {
-                        mensaje = '¡Felicidades! Has pasado el examen con un puntaje del ' + score + '%.';
+                // Función para actualizar el contador cada segundo
+                const countdownDiv = document.querySelector('.countdown');
+                const timerInterval = setInterval(() => {
+                    const currentValue = parseInt(countdownDiv.textContent);
+                    if (currentValue > 1) {
+                        countdownDiv.textContent = currentValue - 1; // Disminuir el contador
                     } else {
-                        mensaje = '¡Sigue practicando! Obtuviste un puntaje del ' + score + '%.';
+                        clearInterval(timerInterval); // Detener el intervalo cuando el contador llega a 1
                     }
+                }, 1000);
+            }
+        }).then(() => {
 
-                    Swal.fire({
-                        title: mensaje,
-                        icon: score >= 60 ? 'success' : 'warning',
-                        showConfirmButton: true,
-                        confirmButtonText: 'Aceptar',
-                        showClass: {
-                            popup: 'animated fadeInDown faster' // Animación de entrada
-                        },
-                        hideClass: {
-                            popup: 'animated fadeOutUp faster' // Animación de salida
-                        }
-                    });
-                }, duracion + 100);
+       
+        // Mostrar puntaje después de la duración especificada
+        setTimeout(() => {
+        const composicion = composiciones[ele.dataset.index];
+        const cancion = Acordeon.detenerGrabacion();
+        const score = Acordeon.evaluar(composicion.cancion, cancion);
+        const porcentaje = $(ele).parent().parent().find(".progreso .porcentaje");
+        porcentaje.removeClass("animar-porcentaje");
 
-                // Decrementar el número de intentos restantes después de que se haya confirmado el inicio del examen
-                intentosRestantes--;
 
-                // Guardar el número actualizado de intentos restantes en el almacenamiento local
-                localStorage.setItem('intentosRestantes', intentosRestantes);
+        // Cambiar el texto del botón a "Iniciar"
+        $(ele).text("Iniciar");
 
-                // Si no hay más intentos, bloquear el botón por 5 minutos
-                if (intentosRestantes === 0) {
-                    bloquearBotonPorCincoMinutos();
-                }
-            });
+        let mensaje;
+        if (score >= 60) {
+            mensaje = '¡Felicidades! Has pasado el examen con un puntaje del ' + score + '%.';
+        } else {
+            mensaje = '¡Sigue practicando! Obtuviste un puntaje del ' + score + '%.';
         }
 
-        function bloquearBotonPorCincoMinutos() {
-            // Desactivar el botón
-            $(".acciones .practicar").prop("disabled", true);
-
-            // Establecer un temporizador de 5 minutos para reactivar el botón y restablecer los intentos
-            setTimeout(() => {
-                $(".acciones .practicar").prop("disabled", false);
-                localStorage.setItem('intentosRestantes', 3); // Restablecer los intentos a 3
-            }, 5 * 60 * 1000); // 5 minutos en milisegundos
-        }
-
-        mostrarMensajeIntento(); // Mostrar el primer mensaje de intento
-
-        
+        Swal.fire({
+            title: mensaje,
+            icon: score >= 60 ? 'success' : 'warning',
+            showConfirmButton: true,
+            confirmButtonText: 'Aceptar',
+            showClass: {
+                popup: 'animated fadeInDown faster' // Animación de entrada
+            },
+            hideClass: {
+                popup: 'animated fadeOutUp faster' // Animación de salida
+            }
+        });
+        }, duracion + 100);
 
     });
+    }
+
+    // Función para finalizar el examen
+    function terminarExamen(ele) {
+        // Detener la grabación
+        const cancion = Acordeon.detenerGrabacion();
+
+        // Cambiar el texto del botón a "Iniciar"
+        $(ele).text("Iniciar");
+
+        // Esperar a que la grabación termine completamente antes de mostrar el resultado
+        setTimeout(() => {
+            // Mostrar el puntaje obtenido
+            const composicion = composiciones[ele.dataset.index];
+            const score = Acordeon.evaluar(composicion.cancion, cancion);
+            const mensaje = score >= 60 ? `¡Felicidades! Has pasado el examen con un puntaje del ${score}%.` : `¡Sigue practicando! Obtuviste un puntaje del ${score}%.`;
+
+            Swal.fire({
+                title: mensaje,
+                icon: score >= 60 ? 'success' : 'warning',
+                showConfirmButton: true,
+                confirmButtonText: 'Aceptar',
+                showClass: {
+                    popup: 'animated fadeInDown faster' // Animación de entrada
+                },
+                hideClass: {
+                    popup: 'animated fadeOutUp faster' // Animación de salida
+                }
+            });
+        }, 1000); // Espera un segundo antes de mostrar el resultado
+    }
+
+
+
+
+    
 
 
     // Manejar el clic en el botón para reiniciar la página

@@ -58,7 +58,7 @@ body{
 
 /* Estilo del menú y acordeón */
 .menu {
-    width: 250px;
+    width: 260px;
     height: 100vh;
     position: absolute;
     padding: 10px;
@@ -246,12 +246,12 @@ body{
 .practicar {
     /* Propiedades existentes */
     display: inline-block;
-    width: auto;
-    height: 30px;
+    width: auto !important;
+    height: 32px;
     background-color: rgb(203, 224, 243);
     border-color:rgb(198, 215, 230);
     border-radius: 10px;
-    overflow: hidden;
+    /* overflow: hidden; */
     cursor: pointer;
   
     /* Nueva propiedad para hover
@@ -263,8 +263,8 @@ body{
 background-color: rgb(92, 118, 143); /* Color más oscuro al pasar el mouse */
 color: white;
 }
-  
- 
+
+
 .borrar {
     color: red;
     font-size: 22px;

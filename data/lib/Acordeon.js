@@ -280,7 +280,7 @@ const Acordeon = (()=>{
         }
     }
 
-    
+
 
     const liberar=(tecla)=>{
 
