@@ -167,7 +167,6 @@ const Acordeon = (()=>{
 
 
     // Evaluacion teclas
-
     const evaluar = (esperado, tocado) => {
         let score = 0;
         const teclasEsperadas = esperado.map(nota => nota.tecla);
@@ -280,8 +279,6 @@ const Acordeon = (()=>{
         }
     }
 
-
-
     const liberar=(tecla)=>{
 
         if(tecla_has_sonido.get(MANO).has(tecla)){
@@ -313,6 +310,7 @@ const Acordeon = (()=>{
 
     const cerrarAcordeon=()=>{
 
+       
         if (fuelleAbierto) {
             teclas_presionadas.set('ESCAPE',new Date().getTime()-tiempo_inicio)
         
@@ -380,8 +378,11 @@ const Acordeon = (()=>{
         if (["SPACE",'CONTROL'].includes(keyValue)) {
             return;
         }
+
+        
         KEYBOARD[keyValue]=false
-        if(keyValue ==  TECLA_CERRAR_ACORDEON && ACORDEON_ABIERTO==0){
+        
+        if((keyValue ==  TECLA_CERRAR_ACORDEON) && (ACORDEON_ABIERTO==0)){
             abrirAcordeon()
             return
         }
