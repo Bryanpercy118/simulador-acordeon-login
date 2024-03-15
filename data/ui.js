@@ -26,17 +26,6 @@
 
     let composiciones = [];
 
-    /* 
-
-    a tener en cuenta en la evaluacion
-    1. evaluar por tecla  listo
-    2. evaluar por proceso de evolucion (pausar y ver cuanto llevo) listooo
-    3. con 3 intentos (1 intento, 2 intento, 3 ultimo intento, preparate!!) listo
-    4. informe de los resultados
-    5. contador 3,2,1...ya!!  listo
-
-    */
-
     // Lista de canciones
     const defaultCompositions = canciones;
 
