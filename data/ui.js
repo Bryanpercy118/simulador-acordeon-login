@@ -105,7 +105,7 @@ function iniciarExamen(ele) {
     const duracionTotal = duracion[duracion.length - 1].inicio + duracion[duracion.length - 1].duracion;
     const porcentaje = $(ele).closest(".composicion").find(".progreso .porcentaje");
 
-    let intentosRestantes = parseInt(localStorage.getItem('intentosRestantes')) || 3;
+    let intentosRestantes = parseInt(localStorage.getItem('intentosRestantes')) || 4;
 
      // Decrementar intentos restantes
     intentosRestantes--;
