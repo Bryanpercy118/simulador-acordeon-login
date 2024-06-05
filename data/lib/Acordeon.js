@@ -398,6 +398,7 @@ const Acordeon = (()=>{
 
     const cerrarAcordeon = () => {
         if (fuelleAbierto) {
+
             teclas_presionadas.set('ESCAPE', new Date().getTime() - tiempo_inicio);
             const liberadas = [];
             teclas_presionadas.forEach((tiempo, tecla) => {
