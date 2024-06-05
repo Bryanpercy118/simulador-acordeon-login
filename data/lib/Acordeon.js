@@ -258,40 +258,20 @@ const Acordeon = (()=>{
         return {x,y};
     }
 
-    const presionar=(tecla)=>{
-        if(teclas_presionadas.has(tecla)){
-            return
-        }
-
-        if(tecla_has_sonido.get(MANO).has(tecla)){
-            const nota=tecla_has_sonido.get(MANO).get(tecla)
-            document.getElementById(`${MANO}-nota-${nota}`).classList.add('selected')
-            sonidos.get(nota)[ACORDEON_ABIERTO].loop=true
-            sonidos.get(nota)[ACORDEON_ABIERTO].start()
-        } 
-
-        if(reproduciendo){
-            return
-        }
-
-        if(tecla_has_sonido.get(MANO).has(tecla)){
-            teclas_presionadas.set(tecla,new Date().getTime()-tiempo_inicio)
-        }
-    }
-
+    
     const liberar=(tecla)=>{
 
         if(tecla_has_sonido.get(MANO).has(tecla)){
             const nota=tecla_has_sonido.get(MANO).get(tecla)
             document.getElementById(`${MANO}-nota-${nota}`).classList.remove('selected')
             sonidos.get(nota)[ACORDEON_ABIERTO].stop()
-            
         }
-        
 
+    
         if(reproduciendo){
             return
         }
+        
 
         if(grabando){
             const inicio = teclas_presionadas.get(tecla)
@@ -305,35 +285,35 @@ const Acordeon = (()=>{
         // if(tecla_has_sonido.get(MANO).has(tecla) || tecla=='ESCAPE'){
         //     teclas_presionadas.delete(tecla)
         // }
+        // else{
+        //     presionar(tecla)
+        // }
+
         
     }
 
-    const cerrarAcordeon=()=>{
-
-       
+    const cerrarAcordeon = () => {
         if (fuelleAbierto) {
-            teclas_presionadas.set('ESCAPE',new Date().getTime()-tiempo_inicio)
-        
-            const liberadas=[]
-            teclas_presionadas.forEach((tiempo,tecla)=>{
-                if(tecla!='ESCAPE'){
-                    liberar(tecla)
-                    liberadas.push(tecla)
+            teclas_presionadas.set('ESCAPE', new Date().getTime() - tiempo_inicio);
+            const liberadas = [];
+            teclas_presionadas.forEach((tiempo, tecla) => {
+                if (tecla !== 'ESCAPE') {
+                    liberar(tecla);
+                    liberadas.push(tecla);
                 }
-            })
-            ACORDEON_ABIERTO=0  
-            liberadas.forEach((tecla)=>{
-                presionar(tecla)
-            })
-            acordeon.classList.remove("A")
-            acordeon.classList.add("C")
-            console.log(teclas_presionadas.get("ESCAPE"))
-            
-            fuelleAbierto = false; // Actualizar el estado del fuelle a cerrado
+            });
+            ACORDEON_ABIERTO = 0;
+            liberadas.forEach((tecla) => {
+                presionar(tecla);
+            });
+            acordeon.classList.remove("A");
+            acordeon.classList.add("C");
+            console.log(teclas_presionadas.get("ESCAPE"));
+            fuelleAbierto = false;
+
         }
-        
-        
-    }
+    };
+    
 
     const abrirAcordeon=()=>{
 
@@ -366,7 +346,31 @@ const Acordeon = (()=>{
         
     }
 
+     
+    const presionar=(tecla)=>{
+        if(teclas_presionadas.has(tecla)){
+            return
+        }
+
+        if(tecla_has_sonido.get(MANO).has(tecla)){
+            const nota=tecla_has_sonido.get(MANO).get(tecla)
+            document.getElementById(`${MANO}-nota-${nota}`).classList.add('selected')
+            sonidos.get(nota)[ACORDEON_ABIERTO].loop=true
+            sonidos.get(nota)[ACORDEON_ABIERTO].start()
+        } 
+
+        if(reproduciendo){
+            return
+        }
+
+        if(tecla_has_sonido.get(MANO).has(tecla)){
+            teclas_presionadas.set(tecla,new Date().getTime()-tiempo_inicio)
+        }
+    }
+    
    
+    
+    //    Soltar las teclas
     function keyup(event) {
         if (event.defaultPrevented) {
             return;
@@ -413,7 +417,7 @@ const Acordeon = (()=>{
 
     }
 
-  
+    //   Elegir con cual tocar diapason o bajos
     const tocarConLaDerecha=()=>{
         acordeon.classList.remove(`mano-${MANO}`)
         MANO=MANO_DERECHA
@@ -428,6 +432,7 @@ const Acordeon = (()=>{
         cargarSonidos()
     }
 
+    // mostrar el acordeon tocando
     const dibujar=()=>{
         //-------reset
         const style = document.getElementById('acordeon-estilos')
@@ -528,6 +533,8 @@ const Acordeon = (()=>{
 
     }
 
+
+    // cargar el sonido del acordeon
     const cargarSonidos=async ()=>{
        cargando=true
        let event = new CustomEvent("cargando-sonidos", { detail: true });
@@ -564,6 +571,7 @@ const Acordeon = (()=>{
         document.body.dispatchEvent(event);
     }
 
+    // cambiar el modo del acordeon
     const cambiarModo=(modo)=>{
         acordeon.classList.remove('modo-0')
         acordeon.classList.remove('modo-1')
@@ -579,6 +587,7 @@ const Acordeon = (()=>{
         }
     }
 
+    // comenzar a tocar
     const iniciar=async ()=>{
 
         document.removeEventListener('keydown',keydown)
