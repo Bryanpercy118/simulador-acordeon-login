@@ -97,7 +97,6 @@ $("body").on("click", ".acciones .practicar", function() {
 });
 
 
-
 // Función para iniciar el examen
 function iniciarExamen(ele) {
     const composicion = composiciones[ele.dataset.index];
@@ -198,7 +197,7 @@ function mostrarMensajeNoMasIntentos() {
         }
       });
     });
-  }
+}
   
   
 

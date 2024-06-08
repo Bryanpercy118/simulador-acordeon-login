@@ -34,6 +34,7 @@ const Acordeon = (()=>{
     let     ACORDEON_ABIERTO            =   1
     const   teclas_presionadas          =   new Map();  
     let   teclas_sueltas              =   []
+    
 
     const tecla_has_sonido=new Map([
         [MANO_DERECHA,new Map([
@@ -165,25 +166,70 @@ const Acordeon = (()=>{
         return b + ((i/max) * (e-b));
     }
 
-
     // Evaluacion teclas
+    
+
+    // const evaluar = (esperado, tocado) => {
+    //     let score = 0;
+    //     const teclasEsperadas = esperado.map(nota => nota.tecla);
+    //     const teclasTocadas = tocado.map(nota => nota.tecla);
+    
+    //     for (let i = 0; i < teclasEsperadas.length; i++) {
+    //         const teclaEsperada = teclasEsperadas[i];
+    //         const teclaTocada = teclasTocadas[i];
+    
+    //         if (teclaTocada && teclaEsperada === teclaTocada) {
+    //             score++;
+    //         }
+    //     }
+    
+    //     const accuracy = Math.round((score / esperado.length) * 100);
+    
+    //     if (accuracy < 60) {
+    //         // Reproducir sonido de abucheos si la precisión es baja
+    //         abucheos.start();
+    //     } else {
+    //         // Reproducir sonido de aplausos si la precisión es alta
+    //         aplausos.start();
+    //     }
+    
+    //     return accuracy;
+    // };
+    
+
+    
+    // Evaluacion teclas
+    
     const evaluar = (esperado, tocado) => {
         let score = 0;
+        let correctOrder = 0;
         const teclasEsperadas = esperado.map(nota => nota.tecla);
         const teclasTocadas = tocado.map(nota => nota.tecla);
     
+        // Verificar si las notas se tocaron en el orden correcto
         for (let i = 0; i < teclasEsperadas.length; i++) {
             const teclaEsperada = teclasEsperadas[i];
             const teclaTocada = teclasTocadas[i];
     
             if (teclaTocada && teclaEsperada === teclaTocada) {
                 score++;
+                correctOrder++;
+            }
+        }
+    
+        // Verificar si las notas se tocaron correctamente, aunque no en el orden correcto
+        for (let i = 0; i < teclasTocadas.length; i++) {
+            const teclaTocada = teclasTocadas[i];
+    
+            if (teclasEsperadas.includes(teclaTocada)) {
+                score++;
             }
         }
     
         const accuracy = Math.round((score / esperado.length) * 100);
+        const correctOrderAccuracy = Math.round((correctOrder / esperado.length) * 100);
     
-        if (accuracy < 60) {
+        if (accuracy <  60) {
             // Reproducir sonido de abucheos si la precisión es baja
             abucheos.start();
         } else {
@@ -193,8 +239,41 @@ const Acordeon = (()=>{
     
         return accuracy;
     };
-    
-    
+
+    // const evaluar = (esperado, tocado) => {
+    //     let score = 0;
+    //     let correctOrder = 0;
+    //     const teclasEsperadas = esperado.map(nota => nota.tecla);
+    //     const teclasTocadas = tocado.map(nota => nota.tecla);
+        
+    //     for (let i = 0; i < teclasEsperadas.length; i++) {
+    //         const teclaEsperada = teclasEsperadas[i];
+    //         const teclaTocada = teclasTocadas[i];
+            
+    //         if (teclaTocada && teclaEsperada === teclaTocada) {
+    //             score++;
+    //             if (teclasTocadas.indexOf(teclaTocada) === i) {
+    //                 correctOrder++;
+    //             }
+    //         }
+    //     }
+        
+    //     const accuracy = Math.round((score / esperado.length) * 100);
+    //     const correctOrderAccuracy = Math.round((correctOrder / esperado.length) * 100);
+        
+    //     if (accuracy < 60) {
+    //         // Reproducir sonido de abucheos si la precisión es baja
+    //         abucheos.start();
+    //         console.log(`Lo siento, no apruebas. Tu puntaje es de ${accuracy}%`);
+    //     } else {
+    //         // Reproducir sonido de aplausos si la precisión es alta
+    //         aplausos.start();
+    //         console.log(`¡Felicidades, apruebas con un puntaje de ${accuracy}%`);
+    //     }
+        
+    //     return accuracy;
+    // };
+
     const botones_diapason=[
         ['1','Z','Do'],
         ['2','X','Do'],
@@ -287,33 +366,10 @@ const Acordeon = (()=>{
     //     // }
     //     // else{
     //     //     presionar(tecla)
-    //     // }
-
-        
+    //     // }   
     // }
 
-    const liberar = (tecla) => {
-        if (tecla_has_sonido.get(MANO).has(tecla)) {
-            const nota = tecla_has_sonido.get(MANO).get(tecla);
-            document.getElementById(`${MANO}-nota-${nota}`).classList.remove('selected');
-            sonidos.get(nota)[ACORDEON_ABIERTO].stop();
-        }
-    
-        if (reproduciendo) {
-            return;
-        }
-    
-        if (grabando) {
-            const inicio = teclas_presionadas.get(tecla);
-            const fin = new Date().getTime() - tiempo_inicio;
-            const duracion = fin - inicio;
-            teclas_sueltas.push({ tecla, inicio, fin, duracion });
-        }
-    
-        teclas_presionadas.delete(tecla);
-    };
-    
-    
+   
     
     // const cerrarAcordeon = () => {
     //     if (fuelleAbierto) {
@@ -398,24 +454,33 @@ const Acordeon = (()=>{
 
     const cerrarAcordeon = () => {
         if (fuelleAbierto) {
-
-            teclas_presionadas.set('ESCAPE', new Date().getTime() - tiempo_inicio);
-            const liberadas = [];
-            teclas_presionadas.forEach((tiempo, tecla) => {
-                if (tecla !== 'ESCAPE') {
-                    liberar(tecla);
-                    liberadas.push(tecla);
-                }
-            });
-            ACORDEON_ABIERTO = 0;
-            liberadas.forEach((tecla) => {
-                presionar(tecla);
-            });
-            acordeon.classList.remove("A");
-            acordeon.classList.add("C");
-            fuelleAbierto = false;
+          teclas_presionadas.set('ESCAPE', new Date().getTime() - tiempo_inicio);
+          const liberadas = [];
+          teclas_presionadas.forEach((tiempo, tecla) => {
+            if (tecla !== 'ESCAPE') {
+              liberar(tecla);
+              liberadas.push(tecla);
+            }
+          });
+          ACORDEON_ABIERTO = 0;
+          liberadas.forEach((tecla) => {
+            presionar(tecla);
+          });
+          acordeon.classList.remove("A");
+          acordeon.classList.add("C");
+          fuelleAbierto = false;
+      
+          // Reproducir sonidos de teclas presionadas
+          teclas_presionadas.forEach((tiempo, tecla) => {
+            if (tecla !== 'ESCAPE' && tecla_has_sonido.get(MANO).has(tecla)) {
+              const nota = tecla_has_sonido.get(MANO).get(tecla);
+              sonidos.get(nota)[ACORDEON_ABIERTO].loop = true;
+              sonidos.get(nota)[ACORDEON_ABIERTO].start();
+            }
+          });
         }
-    };
+      };
+      
     
     const abrirAcordeon = () => {
         if (!fuelleAbierto) {
@@ -445,6 +510,27 @@ const Acordeon = (()=>{
     };
     
     
+    // const presionar = (tecla) => {
+    //     if (teclas_presionadas.has(tecla)) {
+    //         return;
+    //     }
+    
+    //     if (tecla_has_sonido.get(MANO).has(tecla)) {
+    //         const nota = tecla_has_sonido.get(MANO).get(tecla);
+    //         document.getElementById(`${MANO}-nota-${nota}`).classList.add('selected');
+    //         sonidos.get(nota)[ACORDEON_ABIERTO].loop = true;
+    //         sonidos.get(nota)[ACORDEON_ABIERTO].start();
+    //     }
+    
+    //     if (reproduciendo) {
+    //         return;
+    //     }
+    
+    //     if (tecla_has_sonido.get(MANO).has(tecla)) {
+    //         teclas_presionadas.set(tecla, new Date().getTime() - tiempo_inicio);
+    //     }
+    // };
+
     const presionar = (tecla) => {
         if (teclas_presionadas.has(tecla)) {
             return;
@@ -464,8 +550,46 @@ const Acordeon = (()=>{
         if (tecla_has_sonido.get(MANO).has(tecla)) {
             teclas_presionadas.set(tecla, new Date().getTime() - tiempo_inicio);
         }
+    
+        // Agregar la tecla presionada al arreglo de teclas presionadas
+        teclas_presionadas.set(tecla, new Date().getTime() - tiempo_inicio);
     };
     
+    // Iterar sobre el arreglo de teclas presionadas para reproducir los sonidos correspondientes
+    teclas_presionadas.forEach((tecla) => {
+        if (tecla_has_sonido.get(MANO).has(tecla)) {
+            const nota = tecla_has_sonido.get(MANO).get(tecla);
+            document.getElementById(`${MANO}-nota-${nota}`).classList.add('selected');
+            sonidos.get(nota)[ACORDEON_ABIERTO].loop = true;
+            sonidos.get(nota)[ACORDEON_ABIERTO].start();
+        }
+    });
+    
+    
+    
+    
+    
+    
+     const liberar = (tecla) => {
+        if (tecla_has_sonido.get(MANO).has(tecla)) {
+            const nota = tecla_has_sonido.get(MANO).get(tecla);
+            document.getElementById(`${MANO}-nota-${nota}`).classList.remove('selected');
+            sonidos.get(nota)[ACORDEON_ABIERTO].stop();
+        }
+    
+        if (reproduciendo) {
+            return;
+        }
+    
+        if (grabando) {
+            const inicio = teclas_presionadas.get(tecla);
+            const fin = new Date().getTime() - tiempo_inicio;
+            const duracion = fin - inicio;
+            teclas_sueltas.push({ tecla, inicio, fin, duracion });
+        }
+    
+        teclas_presionadas.delete(tecla);
+    };
     
     
     // function keyup(event) {
@@ -815,4 +939,8 @@ const Acordeon = (()=>{
         teclas_presionadas,
         KEYBOARD
     }
+
+
+  
+
 })()

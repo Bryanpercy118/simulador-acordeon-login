@@ -4,7 +4,19 @@ const canciones = [
 
     {
         nombre: "Ejercicio 1",
-        cancion: [     
+        cancion: [   
+            {
+                "tecla": "W",
+                "inicio": 1081,
+                "fin": 1190,
+                "duracion": 109
+            },
+            {
+                "tecla": "E",
+                "inicio": 1081,
+                "fin": 1190,
+                "duracion": 109
+            },  
             {
                 "tecla": "A",
                 "inicio": 1081,
