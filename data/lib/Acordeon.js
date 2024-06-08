@@ -137,11 +137,6 @@ const Acordeon = (()=>{
         grabando=true
     }
 
-    // const detenerGrabacion=()=>{
-    //     grabando=false
-    //     return teclas_sueltas
-    // }
-
     const detenerGrabacion = () => {
         grabando = false;
         // Liberar todas las teclas presionadas durante la grabación
@@ -167,39 +162,7 @@ const Acordeon = (()=>{
     }
 
     // Evaluacion teclas
-    
-
-    // const evaluar = (esperado, tocado) => {
-    //     let score = 0;
-    //     const teclasEsperadas = esperado.map(nota => nota.tecla);
-    //     const teclasTocadas = tocado.map(nota => nota.tecla);
-    
-    //     for (let i = 0; i < teclasEsperadas.length; i++) {
-    //         const teclaEsperada = teclasEsperadas[i];
-    //         const teclaTocada = teclasTocadas[i];
-    
-    //         if (teclaTocada && teclaEsperada === teclaTocada) {
-    //             score++;
-    //         }
-    //     }
-    
-    //     const accuracy = Math.round((score / esperado.length) * 100);
-    
-    //     if (accuracy < 60) {
-    //         // Reproducir sonido de abucheos si la precisión es baja
-    //         abucheos.start();
-    //     } else {
-    //         // Reproducir sonido de aplausos si la precisión es alta
-    //         aplausos.start();
-    //     }
-    
-    //     return accuracy;
-    // };
-    
-
-    
-    // Evaluacion teclas
-    
+  
     const evaluar = (esperado, tocado) => {
         let score = 0;
         let correctOrder = 0;
@@ -337,121 +300,6 @@ const Acordeon = (()=>{
         return {x,y};
     }
 
-    
-    // const liberar=(tecla)=>{
-
-    //     if(tecla_has_sonido.get(MANO).has(tecla)){
-    //         const nota=tecla_has_sonido.get(MANO).get(tecla)
-    //         document.getElementById(`${MANO}-nota-${nota}`).classList.remove('selected')
-    //         sonidos.get(nota)[ACORDEON_ABIERTO].stop()
-    //     }
-
-    
-    //     if(reproduciendo){
-    //         return
-    //     }
-        
-
-    //     if(grabando){
-    //         const inicio = teclas_presionadas.get(tecla)
-    //         const fin = new Date().getTime()-tiempo_inicio
-    //         const duracion = fin-inicio
-    //         teclas_sueltas.push({tecla,inicio,fin,duracion})
-    //     }
-
-    //     teclas_presionadas.delete(tecla)
-
-    //     // if(tecla_has_sonido.get(MANO).has(tecla) || tecla=='ESCAPE'){
-    //     //     teclas_presionadas.delete(tecla)
-    //     // }
-    //     // else{
-    //     //     presionar(tecla)
-    //     // }   
-    // }
-
-   
-    
-    // const cerrarAcordeon = () => {
-    //     if (fuelleAbierto) {
-    //         teclas_presionadas.set('ESCAPE', new Date().getTime() - tiempo_inicio);
-    //         const liberadas = [];
-    //         teclas_presionadas.forEach((tiempo, tecla) => {
-    //             if (tecla !== 'ESCAPE') {
-    //                 liberar(tecla);
-    //                 liberadas.push(tecla);
-    //             }
-    //         });
-    //         ACORDEON_ABIERTO = 0;
-    //         liberadas.forEach((tecla) => {
-    //             presionar(tecla);
-    //         });
-    //         acordeon.classList.remove("A");
-    //         acordeon.classList.add("C");
-    //         console.log(teclas_presionadas.get("ESCAPE"));
-    //         fuelleAbierto = false;
-
-    //     }
-    // };
-    
-
-    // const abrirAcordeon=()=>{
-
-    //     if (!fuelleAbierto) {
-    //         if(grabando){
-    //             const inicio = teclas_presionadas.get('ESCAPE')
-    //             const fin = new Date().getTime()-tiempo_inicio
-    //             const duracion = fin-inicio
-    //             teclas_sueltas.push({tecla:'ESCAPE',inicio,fin,duracion})
-    //         }
-    //         teclas_presionadas.delete('ESCAPE')
-    
-    //         const liberadas=[]
-    //         teclas_presionadas.forEach((tiempo,tecla)=>{
-    //             if(tecla!='ESCAPE'){
-    //                 liberar(tecla)
-    //                 liberadas.push(tecla)
-    //             }
-    //         })
-    //         ACORDEON_ABIERTO=1 
-    //         liberadas.forEach((tecla)=>{
-    //             presionar(tecla)
-    //         })
-    //         acordeon.classList.remove("C")
-    //         acordeon.classList.add("A")
-            
-    //         fuelleAbierto = true; // Actualizar el estado del fuelle a abierto
-    //     }
-
-        
-    // }
-
-     
-    // const presionar=(tecla)=>{
-    //     if(teclas_presionadas.has(tecla)){
-    //         return
-    //     }
-
-    //     if(tecla_has_sonido.get(MANO).has(tecla)){
-    //         const nota=tecla_has_sonido.get(MANO).get(tecla)
-    //         document.getElementById(`${MANO}-nota-${nota}`).classList.add('selected')
-    //         sonidos.get(nota)[ACORDEON_ABIERTO].loop=true
-    //         sonidos.get(nota)[ACORDEON_ABIERTO].start()
-    //     } 
-
-    //     if(reproduciendo){
-    //         return
-    //     }
-
-    //     if(tecla_has_sonido.get(MANO).has(tecla)){
-    //         teclas_presionadas.set(tecla,new Date().getTime()-tiempo_inicio)
-    //     }
-    // }
-    
-   
-    
-    //    Soltar las teclas
-    
-
     const cerrarAcordeon = () => {
         if (fuelleAbierto) {
           teclas_presionadas.set('ESCAPE', new Date().getTime() - tiempo_inicio);
@@ -508,28 +356,6 @@ const Acordeon = (()=>{
             fuelleAbierto = true;
         }
     };
-    
-    
-    // const presionar = (tecla) => {
-    //     if (teclas_presionadas.has(tecla)) {
-    //         return;
-    //     }
-    
-    //     if (tecla_has_sonido.get(MANO).has(tecla)) {
-    //         const nota = tecla_has_sonido.get(MANO).get(tecla);
-    //         document.getElementById(`${MANO}-nota-${nota}`).classList.add('selected');
-    //         sonidos.get(nota)[ACORDEON_ABIERTO].loop = true;
-    //         sonidos.get(nota)[ACORDEON_ABIERTO].start();
-    //     }
-    
-    //     if (reproduciendo) {
-    //         return;
-    //     }
-    
-    //     if (tecla_has_sonido.get(MANO).has(tecla)) {
-    //         teclas_presionadas.set(tecla, new Date().getTime() - tiempo_inicio);
-    //     }
-    // };
 
     const presionar = (tecla) => {
         if (teclas_presionadas.has(tecla)) {
@@ -564,13 +390,8 @@ const Acordeon = (()=>{
             sonidos.get(nota)[ACORDEON_ABIERTO].start();
         }
     });
-    
-    
-    
-    
-    
-    
-     const liberar = (tecla) => {
+
+    const liberar = (tecla) => {
         if (tecla_has_sonido.get(MANO).has(tecla)) {
             const nota = tecla_has_sonido.get(MANO).get(tecla);
             document.getElementById(`${MANO}-nota-${nota}`).classList.remove('selected');
@@ -591,55 +412,6 @@ const Acordeon = (()=>{
         teclas_presionadas.delete(tecla);
     };
     
-    
-    // function keyup(event) {
-    //     if (event.defaultPrevented) {
-    //         return;
-    //     }
-    //     let keyValue = event.key.toUpperCase();
-    //     if(keyValue=='DEAD'){
-    //         keyValue='´'
-    //     }
-    //     if (["SPACE",'CONTROL'].includes(keyValue)) {
-    //         return;
-    //     }
-
-        
-    //     KEYBOARD[keyValue]=false
-        
-    //     if((keyValue ==  TECLA_CERRAR_ACORDEON) && (ACORDEON_ABIERTO==0)){
-    //         abrirAcordeon()
-    //         return
-    //     }
-    //     liberar(keyValue)
-    // }
-
-    // function keydown(event) {
-    //     if (event.defaultPrevented) {
-    //         return;
-    //     }
-       
-    //     let keyValue = event.key.toUpperCase();
-    //     if(keyValue=='DEAD'){
-    //         keyValue='´'
-    //     }
-    //     if (["SPACE",'CONTROL'].includes(keyValue)) {
-    //         return;
-    //     }
-
-    //     KEYBOARD[keyValue]=true
-
-    //     if(keyValue ==  TECLA_CERRAR_ACORDEON && ACORDEON_ABIERTO==1){
-    //         cerrarAcordeon()
-    //         return
-    //     }
-        
-    //     presionar(keyValue)
-
-    // }
-
-    //   Elegir con cual tocar diapason o bajos
-   
     
     function keyup(event) {
         if (event.defaultPrevented) {
@@ -939,8 +711,5 @@ const Acordeon = (()=>{
         teclas_presionadas,
         KEYBOARD
     }
-
-
-  
 
 })()
