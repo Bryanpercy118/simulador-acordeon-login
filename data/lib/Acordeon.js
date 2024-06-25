@@ -702,6 +702,8 @@ const Acordeon = (()=>{
         evaluar,
         cambiarModo,
         cambiarTono,
+        presionar,
+        liberar,
         iniciar,
         tocarConLaDerecha,
         tocarConLaIzquierda,

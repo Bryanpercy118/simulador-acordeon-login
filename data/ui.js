@@ -315,3 +315,13 @@ Acordeon.iniciar();
 
 // Cargar las canciones inicialmente
 cargarComposiciones();
+
+const socket = io('http://localhost:4000');
+socket.on('tecla', ({tecla,estado}) => {
+    console.log(tecla,estado)
+if(estado==1){
+Acordeon.presionar(tecla,0)
+}else{
+Acordeon.liberar(tecla,0)
+}
+})
