@@ -2,7 +2,7 @@ const Acordeon = (()=>{
 
     const MANO_IZQUIERDA=0;
     const MANO_DERECHA=1;
-    const AMBAS=2
+    const AMBAS=2;
     let KEYBOARD={}
 
     var centerX = 0;
