@@ -304,6 +304,7 @@ function cambiarOpcion(elementId, selector, callback) {
 cambiarOpcion("tono-adg", "#cambiar-tono .opcion", () => Acordeon.cambiarTono('ADG'));
 cambiarOpcion("tono-5l", "#cambiar-tono .opcion", () => Acordeon.cambiarTono('5L'));
 cambiarOpcion("tono-gcf", "#cambiar-tono .opcion", () => Acordeon.cambiarTono('GCF'));
+cambiarOpcion("dos-manos", "#cambiar-mano .opcion", () => Acordeon.tocarAmbas());
 cambiarOpcion("mano-derecha", "#cambiar-mano .opcion", () => Acordeon.tocarConLaDerecha());
 cambiarOpcion("mano-izquierda", "#cambiar-mano .opcion", () => Acordeon.tocarConLaIzquierda());
 cambiarOpcion("modo-teclado", "#cambiar-modo .opcion", () => Acordeon.cambiarModo(1));

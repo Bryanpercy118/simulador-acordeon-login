@@ -1,7 +1,8 @@
 const Acordeon = (()=>{
 
     const MANO_IZQUIERDA=0;
-    const MANO_DERECHA=1
+    const MANO_DERECHA=1;
+    const AMBAS=2
     let KEYBOARD={}
 
     var centerX = 0;
@@ -85,7 +86,57 @@ const Acordeon = (()=>{
             ['T','35'],
             ['R','36'],
             ['E','37']
-        ])]
+        ])],
+        [AMBAS,new Map([
+            // derecha
+            ['Z','1'],
+            ['X','2'],
+            ['C','3'],
+            ['V','4'],
+            ['B','5'],
+            ['N','6'],
+            ['M','7'],
+            [',','8'],
+            ['.','9'],
+            ['-','10'],
+    
+            ['A','11'],
+            ['S','12'],
+            ['D','13'],
+            ['F','14'],
+            ['G','15'],
+            ['H','16'],
+            ['J','17'],
+            ['K','18'],
+            ['L','19'],
+            ['Ñ','20'],
+            ['{','21'],
+    
+            ['W','22'],
+            ['E','23'],
+            ['R','24'],
+            ['T','25'],
+            ['Y','26'],
+            ['U','27'],
+            ['I','28'],
+            ['O','29'],
+            ['P','30'],
+            ['´','31'],
+
+            // izquierda
+            ['7','38'],
+            ['8','39'],
+            ['9','40'],
+            ['/','41'],
+            ['*','42'],
+            ['.','43'],
+            ['1','32'],
+            ['2','33'],
+            ['3','34'],
+            ['4','35'],
+            ['5','36'],
+            ['6','37']
+        ])],
     ])
 
     const sonidos = new Map()
@@ -236,6 +287,56 @@ const Acordeon = (()=>{
         
     //     return accuracy;
     // };
+
+    const botones_ambas=[
+        ['1','Z','Do'],
+        ['2','X','Do'],
+        ['3','C','Mi'],
+        ['4','V','Fa'],
+        ['5','B','Sol'],
+        ['6','N','La'],
+        ['7','M','Si'],
+        ['8',',','Re'],
+        ['9','.','Re'],
+        ['10','-','Re'],
+
+        ['11','A','Sol'],
+        ['12','S','Do'],
+        ['13','D','Do'],
+        ['14','F','Do'],
+        ['15','G','Do'],
+        ['16','H','Do'],
+        ['17','J','Do'],
+        ['18','K','Do'],
+        ['19','L','Re'],
+        ['20','Ñ','Do'],
+        ['21','{','Do'],
+
+        ['22','W','Do'],
+        ['23','E','Do'],
+        ['24','R','Do'],
+        ['25','T','Do'],
+        ['26','Y','Do'],
+        ['27','U','Do'],
+        ['28','I','Do'],
+        ['29','O','Do'],
+        ['30','P','Do'],
+        ['31','´','Do'],
+
+        ['38','7','Do'],
+        ['39','8','Do'],
+        ['40','9','Do'],
+        ['41','/','Do'],
+        ['42','*','Do'],
+        ['43','.','Do'],
+        ['32','1','Do'],
+        ['33','2','Do'],
+        ['34','3','Do'],
+        ['35','4','Do'],
+        ['36','5','Do'],
+        ['37','6','Do']
+    ]
+
 
     const botones_diapason=[
         ['1','Z','Do'],
@@ -458,6 +559,14 @@ const Acordeon = (()=>{
     }
     
     
+    const tocarAmbas=()=>{
+        acordeon.classList.remove(`mano-${MANO}`)
+        MANO=AMBAS
+        acordeon.classList.add(`mano-${MANO}`)
+        cargarSonidos()
+    }
+
+
     const tocarConLaDerecha=()=>{
         acordeon.classList.remove(`mano-${MANO}`)
         MANO=MANO_DERECHA
@@ -707,6 +816,7 @@ const Acordeon = (()=>{
         iniciar,
         tocarConLaDerecha,
         tocarConLaIzquierda,
+        tocarAmbas,
         grabar,
         detenerGrabacion,
         reproducir,
