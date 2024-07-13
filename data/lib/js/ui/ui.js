@@ -1,11 +1,9 @@
-// Seleccionamos el botón de menú
-const menuToggle = document.getElementById('menu-toggle');
-const menu = document.querySelector('.menu');
 
-// Agregamos un event listener para el clic en el botón de menú
-menuToggle.addEventListener('click', () => {
-    menu.classList.toggle('open');
+//Import Modulo Menu.js Funcional 13/07/2024
+document.addEventListener('DOMContentLoaded', () => {
+    MenuModule.initMenu();
 });
+
 
 // Inicializar niceScroll en el contenido de las composiciones
 $("#composiciones .contenido").niceScroll({ cursorcolor: "#00F", autohidemode: 'hover' });
@@ -160,7 +158,7 @@ function mostrarMensajeNoMasIntentos() {
       $(".acciones .practicar").prop("disabled", true).addClass("disabled");
   
       // Iniciar el cronómetro de 5 minutos
-      let tiempoRestante = 300; // 5 minutos en segundos
+      let tiempoRestante = 100; // 5 minutos en segundos
       const cronometroInterval = setInterval(() => {
         const minutos = Math.floor(tiempoRestante / 60);
         const segundos = tiempoRestante % 60;
