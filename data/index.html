@@ -18,6 +18,15 @@
         <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js" integrity="sha512-zMfrMAZYAlNClPKjN+JMuslK/B6sPM09BGvrWlW+cymmPmsUT1xJF3P4kxI3lOh9zypakSgWaTpY6vDJY/3Dig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
+        <style>
+            .btn-detener {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                display: none;
+                z-index: 1000;
+            }
+        </style>
     </head>
 
     <!-- Cuerpo de la pagina -->
@@ -125,6 +134,9 @@
                 </a>
             </div>
 
+            <!-- Botón de detener grabación -->
+            <button class="btn-detener material-symbols-outlined">stop</button>
+
             <!-- Contenido - Acordeon -->
             <div class="contenidor">
                 <div id="acordeon"></div>
@@ -141,6 +153,7 @@
             $(document).ready(function () {
                 let mediaRecorder;
                 let audioChunks = [];
+                let isRecording = false;
 
                 // Manejar el clic en el botón de guardar melodía
                 $(".guardar-melodia").on("click", function () {
@@ -284,7 +297,9 @@
                     navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
                         mediaRecorder = new MediaRecorder(stream);
                         mediaRecorder.ondataavailable = event => {
-                            audioChunks.push(event.data);
+                            if (event.data.size > 0) {
+                                audioChunks.push(event.data);
+                            }
                         };
                         mediaRecorder.onstop = () => {
                             const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
@@ -293,27 +308,27 @@
                         };
                         mediaRecorder.start();
 
-                        Swal.fire({
-                            title: 'Grabando',
-                            html: '<button class="detener-grabacion">Detener</button>',
-                            showConfirmButton: false,
-                            didRender: () => {
-                                $(".detener-grabacion").on("click", function () {
-                                    mediaRecorder.stop();
-                                    Swal.close();
-                                });
-                            }
-                        });
+                        $(".btn-detener").show();
+                        isRecording = true;
                     }).catch(error => {
                         console.error("Error al acceder al micrófono: ", error);
                     });
                 }
 
+                // Manejar el clic en el botón de detener grabación
+                $(".btn-detener").on("click", function () {
+                    if (isRecording) {
+                        mediaRecorder.stop();
+                        isRecording = false;
+                        $(".btn-detener").hide();
+                    }
+                });
+
                 // Función para guardar la grabación
                 function saveRecording(audioBlob) {
                     const melodiasGuardadas = JSON.parse(localStorage.getItem("melodias")) || [];
                     const ultimaMelodia = melodiasGuardadas[melodiasGuardadas.length - 1];
-                    ultimaMelodia.audio = audioBlob;
+                    ultimaMelodia.audio = [audioBlob];
                     localStorage.setItem("melodias", JSON.stringify(melodiasGuardadas));
                     mostrarMelodiasGuardadas();
                 }
