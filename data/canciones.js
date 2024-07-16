@@ -791,8 +791,8 @@ const cancionDiana2 = {
 //Menu de Canciones
 const canciones = [
     examenAFQ,
-    // ejercicio1,
-    // ejercicio2,
+    ejercicio1,
+    ejercicio2,
     cancionBCEL,
     cancionDiana,
     cancionDiana2,
