@@ -27,18 +27,10 @@ Para clonar y ejecutar este repositorio en tu máquina local, sigue estos pasos:
     ```bash
     cd simulador-acordeon
     ```
-3. Instala las dependencias
-    ```bash
-    npm install
-    ```
 
 ## Uso
 
-1. Inicia el servidor de desarrollo
-    ```bash
-    npm start
-    ```
-2. Abre tu navegador web y navega a `http://localhost:3000` para ver la aplicación en acción.
+1. Abre el archivo `index.html` en tu navegador web favorito para ver la aplicación en acción.
 
 ## Contribuciones
 
