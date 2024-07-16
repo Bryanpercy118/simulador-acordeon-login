@@ -14,7 +14,7 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <link rel="stylesheet" href="lib/estilo.css"/>
         <link rel="stylesheet" href="ui.css"/>
-        <script src="canciones.js" ></script>
+        <script src="canciones.js"></script>
         <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js" integrity="sha512-zMfrMAZYAlNClPKjN+JMuslK/B6sPM09BGvrWlW+cymmPmsUT1xJF3P4kxI3lOh9zypakSgWaTpY6vDJY/3Dig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
@@ -30,71 +30,64 @@
             </div>
 
             <!-- Barra lateral izquierda -->
-            <div class="menu open">  
-               <!-- Mení deslizable -->
-                <div >
+            <div class="menu open">
+                <!-- Mení deslizable -->
+                <div>
                     <span title="Menú" class="material-symbols-outlined">menu</span>
                 </div>
-                
+
                 <!-- cambio de mano -->
                 <div class="control" id="cambiar-mano">
                     <div class="opcion seleccionada" id="mano-derecha" title="Seleccionar pitos">Diapasón</div>
                     <div class="opcion" id="mano-izquierda" title="Seleccionar bajo">Bajos</div>
                     <div class="opcion" id="dos-manos" title="Seleccionar todo"></div>
                 </div>
-                
 
                 <!-- cambio de tono -->
                 <div class="control" id="cambiar-tono">
-                    <div class="opcion seleccionada" title= "Seleccionar ADG (La, Re, Sol)" id="tono-adg">ADG</div>
-                    <div class="opcion" title= "Seleccionar 5 Letras (Si bemol, Mi bemol, La bemol)" id="tono-5l">5L</div>
-                    <div class="opcion" title= "Seleccionar GCF (Sol, Do, Fa)"  id="tono-gcf">GCF</div>
+                    <div class="opcion seleccionada" title="Seleccionar ADG (La, Re, Sol)" id="tono-adg">ADG</div>
+                    <div class="opcion" title="Seleccionar 5 Letras (Si bemol, Mi bemol, La bemol)" id="tono-5l">5L</div>
+                    <div class="opcion" title="Seleccionar GCF (Sol, Do, Fa)" id="tono-gcf">GCF</div>
                 </div>
 
-
-                <!-- cambio de modo  -->
+                <!-- cambio de modo -->
                 <div class="control" id="cambiar-modo">
-
                     <!-- modo teclado -->
                     <div class="opcion seleccionada" title="Modo de teclado" id="modo-teclado">
-                        <span class="material-symbols-outlined">
-                            keyboard
-                        </span>
+                        <span class="material-symbols-outlined">keyboard</span>
                     </div>
 
                     <!-- modo simbolos -->
                     <div class="opcion" title="Notas musicales" id="modo-notas">
-                        <span class="material-symbols-outlined">
-                            music_note
-                        </span>
+                        <span class="material-symbols-outlined">music_note</span>
                     </div>
 
                     <!-- modo numeros -->
                     <div class="opcion" title="Modo númerico" id="modo-numero">
-                        <span class="material-symbols-outlined">
-                            123
-                        </span>
+                        <span class="material-symbols-outlined">123</span>
                     </div>
                 </div>
-        
+
                 <!-- Barra lateral izquierda -->
                 <div id="composiciones">
-
                     <!-- lista de canciones -->
-                    <div class="fila" style="border-bottom: 1px solid silver;padding:16px; display: flex; justify-content: space-between;">
+                    <div class="fila" style="border-bottom: 1px solid silver; padding: 16px; display: flex; justify-content: space-between;">
                         <div>
                             <span class="material-symbols-outlined">queue_music</span>
                             <span>Exámen</span>
                         </div>
                         <!-- Botón para reiniciar la página -->
                         <button class="reiniciar-pagina">
-                            <span class="material-symbols-outlined" title="Actualizar" >refresh</span>
+                            <span class="material-symbols-outlined" title="Actualizar">refresh</span>
+                        </button>
+                        <!-- Botón para guardar la melodía -->
+                        <button class="guardar-melodia">
+                            <span class="material-symbols-outlined" title="Guardar">save</span>
                         </button>
                     </div>
 
                     <!-- contenido de las canciones -->
-                    <div class="contenido" style="max-height: 400px; overflow-y: auto;">
-                    </div>
+                    <div class="contenido" style="max-height: 400px; overflow-y: auto;"></div>
 
                     <!-- boton de grabar -->
                     <div id="grabar" class="grabar">
@@ -103,15 +96,20 @@
                     </div>
                 </div>
 
+                <!-- Sección oculta de melodías guardadas -->
+                <div id="melodias-guardadas" style="display: none; max-height: 400px; overflow-y: auto;">
+                    <h3>Melodías Guardadas</h3>
+                    <div class="lista-melodias"></div>
+                </div>
+
                 <!-- Logo de Huellas del Maestro -->
-                <a  href="https://huellasdelmaestro.com/plataforma-virtual" title="Ir a la plataforma virtual" target="_blank">
-                    <img class="logo" src="logo.png"/>
+                <a href="https://huellasdelmaestro.com/plataforma-virtual" title="Ir a la plataforma virtual" target="_blank">
+                    <img class="logo" src="logo.png" />
                 </a>
-                
-            
-                <a  class="link-pie" href="https://maps.app.goo.gl/ifKj8i46eAWydXzy9" target="_blank">
-                    <div class="pie" >
-                        <img class="bandera"/>
+
+                <a class="link-pie" href="https://maps.app.goo.gl/ifKj8i46eAWydXzy9" target="_blank">
+                    <div class="pie">
+                        <img class="bandera" />
                         <span>Valledupar,</span>
                         <span>Cesar-</span>
                         <span>Colombia</span>
@@ -131,6 +129,36 @@
         <script src="lib/js/ui/ui.js"></script>
         <script src="lib/js/canciones.js/AsiFueMiQuerer.js"></script>
         <script src="canciones.js"></script>
+        <script>
+            $(document).ready(function () {
+                // Manejar el clic en el botón de guardar melodía
+                $(".guardar-melodia").on("click", function () {
+                    $("#composiciones").toggle();
+                    $("#melodias-guardadas").toggle();
+                    mostrarMelodiasGuardadas();
+                });
+
+                // Función para mostrar las melodías guardadas
+                function mostrarMelodiasGuardadas() {
+                    const listaMelodias = $(".lista-melodias").empty();
+                    const melodiasGuardadas = JSON.parse(localStorage.getItem("melodias")) || [];
+
+                    if (melodiasGuardadas.length === 0) {
+                        listaMelodias.append("<p>No hay melodías guardadas.</p>");
+                    } else {
+                        melodiasGuardadas.forEach((melodia, index) => {
+                            listaMelodias.append(`<div>${index + 1}. ${melodia.nombre}</div>`);
+                        });
+                    }
+                }
+
+                // Función para guardar una nueva melodía
+                function guardarMelodia(nombre) {
+                    const melodiasGuardadas = JSON.parse(localStorage.getItem("melodias")) || [];
+                    melodiasGuardadas.push({ nombre: nombre });
+                    localStorage.setItem("melodias", JSON.stringify(melodiasGuardadas));
+                }
+            });
+        </script>
     </body>
-    
 </html>
