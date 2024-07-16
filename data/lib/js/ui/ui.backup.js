@@ -1,8 +1,16 @@
+
+//Import Modulo Menu.js Funcional 13/07/2024
 document.addEventListener('DOMContentLoaded', () => {
     MenuModule.initMenu();
     GeneralModule.initNiceScroll();
+    GeneralModule.initSoundLoadingHandler();
 });
 
+
+// Inicializar niceScroll en el contenido de las composiciones
+//$("#composiciones .contenido").niceScroll({ cursorcolor: "#00F", autohidemode: 'hover' });
+
+// Manejador para cargar el sonido del acordeón
 document.body.addEventListener('cargando-sonidos', ({ detail }) => {
     const appContainer = document.getElementById("app-container");
     if (detail) {
@@ -18,8 +26,6 @@ const defaultCompositions = canciones;
 // Función para cargar las composiciones
 function cargarComposiciones() {
     const contenido = $("#composiciones .contenido").empty();
-    const scores = JSON.parse(localStorage.getItem('scores')) || {};
-    const notas = JSON.parse(localStorage.getItem('notas')) || {};
 
     // Fusionar composiciones predeterminadas con las de almacenamiento local
     composiciones = [
@@ -32,11 +38,9 @@ function cargarComposiciones() {
 
     // Generar los elementos de la interfaz para las composiciones
     composiciones.forEach((composicion, index) => {
-        const score = scores[composicion.nombre] || 0;
-        const nota = notas[composicion.nombre] || 'N/A';
         contenido.append(`
             <div class="composicion">
-                <span class="nombre" title="${composicion.nombre}">${composicion.nombre} -  ${nota}</span>
+                <span class="nombre" title="${composicion.nombre}">${composicion.nombre}</span>
                 <div class="acciones">
                     <button class="practicar" data-index="${index}">Iniciar</button>
                 </div>
@@ -66,31 +70,32 @@ $("body").on("click", ".acciones .reproducir", function () {
 
     porcentaje.css({ 'animation-duration': duracionTotal + 'ms' }).addClass("animar-porcentaje");
 
+    // Liberar teclas al finalizar la reproducción
     setTimeout(() => liberarTeclas(composicion.cancion), duracionTotal);
 
     Acordeon.reproducir(composicion.cancion);
 });
 
-// Función para actualizar el progreso
-function actualizarProgreso(ele, aciertos, total) {
-    const porcentaje = $(ele).closest(".composicion").find(".progreso .porcentaje");
-    const progreso = (aciertos / total) * 100;
-    porcentaje.css({ width: progreso + '%' });
-}
+
 
 //-------------------- Proceso de la evaluación -----------------------
 // Inicializar intentos restantes
 
+
+// Click iniciar examen
 $("body").on("click", ".acciones .practicar", function() {
     let ele = this;
-    let isTerminar = $(ele).text() === "Terminar";
+    let isTerminar = $(ele).text() === "Terminar"; // Verificar si el botón está en estado "Terminar"
 
     if (isTerminar) {
+        // Acciones para finalizar la evaluación
         terminarExamen(ele);
     } else {
+        // Acciones para iniciar el examen
         iniciarExamen(ele);
     }
 });
+
 
 // Función para iniciar el examen
 function iniciarExamen(ele) {
@@ -100,33 +105,43 @@ function iniciarExamen(ele) {
     const porcentaje = $(ele).closest(".composicion").find(".progreso .porcentaje");
 
     let intentosRestantes = parseInt(localStorage.getItem('intentosRestantes')) || 4;
+
+     // Decrementar intentos restantes
     intentosRestantes--;
     localStorage.setItem('intentosRestantes', intentosRestantes);
 
     function mostrarMensajeIntento() {
-        if (intentosRestantes > 0) {
+       if (intentosRestantes > 0) {
             const intentoActual = 4 - intentosRestantes;
-            const mensajeIntento = intentosRestantes > 1 ? `Te quedan ${intentosRestantes} intentos` : 'Este es tu último intento';
+            const mensajeIntento = intentosRestantes > 1 ? `Te quedan ${intentosRestantes - 1} intentos` : 'Este es tu último intento';
             Swal.fire({
-                title: `Intento ${intentoActual}`,
-                text: mensajeIntento,
-                icon: "info",
-                showConfirmButton: true,
-                confirmButtonText: 'Comenzar',
-                allowOutsideClick: false,
-                showClass: { popup: 'animated fadeInDown faster' },
-                hideClass: { popup: 'animated fadeOutUp faster' }
+            title: `Intento ${intentoActual}`,
+            text: mensajeIntento,
+            icon: "info",
+            showConfirmButton: true,
+            confirmButtonText: 'Comenzar',
+            allowOutsideClick: false,
+            showClass: { popup: 'animated fadeInDown faster' },
+            hideClass: { popup: 'animated fadeOutUp faster' }
             }).then((result) => {
-                if (result.isConfirmed) {
-                    Acordeon.grabar();
-                    porcentaje.css({ 'animation-duration': duracionTotal + 'ms' }).addClass("animar-porcentaje");
-                    $(ele).text("Terminar");
-                    iniciarTemporizador(ele, duracionTotal);
-                }
+            if (result.isConfirmed) {
+                Acordeon.grabar();
+                porcentaje.css({ 'animation-duration': duracionTotal + 'ms' }).addClass("animar-porcentaje");
+                $(ele).text("Terminar");
+                iniciarTemporizador(ele, duracionTotal);
+            }
             });
         } else {
+            Swal.fire({
+            title: '¡Sin intentos disponibles!',
+            text: 'Debes esperar 5 minutos antes de intentarlo de nuevo.',
+            icon: 'warning',
+            confirmButtonText: 'Aceptar',
+            allowOutsideClick: false
+            });
             mostrarMensajeNoMasIntentos();
         }
+        
     }
 
     mostrarMensajeIntento();
@@ -135,51 +150,56 @@ function iniciarExamen(ele) {
 // Función para mostrar mensaje de no más intentos
 function mostrarMensajeNoMasIntentos() {
     Swal.fire({
-        title: '¡Sin intentos disponibles!',
-        text: 'Debes esperar 5 minutos antes de intentarlo de nuevo.',
-        icon: 'warning',
-        confirmButtonText: 'Aceptar',
-        allowOutsideClick: false
+      title: '¡Sin intentos disponibles!',
+      text: 'Debes esperar 5 minutos antes de intentarlo de nuevo.',
+      icon: 'warning',
+      confirmButtonText: 'Aceptar',
+      allowOutsideClick: false
     }).then(() => {
-        $(".acciones .practicar").prop("disabled", true).addClass("disabled");
-
-        let tiempoRestante = 30;
-        const cronometroInterval = setInterval(() => {
-            const minutos = Math.floor(tiempoRestante / 60);
-            const segundos = tiempoRestante % 60;
-            const cronometroElement = document.getElementById("cronometro");
-            cronometroElement.textContent = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
-
-            tiempoRestante--;
-
-            if (tiempoRestante < 0) {
-                clearInterval(cronometroInterval);
-                $(".acciones .practicar").prop("disabled", false).removeClass("disabled");
-                cronometroElement.textContent = "00:00";
-                localStorage.removeItem('scores');
-                setTimeout(() => {
-                    location.reload();
-                }, 1000);
-            }
-        }, 1000);
-
-        Swal.fire({
-            html: `
-                <div id="titulo">Esperando 5 minutos para volver a intentarlo...</div>
-                <div class="cronometro-container">
-                    <div class="cronometro-box">
-                        <div id="cronometro">05:00</div>
-                    </div>
-                </div>
-            `,
-            showConfirmButton: false,
-            allowOutsideClick: false,
-            customClass: {
-                popup: 'custom-swal-message'
-            }
-        });
+      // Bloquear el botón
+      $(".acciones .practicar").prop("disabled", true).addClass("disabled");
+  
+      // Iniciar el cronómetro de 5 minutos
+      let tiempoRestante = 100; // 5 minutos en segundos
+      const cronometroInterval = setInterval(() => {
+        const minutos = Math.floor(tiempoRestante / 60);
+        const segundos = tiempoRestante % 60;
+        const cronometroElement = document.getElementById("cronometro");
+        cronometroElement.textContent = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+  
+        tiempoRestante--;
+  
+        if (tiempoRestante < 0) {
+          clearInterval(cronometroInterval);
+          $(".acciones .practicar").prop("disabled", false).removeClass("disabled");
+          cronometroElement.textContent = "00:00";
+          // Actualizar la página
+          setTimeout(() => {
+            location.reload();
+          }, 1000);
+        }
+      }, 1000);
+  
+      // Mostrar el cronómetro en la interfaz
+      Swal.fire({
+        html: `
+          <div id="titulo">Esperando 5 minutos para volver a intentarlo...</div>
+            <div class="cronometro-container">
+              <div class="cronometro-box">
+                <div id="cronometro">05:00</div>
+              </div>
+            </div>
+          `,
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        customClass: {
+          popup: 'custom-swal-message'
+        }
+      });
     });
 }
+  
+  
 
 // Función para iniciar el temporizador y mostrar el resultado del examen
 function iniciarTemporizador(ele, duracion) {
@@ -205,7 +225,7 @@ function iniciarTemporizador(ele, duracion) {
         setTimeout(() => {
             const composicion = composiciones[ele.dataset.index];
             const cancion = Acordeon.detenerGrabacion();
-            const score = Acordeon.evaluar(composicion.cancion, cancion, composicion.nombre);
+            const score = Acordeon.evaluar(composicion.cancion, cancion);
             const porcentaje = $(ele).closest(".composicion").find(".progreso .porcentaje");
 
             porcentaje.removeClass("animar-porcentaje");
@@ -221,17 +241,6 @@ function iniciarTemporizador(ele, duracion) {
                 showClass: { popup: 'animated fadeInDown faster' },
                 hideClass: { popup: 'animated fadeOutUp faster' }
             });
-
-            const scores = JSON.parse(localStorage.getItem('scores')) || {};
-            scores[composicion.nombre] = score;
-            localStorage.setItem('scores', JSON.stringify(scores));
-
-            const nota = calcularNota(score);
-            const notas = JSON.parse(localStorage.getItem('notas')) || {};
-            notas[composicion.nombre] = nota;
-            localStorage.setItem('notas', JSON.stringify(notas));
-
-            mostrarMapaNotas(score, nota);
         }, duracion + 100);
     });
 }
@@ -243,7 +252,7 @@ function terminarExamen(ele) {
 
     setTimeout(() => {
         const composicion = composiciones[ele.dataset.index];
-        const score = Acordeon.evaluar(composicion.cancion, cancion, composicion.nombre);
+        const score = Acordeon.evaluar(composicion.cancion, cancion);
         const mensaje = score >= 60 ? `¡Felicidades! Has pasado el examen con un puntaje del ${score}%.` : `¡Sigue practicando! Obtuviste un puntaje del ${score}%.`;
 
         Swal.fire({
@@ -254,65 +263,20 @@ function terminarExamen(ele) {
             showClass: { popup: 'animated fadeInDown faster' },
             hideClass: { popup: 'animated fadeOutUp faster' }
         });
-
-        const scores = JSON.parse(localStorage.getItem('scores')) || {};
-        scores[composicion.nombre] = score;
-        localStorage.setItem('scores', JSON.stringify(scores));
-
-        const nota = calcularNota(score);
-        const notas = JSON.parse(localStorage.getItem('notas')) || {};
-        notas[composicion.nombre] = nota;
-        localStorage.setItem('notas', JSON.stringify(notas));
-
-        mostrarMapaNotas(score, nota);
     }, 1000);
-}
-
-// Función para calcular la nota según el score
-function calcularNota(score) {
-    if (score <= 30) {
-        return '1.0';
-    } else if (score <= 50) {
-        return '2.0';
-    } else if (score <= 59) {
-        return '2.5';
-    } else if (score <= 70) {
-        return '3.0';
-    } else if (score <= 80) {
-        return '3.5';
-    } else if (score <= 89) {
-        return '4.0';
-    } else if (score <= 95) {
-        return '4.5';
-    } else {
-        return '5.0';
-    }
-}
-
-// Función para mostrar el mapa de notas
-function mostrarMapaNotas(score, nota) {
-    const title =score >= 60 ? `¡Felicidades!` : `¡Sigue practicando!`
-    const mensaje = score >= 60 ? `Tu nota ha sido: ${nota} Has pasado el examen con un puntaje del ${score}%.` : `Obtuviste una nota de: ${nota} con un puntaje del ${score}%.`;
-
-    Swal.fire({
-        title: title,
-        text: mensaje,
-        icon: 'info',
-        confirmButtonText: 'Aceptar',
-        showClass: { popup: 'animated fadeInDown faster' },
-        hideClass: { popup: 'animated fadeOutUp faster' }
-    });
 }
 
 // Manejar el clic en el botón para reiniciar la página
 $(".reiniciar-pagina").on("click", () => location.reload());
 
+// Función para borrar una composición
 $("body").on("click", ".acciones .borrar", function () {
     const composicion = composiciones[this.dataset.index];
     localStorage.removeItem(`acordeon-${composicion.nombre}`);
     cargarComposiciones();
 });
 
+// Función para iniciar y detener la grabación
 document.getElementById("grabar").onclick = function () {
     if (this.classList.contains("grabar")) {
         Acordeon.grabar();
@@ -328,6 +292,7 @@ document.getElementById("grabar").onclick = function () {
     }
 };
 
+// Función para cambiar las opciones seleccionadas del menú
 function cambiarOpcion(elementId, selector, callback) {
     document.getElementById(elementId).onclick = function () {
         document.querySelectorAll(selector).forEach(e => e.classList.remove("seleccionada"));
@@ -346,14 +311,18 @@ cambiarOpcion("modo-teclado", "#cambiar-modo .opcion", () => Acordeon.cambiarMod
 cambiarOpcion("modo-notas", "#cambiar-modo .opcion", () => Acordeon.cambiarModo(2));
 cambiarOpcion("modo-numero", "#cambiar-modo .opcion", () => Acordeon.cambiarModo(0));
 
+// Iniciar sonido del acordeón
 Acordeon.iniciar();
+
+// Cargar las canciones inicialmente
 cargarComposiciones();
 
 const socket = io('http://localhost:4000');
-socket.on('tecla', ({ tecla, estado }) => {
-    if (estado == 1) {
-        Acordeon.presionar(tecla, 0)
-    } else {
-        Acordeon.liberar(tecla, 0)
-    }
-});
+socket.on('tecla', ({tecla,estado}) => {
+    console.log(tecla,estado)
+if(estado==1){
+Acordeon.presionar(tecla,0)
+}else{
+Acordeon.liberar(tecla,0)
+}
+})
