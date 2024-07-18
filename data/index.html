@@ -1,349 +1,385 @@
 <!DOCTYPE HTML>
 <html lang="es">
 
-    <!-- Cabecera de la pagina -->
-    <head>
-        <title>Simulador de Acordeon | Huellas del Maestro</title>
-        <link rel="icon" type="image/x-icon" href="icono.png">
-        <meta name="Author" content="huellasdelmaestro.com">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <link rel="stylesheet" href="lib/estilo.css"/>
-        <link rel="stylesheet" href="ui.css"/>
-        <script src="canciones.js"></script>
-        <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js" integrity="sha512-zMfrMAZYAlNClPKjN+JMuslK/B6sPM09BGvrWlW+cymmPmsUT1xJF3P4kxI3lOh9zypakSgWaTpY6vDJY/3Dig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
-        <style>
-            .btn-detener {
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                display: none;
-                z-index: 1000;
-            }
-        </style>
-    </head>
+<head>
+    <title>Simulador de Acordeon | Huellas del Maestro</title>
+    <link rel="icon" type="image/x-icon" href="icono.png">
+    <meta name="Author" content="huellasdelmaestro.com">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600;700&family=Roboto:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="lib/estilo.css" />
+    <link rel="stylesheet" href="ui.css" />
+    <script src="canciones.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
+        integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"
+        integrity="sha512-zMfrMAZYAlNClPKjN+JMuslK/B6sPM09BGvrWlW+cymmPmsUT1xJF3P4kxI3lOh9zypakSgWaTpY6vDJY/3Dig=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
+        integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
+        crossorigin="anonymous"></script>
+    <style>
+        .btn-detener {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
 
-    <!-- Cuerpo de la pagina -->
-    <body>
-        <div class="cargando" id="app-container">
+<body>
+    <div class="cargando" id="app-container">
 
-            <!-- Menu deslizable -->
-            <div id="menu-toggle">
+        <!-- Menu deslizable -->
+        <div id="menu-toggle">
+            <span title="Menú" class="material-symbols-outlined">menu</span>
+        </div>
+
+        <!-- Barra lateral izquierda -->
+        <div class="menu open">
+            <!-- Mení deslizable -->
+            <div>
                 <span title="Menú" class="material-symbols-outlined">menu</span>
             </div>
 
+            <!-- cambio de mano -->
+            <div class="control" id="cambiar-mano">
+                <div class="opcion seleccionada" id="mano-derecha" title="Seleccionar pitos">Diapasón</div>
+                <div class="opcion" id="mano-izquierda" title="Seleccionar bajo">Bajos</div>
+                <div class="opcion" id="dos-manos" title="Seleccionar todo"></div>
+            </div>
+
+            <!-- cambio de tono -->
+            <div class="control" id="cambiar-tono">
+                <div class="opcion seleccionada" title="Seleccionar ADG (La, Re, Sol)" id="tono-adg">ADG</div>
+                <div class="opcion" title="Seleccionar 5 Letras (Si bemol, Mi bemol, La bemol)" id="tono-5l">5L</div>
+                <div class="opcion" title="Seleccionar GCF (Sol, Do, Fa)" id="tono-gcf">GCF</div>
+            </div>
+
+            <!-- cambio de modo -->
+            <div class="control" id="cambiar-modo">
+                <!-- modo teclado -->
+                <div class="opcion seleccionada" title="Modo de teclado" id="modo-teclado">
+                    <span class="material-symbols-outlined">keyboard</span>
+                </div>
+
+                <!-- modo simbolos -->
+                <div class="opcion" title="Notas musicales" id="modo-notas">
+                    <span class="material-symbols-outlined">music_note</span>
+                </div>
+
+                <!-- modo numeros -->
+                <div class="opcion" title="Modo númerico" id="modo-numero">
+                    <span class="material-symbols-outlined">123</span>
+                </div>
+            </div>
+
             <!-- Barra lateral izquierda -->
-            <div class="menu open">
-                <!-- Mení deslizable -->
-                <div>
-                    <span title="Menú" class="material-symbols-outlined">menu</span>
+            <div id="composiciones">
+                <!-- lista de canciones -->
+                <div class="fila"
+                    style="border-bottom: 1px solid silver; padding: 16px; display: flex; justify-content: space-between;">
+                    <div>
+                        <span class="material-symbols-outlined">queue_music</span>
+                        <span>Exámen</span>
+                    </div>
+                    <!-- Botón para reiniciar la página -->
+                    <button class="reiniciar-pagina">
+                        <span class="material-symbols-outlined" title="Actualizar">refresh</span>
+                    </button>
+                    <!-- Botón para guardar la melodía -->
+                    <button class="guardar-melodia">
+                        <span class="material-symbols-outlined" title="Guardar">save</span>
+                    </button>
                 </div>
 
-                <!-- cambio de mano -->
-                <div class="control" id="cambiar-mano">
-                    <div class="opcion seleccionada" id="mano-derecha" title="Seleccionar pitos">Diapasón</div>
-                    <div class="opcion" id="mano-izquierda" title="Seleccionar bajo">Bajos</div>
-                    <div class="opcion" id="dos-manos" title="Seleccionar todo"></div>
+                <!-- contenido de las canciones -->
+                <div class="contenido" style="max-height: 400px; overflow-y: auto;"></div>
+
+                <!-- boton de grabar -->
+                <div id="grabar" class="grabar">
+                    <span class="text"></span>
+                    <span class="material-symbols-outlined">sound_sampler</span>
                 </div>
-
-                <!-- cambio de tono -->
-                <div class="control" id="cambiar-tono">
-                    <div class="opcion seleccionada" title="Seleccionar ADG (La, Re, Sol)" id="tono-adg">ADG</div>
-                    <div class="opcion" title="Seleccionar 5 Letras (Si bemol, Mi bemol, La bemol)" id="tono-5l">5L</div>
-                    <div class="opcion" title="Seleccionar GCF (Sol, Do, Fa)" id="tono-gcf">GCF</div>
-                </div>
-
-                <!-- cambio de modo -->
-                <div class="control" id="cambiar-modo">
-                    <!-- modo teclado -->
-                    <div class="opcion seleccionada" title="Modo de teclado" id="modo-teclado">
-                        <span class="material-symbols-outlined">keyboard</span>
-                    </div>
-
-                    <!-- modo simbolos -->
-                    <div class="opcion" title="Notas musicales" id="modo-notas">
-                        <span class="material-symbols-outlined">music_note</span>
-                    </div>
-
-                    <!-- modo numeros -->
-                    <div class="opcion" title="Modo númerico" id="modo-numero">
-                        <span class="material-symbols-outlined">123</span>
-                    </div>
-                </div>
-
-                <!-- Barra lateral izquierda -->
-                <div id="composiciones">
-                    <!-- lista de canciones -->
-                    <div class="fila" style="border-bottom: 1px solid silver; padding: 16px; display: flex; justify-content: space-between;">
-                        <div>
-                            <span class="material-symbols-outlined">queue_music</span>
-                            <span>Exámen</span>
-                        </div>
-                        <!-- Botón para reiniciar la página -->
-                        <button class="reiniciar-pagina">
-                            <span class="material-symbols-outlined" title="Actualizar">refresh</span>
-                        </button>
-                        <!-- Botón para guardar la melodía -->
-                        <button class="guardar-melodia">
-                            <span class="material-symbols-outlined" title="Guardar">save</span>
-                        </button>
-                    </div>
-
-                    <!-- contenido de las canciones -->
-                    <div class="contenido" style="max-height: 400px; overflow-y: auto;"></div>
-
-                    <!-- boton de grabar -->
-                    <div id="grabar" class="grabar">
-                        <span class="text"></span>
-                        <span class="material-symbols-outlined">sound_sampler</span>
-                    </div>
-                </div>
-
-                <!-- Sección oculta de melodías guardadas -->
-                <div id="melodias-guardadas" style="display: none; max-height: 400px; overflow-y: auto;">
-                    <div style="display: flex; justify-content: space-between; padding: 16px; border-bottom: 1px solid silver;">
-                        <button class="volver-menu">
-                            <span class="material-symbols-outlined" title="Volver">arrow_back</span>
-                        </button>
-                        <h3 style="margin: 0;">Melodías Guardadas</h3>
-                        <button class="nueva-melodia">
-                            <span class="material-symbols-outlined" title="Nueva Melodía">add</span>
-                        </button>
-                    </div>
-                    <div class="lista-melodias" style="padding: 16px;"></div>
-                </div>
-
-                <!-- Logo de Huellas del Maestro -->
-                <a href="https://huellasdelmaestro.com/plataforma-virtual" title="Ir a la plataforma virtual" target="_blank">
-                    <img class="logo" src="logo.png" />
-                </a>
-
-                <a class="link-pie" href="https://maps.app.goo.gl/ifKj8i46eAWydXzy9" target="_blank">
-                    <div class="pie">
-                        <img class="bandera" />
-                        <span>Valledupar,</span>
-                        <span>Cesar-</span>
-                        <span>Colombia</span>
-                    </div>
-                </a>
             </div>
 
-            <!-- Botón de detener grabación -->
-            <button class="btn-detener material-symbols-outlined">stop</button>
-
-            <!-- Contenido - Acordeon -->
-            <div class="contenidor">
-                <div id="acordeon"></div>
+            <!-- Sección oculta de melodías guardadas -->
+            <div id="melodias-guardadas" style="display: none; max-height: 400px; overflow-y: auto;">
+                <div style="display: flex; justify-content: space-between; padding: 16px; border-bottom: 1px solid silver;">
+                    <button class="volver-menu">
+                        <span class="material-symbols-outlined" title="Volver">arrow_back</span>
+                    </button>
+                    <h3 style="margin: 0;">Melodías Guardadas</h3>
+                    <button class="nueva-melodia">
+                        <span class="material-symbols-outlined" title="Nueva Melodía">add</span>
+                    </button>
+                </div>
+                <div class="lista-melodias" style="padding: 16px;"></div>
             </div>
+
+            <!-- Logo de Huellas del Maestro -->
+            <a href="https://huellasdelmaestro.com/plataforma-virtual" title="Ir a la plataforma virtual" target="_blank">
+                <img class="logo" src="logo.png" />
+            </a>
+
+            <a class="link-pie" href="https://maps.app.goo.gl/ifKj8i46eAWydXzy9" target="_blank">
+                <div class="pie">
+                    <img class="bandera" />
+                    <span>Valledupar,</span>
+                    <span>Cesar-</span>
+                    <span>Colombia</span>
+                </div>
+            </a>
         </div>
 
-        <!-- Script del acordeon -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js" integrity="sha512-Siyxh4gyNM5SaERNa9BOZSPcu/auHyFUWn9OVFD7MxI3/dVPQklE7tfqS+pLmPHF1zo6UdDaJAp/thihrf0c7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="lib/js/Acordeon/Acordeon.js"></script>
-        <script src="lib/js/ui/ui.js"></script>
-        <script src="lib/js/canciones.js/AsiFueMiQuerer.js"></script>
-        <script src="canciones.js"></script>
-        <script>
-            $(document).ready(function () {
-                let mediaRecorder;
-                let audioChunks = [];
-                let isRecording = false;
+        <!-- Botón de detener grabación -->
+        <button class="btn-detener material-symbols-outlined">stop</button>
 
-                // Manejar el clic en el botón de guardar melodía
-                $(".guardar-melodia").on("click", function () {
-                    $("#composiciones").hide();
-                    $("#melodias-guardadas").show();
-                    mostrarMelodiasGuardadas();
-                    bloquearTeclado(true);
-                });
+        <!-- Contenido - Acordeon -->
+        <div class="contenidor">
+            <div id="acordeon"></div>
+        </div>
+    </div>
 
-                // Manejar el clic en el botón de volver al menú
-                $(".volver-menu").on("click", function () {
-                    $("#melodias-guardadas").hide();
-                    $("#composiciones").show();
-                    bloquearTeclado(false);
-                });
+    <!-- Script del acordeon -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"
+        integrity="sha512-Siyxh4gyNM5SaERNa9BOZSPcu/auHyFUWn9OVFD7MxI3/dVPQklE7tfqS+pLmPHF1zo6UdDaJAp/thihrf0c7w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="lib/js/Acordeon/Acordeon.js"></script>
+    <script src="lib/js/ui/ui.js"></script>
+    <script src="lib/js/canciones.js/AsiFueMiQuerer.js"></script>
+    <script src="canciones.js"></script>
+    <script>
+        $(document).ready(function () {
+            let isRecording = false;
+            let teclasPresionadas = [];
 
-                // Manejar el clic en el botón de nueva melodía
-                $(".nueva-melodia").on("click", function () {
-                    Swal.fire({
-                        title: 'Guardar nueva melodía',
-                        input: 'text',
-                        inputLabel: 'Nombre de la melodía',
-                        showCancelButton: true,
-                        confirmButtonText: 'Guardar',
-                        cancelButtonText: 'Cancelar'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            const nombre = result.value;
-                            guardarMelodia(nombre);
-                            mostrarMelodiasGuardadas();
+            // Manejar el clic en el botón de guardar melodía
+            $(".guardar-melodia").on("click", function () {
+                $("#composiciones").hide();
+                $("#melodias-guardadas").show();
+                mostrarMelodiasGuardadas();
+                bloquearTeclado(true);
+            });
 
-                            Swal.fire({
-                                title: 'Grabando en',
-                                html: '<b>3</b>',
-                                timer: 3000,
-                                timerProgressBar: true,
-                                didOpen: () => {
-                                    const b = Swal.getHtmlContainer().querySelector('b');
-                                    Swal.showLoading();
-                                    let timerInterval = setInterval(() => {
-                                        b.textContent = (Number(b.textContent) - 1).toString();
-                                    }, 1000);
-                                    setTimeout(() => clearInterval(timerInterval), 3000);
-                                },
-                                willClose: () => {
-                                    startRecording();
-                                }
-                            });
-                        }
-                    });
-                });
+            // Manejar el clic en el botón de volver al menú
+            $(".volver-menu").on("click", function () {
+                $("#melodias-guardadas").hide();
+                $("#composiciones").show();
+                bloquearTeclado(false);
+            });
 
-                // Función para mostrar las melodías guardadas
-                function mostrarMelodiasGuardadas() {
-                    const listaMelodias = $(".lista-melodias").empty();
-                    const melodiasGuardadas = JSON.parse(localStorage.getItem("melodias")) || [];
+            // Manejar el clic en el botón de nueva melodía
+            $(".nueva-melodia").on("click", function () {
+                Swal.fire({
+                    title: 'Guardar nueva melodía',
+                    input: 'text',
+                    inputLabel: 'Nombre de la melodía',
+                    showCancelButton: true,
+                    confirmButtonText: 'Guardar',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const nombre = result.value;
+                        guardarMelodia(nombre);
+                        mostrarMelodiasGuardadas();
 
-                    if (melodiasGuardadas.length === 0) {
-                        listaMelodias.append("<p>No hay melodías guardadas.</p>");
-                    } else {
-                        melodiasGuardadas.forEach((melodia, index) => {
-                            listaMelodias.append(`
-                                <div style="display: flex; justify-content: space-between; align-items: center;">
-                                    <span>${index + 1}. ${melodia.nombre}</span>
-                                    <div>
-                                        <button class="reproducir-melodia" data-index="${index}" title="Reproducir">
-                                            <span class="material-symbols-outlined">play_arrow</span>
-                                        </button>
-                                        <button class="editar-melodia" data-index="${index}" title="Editar">
-                                            <span class="material-symbols-outlined">edit</span>
-                                        </button>
-                                        <button class="eliminar-melodia" data-index="${index}" title="Eliminar">
-                                            <span class="material-symbols-outlined">delete</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            `);
-                        });
-
-                        // Manejar el clic en el botón de editar melodía
-                        $(".editar-melodia").on("click", function () {
-                            const index = $(this).data("index");
-                            const nombreActual = melodiasGuardadas[index].nombre;
-
-                            Swal.fire({
-                                title: 'Editar melodía',
-                                input: 'text',
-                                inputValue: nombreActual,
-                                showCancelButton: true,
-                                confirmButtonText: 'Guardar',
-                                cancelButtonText: 'Cancelar'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    melodiasGuardadas[index].nombre = result.value;
-                                    localStorage.setItem("melodias", JSON.stringify(melodiasGuardadas));
-                                    mostrarMelodiasGuardadas();
-                                }
-                            });
-                        });
-
-                        // Manejar el clic en el botón de eliminar melodía
-                        $(".eliminar-melodia").on("click", function () {
-                            const index = $(this).data("index");
-
-                            Swal.fire({
-                                title: 'Eliminar melodía',
-                                text: "¿Estás seguro de que quieres eliminar esta melodía?",
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonText: 'Eliminar',
-                                cancelButtonText: 'Cancelar'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    melodiasGuardadas.splice(index, 1);
-                                    localStorage.setItem("melodias", JSON.stringify(melodiasGuardadas));
-                                    mostrarMelodiasGuardadas();
-                                }
-                            });
-                        });
-
-                        // Manejar el clic en el botón de reproducir melodía
-                        $(".reproducir-melodia").on("click", function () {
-                            const index = $(this).data("index");
-                            const audioBlob = new Blob(melodiasGuardadas[index].audio, { type: 'audio/webm' });
-                            const audioUrl = URL.createObjectURL(audioBlob);
-                            const audio = new Audio(audioUrl);
-                            audio.play();
-                        });
-                    }
-                }
-
-                // Función para guardar una nueva melodía
-                function guardarMelodia(nombre) {
-                    const melodiasGuardadas = JSON.parse(localStorage.getItem("melodias")) || [];
-                    melodiasGuardadas.push({ nombre: nombre, audio: [] });
-                    localStorage.setItem("melodias", JSON.stringify(melodiasGuardadas));
-                }
-
-                // Función para iniciar la grabación
-                function startRecording() {
-                    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
-                        mediaRecorder = new MediaRecorder(stream);
-                        mediaRecorder.ondataavailable = event => {
-                            if (event.data.size > 0) {
-                                audioChunks.push(event.data);
+                        Swal.fire({
+                            title: 'Grabando en',
+                            html: '<b>3</b>',
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: () => {
+                                const b = Swal.getHtmlContainer().querySelector('b');
+                                Swal.showLoading();
+                                let timerInterval = setInterval(() => {
+                                    b.textContent = (Number(b.textContent) - 1).toString();
+                                }, 1000);
+                                setTimeout(() => clearInterval(timerInterval), 3000);
+                            },
+                            willClose: () => {
+                                startRecording();
                             }
-                        };
-                        mediaRecorder.onstop = () => {
-                            const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-                            audioChunks = [];
-                            saveRecording(audioBlob);
-                        };
-                        mediaRecorder.start();
-
-                        $(".btn-detener").show();
-                        isRecording = true;
-                    }).catch(error => {
-                        console.error("Error al acceder al micrófono: ", error);
-                    });
-                }
-
-                // Manejar el clic en el botón de detener grabación
-                $(".btn-detener").on("click", function () {
-                    if (isRecording) {
-                        mediaRecorder.stop();
-                        isRecording = false;
-                        $(".btn-detener").hide();
+                        });
                     }
                 });
+            });
 
-                // Función para guardar la grabación
-                function saveRecording(audioBlob) {
-                    const melodiasGuardadas = JSON.parse(localStorage.getItem("melodias")) || [];
-                    const ultimaMelodia = melodiasGuardadas[melodiasGuardadas.length - 1];
-                    ultimaMelodia.audio = [audioBlob];
-                    localStorage.setItem("melodias", JSON.stringify(melodiasGuardadas));
-                    mostrarMelodiasGuardadas();
-                }
+            // Función para mostrar las melodías guardadas
+            function mostrarMelodiasGuardadas() {
+                const listaMelodias = $(".lista-melodias").empty();
+                const melodiasGuardadas = JSON.parse(localStorage.getItem("melodias")) || [];
 
-                // Función para bloquear o desbloquear el teclado
-                function bloquearTeclado(bloquear) {
-                    if (bloquear) {
-                        $(document).on('keydown.bloqueo', function (e) {
-                            e.stopImmediatePropagation();
+                if (melodiasGuardadas.length === 0) {
+                    listaMelodias.append("<p>No hay melodías guardadas.</p>");
+                } else {
+                    melodiasGuardadas.forEach((melodia, index) => {
+                        listaMelodias.append(`
+                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                <span>${index + 1}. ${melodia.nombre}</span>
+                                <div>
+                                    <button class="reproducir-melodia" data-index="${index}" title="Reproducir">
+                                        <span class="material-symbols-outlined">play_arrow</span>
+                                    </button>
+                                    <button class="editar-melodia" data-index="${index}" title="Editar">
+                                        <span class="material-symbols-outlined">edit</span>
+                                    </button>
+                                    <button class="eliminar-melodia" data-index="${index}" title="Eliminar">
+                                        <span class="material-symbols-outlined">delete</span>
+                                    </button>
+                                    <button class="descargar-melodia" data-index="${index}" title="Descargar">
+                                        <span class="material-symbols-outlined">download</span>
+                                    </button>
+                                </div>
+                            </div>
+                        `);
+                    });
+
+                    // Manejar el clic en el botón de editar melodía
+                    $(".editar-melodia").on("click", function () {
+                        const index = $(this).data("index");
+                        const nombreActual = melodiasGuardadas[index].nombre;
+
+                        Swal.fire({
+                            title: 'Editar melodía',
+                            input: 'text',
+                            inputValue: nombreActual,
+                            showCancelButton: true,
+                            confirmButtonText: 'Guardar',
+                            cancelButtonText: 'Cancelar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                melodiasGuardadas[index].nombre = result.value;
+                                localStorage.setItem("melodias", JSON.stringify(melodiasGuardadas));
+                                mostrarMelodiasGuardadas();
+                            }
                         });
-                    } else {
-                        $(document).off('keydown.bloqueo');
-                    }
+                    });
+
+                    // Manejar el clic en el botón de eliminar melodía
+                    $(".eliminar-melodia").on("click", function () {
+                        const index = $(this).data("index");
+
+                        Swal.fire({
+                            title: 'Eliminar melodía',
+                            text: "¿Estás seguro de que quieres eliminar esta melodía?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Eliminar',
+                            cancelButtonText: 'Cancelar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                melodiasGuardadas.splice(index, 1);
+                                localStorage.setItem("melodias", JSON.stringify(melodiasGuardadas));
+                                mostrarMelodiasGuardadas();
+                            }
+                        });
+                    });
+
+                    // Manejar el clic en el botón de reproducir melodía
+                    $(".reproducir-melodia").on("click", function () {
+                        const index = $(this).data("index");
+                        const melodia = melodiasGuardadas[index];
+                        reproducirMelodia(melodia);
+                    });
+
+                    // Manejar el clic en el botón de descargar melodía
+                    $(".descargar-melodia").on("click", function () {
+                        const index = $(this).data("index");
+                        const melodia = melodiasGuardadas[index];
+                        descargarMelodia(melodia);
+                    });
+                }
+            }
+
+            // Función para guardar una nueva melodía
+            function guardarMelodia(nombre) {
+                const melodiasGuardadas = JSON.parse(localStorage.getItem("melodias")) || [];
+                melodiasGuardadas.push({ nombre: nombre, cancion: teclasPresionadas });
+                localStorage.setItem("melodias", JSON.stringify(melodiasGuardadas));
+            }
+
+            // Función para iniciar la grabación
+            function startRecording() {
+                teclasPresionadas = [];
+                document.addEventListener('keydown', registrarTecla);
+                document.addEventListener('keyup', registrarFinTecla);
+                $(".btn-detener").show();
+                isRecording = true;
+            }
+
+            // Manejar el clic en el botón de detener grabación
+            $(".btn-detener").on("click", function () {
+                if (isRecording) {
+                    document.removeEventListener('keydown', registrarTecla);
+                    document.removeEventListener('keyup', registrarFinTecla);
+                    isRecording = false;
+                    $(".btn-detener").hide();
                 }
             });
-        </script>
-    </body>
+
+            // Función para registrar la tecla presionada
+            function registrarTecla(event) {
+                const inicio = performance.now();
+                const tecla = event.key.toUpperCase();
+                teclasPresionadas.push({ tecla, inicio, fin: null, duracion: null });
+            }
+
+            // Función para registrar el fin de la tecla presionada
+            function registrarFinTecla(event) {
+                const fin = performance.now();
+                const tecla = event.key.toUpperCase();
+                const teclaObj = teclasPresionadas.find(t => t.tecla === tecla && t.fin === null);
+                if (teclaObj) {
+                    teclaObj.fin = fin;
+                    teclaObj.duracion = fin - teclaObj.inicio;
+                }
+            }
+
+            // Función para reproducir la melodía
+            function reproducirMelodia(melodia) {
+                // Lógica para reproducir la melodía
+                // Aquí deberás implementar la lógica para simular la reproducción de las teclas
+                console.log(`Reproduciendo la melodía: ${melodia.nombre}`);
+                melodia.cancion.forEach(nota => {
+                    console.log(`Tecla: ${nota.tecla}, Inicio: ${nota.inicio}, Fin: ${nota.fin}, Duración: ${nota.duracion}`);
+                });
+            }
+
+            // Función para descargar la melodía
+            function descargarMelodia(melodia) {
+                const data = JSON.stringify(melodia, null, 2);
+                const blob = new Blob([data], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${melodia.nombre}.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+
+            // Función para bloquear o desbloquear el teclado
+            function bloquearTeclado(bloquear) {
+                if (bloquear) {
+                    $(document).on('keydown.bloqueo', function (e) {
+                        e.stopImmediatePropagation();
+                    });
+                } else {
+                    $(document).off('keydown.bloqueo');
+                }
+            }
+        });
+    </script>
+</body>
+
 </html>
