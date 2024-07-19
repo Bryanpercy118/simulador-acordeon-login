@@ -349,7 +349,7 @@ cambiarOpcion("modo-numero", "#cambiar-modo .opcion", () => Acordeon.cambiarModo
 Acordeon.iniciar();
 cargarComposiciones();
 
-const socket = io('http://localhost:4000');
+// const socket = io('http://localhost:4000');
 socket.on('tecla', ({ tecla, estado }) => {
     if (estado == 1) {
         Acordeon.presionar(tecla, 0)
