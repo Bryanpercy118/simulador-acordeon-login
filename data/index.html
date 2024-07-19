@@ -37,7 +37,6 @@
 
 <body>
     <div class="cargando" id="app-container">
-
         <!-- Menu deslizable -->
         <div id="menu-toggle">
             <span title="Menú" class="material-symbols-outlined">menu</span>
@@ -45,73 +44,59 @@
 
         <!-- Barra lateral izquierda -->
         <div class="menu open">
-            <!-- Mení deslizable -->
             <div>
                 <span title="Menú" class="material-symbols-outlined">menu</span>
             </div>
 
-            <!-- cambio de mano -->
             <div class="control" id="cambiar-mano">
                 <div class="opcion seleccionada" id="mano-derecha" title="Seleccionar pitos">Diapasón</div>
                 <div class="opcion" id="mano-izquierda" title="Seleccionar bajo">Bajos</div>
                 <div class="opcion" id="dos-manos" title="Seleccionar todo"></div>
             </div>
 
-            <!-- cambio de tono -->
             <div class="control" id="cambiar-tono">
                 <div class="opcion seleccionada" title="Seleccionar ADG (La, Re, Sol)" id="tono-adg">ADG</div>
                 <div class="opcion" title="Seleccionar 5 Letras (Si bemol, Mi bemol, La bemol)" id="tono-5l">5L</div>
                 <div class="opcion" title="Seleccionar GCF (Sol, Do, Fa)" id="tono-gcf">GCF</div>
             </div>
 
-            <!-- cambio de modo -->
             <div class="control" id="cambiar-modo">
-                <!-- modo teclado -->
                 <div class="opcion seleccionada" title="Modo de teclado" id="modo-teclado">
                     <span class="material-symbols-outlined">keyboard</span>
                 </div>
 
-                <!-- modo simbolos -->
                 <div class="opcion" title="Notas musicales" id="modo-notas">
                     <span class="material-symbols-outlined">music_note</span>
                 </div>
 
-                <!-- modo numeros -->
                 <div class="opcion" title="Modo númerico" id="modo-numero">
                     <span class="material-symbols-outlined">123</span>
                 </div>
             </div>
 
-            <!-- Barra lateral izquierda -->
             <div id="composiciones">
-                <!-- lista de canciones -->
                 <div class="fila"
                     style="border-bottom: 1px solid silver; padding: 16px; display: flex; justify-content: space-between;">
                     <div>
                         <span class="material-symbols-outlined">queue_music</span>
                         <span>Exámen</span>
                     </div>
-                    <!-- Botón para reiniciar la página -->
                     <button class="reiniciar-pagina">
                         <span class="material-symbols-outlined" title="Actualizar">refresh</span>
                     </button>
-                    <!-- Botón para guardar la melodía -->
                     <button class="guardar-melodia">
                         <span class="material-symbols-outlined" title="Guardar">save</span>
                     </button>
                 </div>
 
-                <!-- contenido de las canciones -->
                 <div class="contenido" style="max-height: 400px; overflow-y: auto;"></div>
 
-                <!-- boton de grabar -->
                 <div id="grabar" class="grabar">
                     <span class="text"></span>
                     <span class="material-symbols-outlined">sound_sampler</span>
                 </div>
             </div>
 
-            <!-- Sección oculta de melodías guardadas -->
             <div id="melodias-guardadas" style="display: none; max-height: 400px; overflow-y: auto;">
                 <div style="display: flex; justify-content: space-between; padding: 16px; border-bottom: 1px solid silver;">
                     <button class="volver-menu">
@@ -125,7 +110,6 @@
                 <div class="lista-melodias" style="padding: 16px;"></div>
             </div>
 
-            <!-- Logo de Huellas del Maestro -->
             <a href="https://huellasdelmaestro.com/plataforma-virtual" title="Ir a la plataforma virtual" target="_blank">
                 <img class="logo" src="logo.png" />
             </a>
@@ -140,16 +124,13 @@
             </a>
         </div>
 
-        <!-- Botón de detener grabación -->
         <button class="btn-detener material-symbols-outlined">stop</button>
 
-        <!-- Contenido - Acordeon -->
         <div class="contenidor">
             <div id="acordeon"></div>
         </div>
     </div>
 
-    <!-- Script del acordeon -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"
         integrity="sha512-Siyxh4gyNM5SaERNa9BOZSPcu/auHyFUWn9OVFD7MxI3/dVPQklE7tfqS+pLmPHF1zo6UdDaJAp/thihrf0c7w=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -284,7 +265,6 @@
                         });
                     });
 
-                    
                     // Manejar el clic en el botón de reproducir melodía
                     $(".reproducir-melodia").on("click", function () {
                         const index = $(this).data("index");
@@ -329,30 +309,23 @@
 
             // Función para registrar la tecla presionada
             function registrarTecla(event) {
-                const inicio = performance.now();
                 const tecla = event.key.toUpperCase();
-                teclasPresionadas.push({ tecla, inicio, fin: null, duracion: null });
+                teclasPresionadas.push(tecla);
             }
 
-            // Función para registrar el fin de la tecla presionada
+            // Función para registrar el fin de la tecla presionada (opcional, solo para demostrar la estructura completa)
             function registrarFinTecla(event) {
-                const fin = performance.now();
                 const tecla = event.key.toUpperCase();
-                const teclaObj = teclasPresionadas.find(t => t.tecla === tecla && t.fin === null);
+                const teclaObj = teclasPresionadas.find(t => t.tecla === tecla && !t.fin);
                 if (teclaObj) {
-                    teclaObj.fin = fin;
-                    teclaObj.duracion = fin - teclaObj.inicio;
+                    teclaObj.fin = performance.now();
                 }
             }
 
             // Función para reproducir la melodía
             function reproducirMelodia(melodia) {
-                // Lógica para reproducir la melodía
-                // Aquí deberás implementar la lógica para simular la reproducción de las teclas
                 console.log(`Reproduciendo la melodía: ${melodia.nombre}`);
-                melodia.cancion.forEach(nota => {
-                    console.log(`Tecla: ${nota.tecla}, Inicio: ${nota.inicio}, Fin: ${nota.fin}, Duración: ${nota.duracion}`);
-                });
+                console.log(melodia.cancion.join(', '));
             }
 
             // Función para descargar la melodía
