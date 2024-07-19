@@ -301,6 +301,7 @@
                     isRecording = false;
                     $(".btn-detener").hide();
                     guardarMelodia(nombreCancion);
+                    console.log(`Teclas presionadas para la canción "${nombreCancion}":`, teclasPresionadas);
                     descargarMelodia({ nombre: nombreCancion, cancion: teclasPresionadas });
                 }
             });
@@ -309,6 +310,7 @@
             function registrarTecla(event) {
                 const tecla = event.key;
                 teclasPresionadas.push(tecla);
+                console.log(`Tecla presionada: ${tecla}`);
             }
 
             // Función para reproducir la melodía
@@ -346,4 +348,9 @@
 </body>
 
 </html>
+
+
+
+
+
 
