@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="lib/estilo.css" />
     <link rel="stylesheet" href="ui.css" />
     <script src="canciones.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"
         integrity="sha512-zMfrMAZYAlNClPKjN+JMuslK/B6sPM09BGvrWlW+cymmPmsUT1xJF3P4kxI3lOh9zypakSgWaTpY6vDJY/3Dig=="
@@ -300,17 +300,19 @@
                     document.removeEventListener('keydown', registrarTecla);
                     isRecording = false;
                     $(".btn-detener").hide();
-                    guardarMelodia(nombreCancion);
                     console.log(`Teclas presionadas para la canción "${nombreCancion}":`, teclasPresionadas);
+                    guardarMelodia(nombreCancion);
                     descargarMelodia({ nombre: nombreCancion, cancion: teclasPresionadas });
                 }
             });
 
             // Función para registrar la tecla presionada
             function registrarTecla(event) {
-                const tecla = event.key;
-                teclasPresionadas.push(tecla);
-                console.log(`Tecla presionada: ${tecla}`);
+                if (isRecording) {
+                    const tecla = event.key;
+                    teclasPresionadas.push(tecla);
+                    console.log(`Tecla presionada: ${tecla}`);
+                }
             }
 
             // Función para reproducir la melodía
@@ -343,14 +345,11 @@
                     $(document).off('keydown.bloqueo');
                 }
             }
+
+            // Cargar melodías guardadas al inicio
+            mostrarMelodiasGuardadas();
         });
     </script>
 </body>
 
 </html>
-
-
-
-
-
-
