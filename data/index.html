@@ -142,6 +142,7 @@
         $(document).ready(function () {
             let isRecording = false;
             let teclasPresionadas = [];
+            let nombreCancion = '';
 
             // Manejar el clic en el botón de guardar melodía
             $(".guardar-melodia").on("click", function () {
@@ -169,10 +170,7 @@
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        const nombre = result.value;
-                        guardarMelodia(nombre);
-                        mostrarMelodiasGuardadas();
-
+                        nombreCancion = result.value;
                         Swal.fire({
                             title: 'Grabando en',
                             html: '<b>3</b>',
@@ -302,12 +300,14 @@
                     document.removeEventListener('keydown', registrarTecla);
                     isRecording = false;
                     $(".btn-detener").hide();
+                    guardarMelodia(nombreCancion);
+                    descargarMelodia({ nombre: nombreCancion, cancion: teclasPresionadas });
                 }
             });
 
             // Función para registrar la tecla presionada
             function registrarTecla(event) {
-                const tecla = event.key.toUpperCase();
+                const tecla = event.key;
                 teclasPresionadas.push(tecla);
             }
 
