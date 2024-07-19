@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="lib/estilo.css" />
     <link rel="stylesheet" href="ui.css" />
     <script src="canciones.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
         integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"
         integrity="sha512-zMfrMAZYAlNClPKjN+JMuslK/B6sPM09BGvrWlW+cymmPmsUT1xJF3P4kxI3lOh9zypakSgWaTpY6vDJY/3Dig=="
@@ -133,7 +133,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"
         integrity="sha512-Siyxh4gyNM5SaERNa9BOZSPcu/auHyFUWn9OVFD7MxI3/dVPQklE7tfqS+pLmPHF1zo6UdDaJAp/thihrf0c7w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        crossorigin="anonymous"></script>
     <script src="lib/js/Acordeon/Acordeon.js"></script>
     <script src="lib/js/ui/ui.js"></script>
     <script src="lib/js/canciones.js/AsiFueMiQuerer.js"></script>
@@ -300,19 +300,25 @@
                     document.removeEventListener('keydown', registrarTecla);
                     isRecording = false;
                     $(".btn-detener").hide();
-                    console.log(`Teclas presionadas para la canción "${nombreCancion}":`, teclasPresionadas);
                     guardarMelodia(nombreCancion);
+                    console.log(`Teclas presionadas para la canción "${nombreCancion}":`, teclasPresionadas);
                     descargarMelodia({ nombre: nombreCancion, cancion: teclasPresionadas });
                 }
             });
 
-            // Función para registrar la tecla presionada
+            // Función para registrar la tecla presionada y almacenar en localStorage
             function registrarTecla(event) {
-                if (isRecording) {
-                    const tecla = event.key;
-                    teclasPresionadas.push(tecla);
-                    console.log(`Tecla presionada: ${tecla}`);
-                }
+                const tecla = event.key;
+                teclasPresionadas.push(tecla);
+                console.log(`Tecla presionada: ${tecla}`);
+                guardarTeclaEnLocalStorage(tecla);
+            }
+
+            // Función para guardar la tecla en localStorage
+            function guardarTeclaEnLocalStorage(tecla) {
+                const cancionData = JSON.parse(localStorage.getItem('cancion')) || { nombre: nombreCancion, cancion: [] };
+                cancionData.cancion.push(tecla);
+                localStorage.setItem('cancion', JSON.stringify(cancionData));
             }
 
             // Función para reproducir la melodía
@@ -324,11 +330,11 @@
             // Función para descargar la melodía
             function descargarMelodia(melodia) {
                 const data = JSON.stringify(melodia, null, 2);
-                const blob = new Blob([data], { type: 'text/plain' });
+                const blob = new Blob([data], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `${melodia.nombre}.txt`;
+                a.download = `${melodia.nombre}.json`;
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
@@ -345,9 +351,6 @@
                     $(document).off('keydown.bloqueo');
                 }
             }
-
-            // Cargar melodías guardadas al inicio
-            mostrarMelodiasGuardadas();
         });
     </script>
 </body>
