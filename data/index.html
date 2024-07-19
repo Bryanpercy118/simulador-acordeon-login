@@ -292,7 +292,6 @@
             function startRecording() {
                 teclasPresionadas = [];
                 document.addEventListener('keydown', registrarTecla);
-                document.addEventListener('keyup', registrarFinTecla);
                 $(".btn-detener").show();
                 isRecording = true;
             }
@@ -301,7 +300,6 @@
             $(".btn-detener").on("click", function () {
                 if (isRecording) {
                     document.removeEventListener('keydown', registrarTecla);
-                    document.removeEventListener('keyup', registrarFinTecla);
                     isRecording = false;
                     $(".btn-detener").hide();
                 }
@@ -311,15 +309,6 @@
             function registrarTecla(event) {
                 const tecla = event.key.toUpperCase();
                 teclasPresionadas.push(tecla);
-            }
-
-            // Función para registrar el fin de la tecla presionada (opcional, solo para demostrar la estructura completa)
-            function registrarFinTecla(event) {
-                const tecla = event.key.toUpperCase();
-                const teclaObj = teclasPresionadas.find(t => t.tecla === tecla && !t.fin);
-                if (teclaObj) {
-                    teclaObj.fin = performance.now();
-                }
             }
 
             // Función para reproducir la melodía
