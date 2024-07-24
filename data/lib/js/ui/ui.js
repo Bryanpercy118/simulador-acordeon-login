@@ -38,7 +38,9 @@ function cargarComposiciones() {
             <div class="composicion">
                 <span class="nombre" title="${composicion.nombre}">${composicion.nombre} -  ${nota}</span>
                 <div class="acciones">
+                    <button class="reproducir" data-index="${index}" title="Reproducir">Reproducir</button>
                     <button class="practicar" data-index="${index}">Iniciar</button>
+                    <button class="borrar" data-index="${index}">Borrar</button>
                 </div>
                 <div class="progreso">
                     <div class="porcentaje"></div>
@@ -79,9 +81,7 @@ function actualizarProgreso(ele, aciertos, total) {
 }
 
 //-------------------- Proceso de la evaluación -----------------------
-// Inicializar intentos restantes
-
-$("body").on("click", ".acciones .practicar", function() {
+$("body").on("click", ".acciones .practicar", function () {
     let ele = this;
     let isTerminar = $(ele).text() === "Terminar";
 
@@ -143,7 +143,7 @@ function mostrarMensajeNoMasIntentos() {
     }).then(() => {
         $(".acciones .practicar").prop("disabled", true).addClass("disabled");
 
-        let tiempoRestante = 30;
+        let tiempoRestante = 300;  // 5 minutos
         const cronometroInterval = setInterval(() => {
             const minutos = Math.floor(tiempoRestante / 60);
             const segundos = tiempoRestante % 60;
@@ -291,7 +291,7 @@ function calcularNota(score) {
 
 // Función para mostrar el mapa de notas
 function mostrarMapaNotas(score, nota) {
-    const title =score >= 60 ? `¡Felicidades!` : `¡Sigue practicando!`
+    const title = score >= 60 ? `¡Felicidades!` : `¡Sigue practicando!`
     const mensaje = score >= 60 ? `Tu nota ha sido: ${nota} Has pasado el examen con un puntaje del ${score}%.` : `Obtuviste una nota de: ${nota} con un puntaje del ${score}%.`;
 
     Swal.fire({
@@ -348,12 +348,3 @@ cambiarOpcion("modo-numero", "#cambiar-modo .opcion", () => Acordeon.cambiarModo
 
 Acordeon.iniciar();
 cargarComposiciones();
-
-// const socket = io('http://localhost:4000');
-// socket.on('tecla', ({ tecla, estado }) => {
-//     if (estado == 1) {
-//         Acordeon.presionar(tecla, 0)
-//     } else {
-//         Acordeon.liberar(tecla, 0)
-//     }
-// });
