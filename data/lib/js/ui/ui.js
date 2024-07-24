@@ -15,13 +15,11 @@ document.body.addEventListener('cargando-sonidos', ({ detail }) => {
 let composiciones = [];
 const defaultCompositions = canciones;
 
-// Función para cargar las composiciones
 function cargarComposiciones() {
     const contenido = $("#composiciones .contenido").empty();
     const scores = JSON.parse(localStorage.getItem('scores')) || {};
     const notas = JSON.parse(localStorage.getItem('notas')) || {};
 
-    // Fusionar composiciones predeterminadas con las de almacenamiento local
     composiciones = [
         ...defaultCompositions,
         ...Object.keys(localStorage).filter(key => key.includes("acordeon")).map(key => ({
@@ -30,7 +28,6 @@ function cargarComposiciones() {
         }))
     ];
 
-    // Generar los elementos de la interfaz para las composiciones
     composiciones.forEach((composicion, index) => {
         const score = scores[composicion.nombre] || 0;
         const nota = notas[composicion.nombre] || 'N/A';
@@ -40,7 +37,6 @@ function cargarComposiciones() {
                 <div class="acciones">
                     <button class="reproducir" data-index="${index}" title="Reproducir" style="border: none; background: none; cursor: pointer; padding: 0;">🔊</button>
                    <button class="practicar text-xs" data-index="${index}" style="border: none; background: none; cursor: pointer; padding: 0;">✏️</button>
-
                 </div>
                 <div class="progreso">
                     <div class="porcentaje"></div>
@@ -50,15 +46,19 @@ function cargarComposiciones() {
     });
 }
 
-// Función para liberar las teclas después de la reproducción
 function liberarTeclas(cancion) {
-    cancion.forEach(nota => {
-        const eventoTecla = new KeyboardEvent('keyup', { 'key': nota.tecla });
+    const teclasUnicas = [...new Set(cancion.map(nota => nota.tecla))];
+    teclasUnicas.forEach(tecla => {
+        const eventoTecla = new KeyboardEvent('keyup', { 'key': tecla });
         document.dispatchEvent(eventoTecla);
     });
 }
 
-// Función para manejar la reproducción de examen
+function detenerSonidos() {
+    Acordeon.detenerTodosLosSonidos();
+    liberarTeclas(composicion.cancion);
+}
+
 $("body").on("click", ".acciones .reproducir", function () {
     const ele = this;
     const composicion = composiciones[ele.dataset.index];
@@ -68,19 +68,20 @@ $("body").on("click", ".acciones .reproducir", function () {
 
     porcentaje.css({ 'animation-duration': duracionTotal + 'ms' }).addClass("animar-porcentaje");
 
-    setTimeout(() => liberarTeclas(composicion.cancion), duracionTotal);
-
     Acordeon.reproducir(composicion.cancion);
+
+    setTimeout(() => {
+        detenerSonidos();
+        porcentaje.removeClass("animar-porcentaje");
+    }, duracionTotal);
 });
 
-// Función para actualizar el progreso
 function actualizarProgreso(ele, aciertos, total) {
     const porcentaje = $(ele).closest(".composicion").find(".progreso .porcentaje");
     const progreso = (aciertos / total) * 100;
     porcentaje.css({ width: progreso + '%' });
 }
 
-//-------------------- Proceso de la evaluación -----------------------
 $("body").on("click", ".acciones .practicar", function () {
     let ele = this;
     let isTerminar = $(ele).text() === "Terminar";
@@ -92,7 +93,6 @@ $("body").on("click", ".acciones .practicar", function () {
     }
 });
 
-// Función para iniciar el examen
 function iniciarExamen(ele) {
     const composicion = composiciones[ele.dataset.index];
     const duracion = composicion.cancion.sort((a, b) => a.inicio - b.inicio);
@@ -132,7 +132,6 @@ function iniciarExamen(ele) {
     mostrarMensajeIntento();
 }
 
-// Función para mostrar mensaje de no más intentos
 function mostrarMensajeNoMasIntentos() {
     Swal.fire({
         title: '¡Sin intentos disponibles!',
@@ -181,7 +180,6 @@ function mostrarMensajeNoMasIntentos() {
     });
 }
 
-// Función para iniciar el temporizador y mostrar el resultado del examen
 function iniciarTemporizador(ele, duracion) {
     Swal.fire({
         html: '<div class="countdown">3</div>',
@@ -236,7 +234,6 @@ function iniciarTemporizador(ele, duracion) {
     });
 }
 
-// Función para finalizar el examen
 function terminarExamen(ele) {
     const cancion = Acordeon.detenerGrabacion();
     $(ele).text("Iniciar");
@@ -268,7 +265,6 @@ function terminarExamen(ele) {
     }, 1000);
 }
 
-// Función para calcular la nota según el score
 function calcularNota(score) {
     if (score <= 30) {
         return '1.0';
@@ -289,7 +285,6 @@ function calcularNota(score) {
     }
 }
 
-// Función para mostrar el mapa de notas
 function mostrarMapaNotas(score, nota) {
     const title = score >= 60 ? `¡Felicidades!` : `¡Sigue practicando!`
     const mensaje = score >= 60 ? `Tu nota ha sido: ${nota} Has pasado el examen con un puntaje del ${score}%.` : `Obtuviste una nota de: ${nota} con un puntaje del ${score}%.`;
@@ -304,7 +299,6 @@ function mostrarMapaNotas(score, nota) {
     });
 }
 
-// Manejar el clic en el botón para reiniciar la página
 $(".reiniciar-pagina").on("click", () => location.reload());
 
 document.getElementById("grabar").onclick = function () {
