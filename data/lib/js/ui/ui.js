@@ -46,19 +46,6 @@ function cargarComposiciones() {
     });
 }
 
-function liberarTeclas(cancion) {
-    const teclasUnicas = [...new Set(cancion.map(nota => nota.tecla))];
-    teclasUnicas.forEach(tecla => {
-        const eventoTecla = new KeyboardEvent('keyup', { 'key': tecla });
-        document.dispatchEvent(eventoTecla);
-    });
-}
-
-function detenerSonidos() {
-    Acordeon.detenerTodosLosSonidos();
-    liberarTeclas(composicion.cancion);
-}
-
 $("body").on("click", ".acciones .reproducir", function () {
     const ele = this;
     const composicion = composiciones[ele.dataset.index];
@@ -68,12 +55,10 @@ $("body").on("click", ".acciones .reproducir", function () {
 
     porcentaje.css({ 'animation-duration': duracionTotal + 'ms' }).addClass("animar-porcentaje");
 
-    Acordeon.reproducir(composicion.cancion);
-
-    setTimeout(() => {
-        detenerSonidos();
+    Acordeon.reproducir(composicion.cancion).then(() => {
+        Acordeon.detenerTodosLosSonidos();
         porcentaje.removeClass("animar-porcentaje");
-    }, duracionTotal);
+    });
 });
 
 function actualizarProgreso(ele, aciertos, total) {
@@ -142,7 +127,7 @@ function mostrarMensajeNoMasIntentos() {
     }).then(() => {
         $(".acciones .practicar").prop("disabled", true).addClass("disabled");
 
-        let tiempoRestante = 300;  // 5 minutos
+        let tiempoRestante = 30;  // 5 minutos
         const cronometroInterval = setInterval(() => {
             const minutos = Math.floor(tiempoRestante / 60);
             const segundos = tiempoRestante % 60;
