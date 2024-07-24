@@ -1,5 +1,4 @@
 const Acordeon = (() => {
-
     const MANO_IZQUIERDA = 0;
     const MANO_DERECHA = 1;
     const AMBAS = 2;
@@ -72,6 +71,16 @@ const Acordeon = (() => {
     const teclasCorrectas = [];
     let totalNotas = 0;
 
+    const detenerTodosLosSonidos = () => {
+        sonidos.forEach((s) => {
+            s[0].stop();
+            s[1].stop();
+        });
+        teclas_presionadas.forEach((_, tecla) => {
+            liberar(tecla);
+        });
+    };
+
     const reproducir = (cancion) => {
         totalNotas = cancion.length; // Total de notas en la canción
 
@@ -106,6 +115,7 @@ const Acordeon = (() => {
 
         return Promise.all(reproductor).then(() => {
             reproduciendo = false;
+            detenerTodosLosSonidos();
             return true;
         });
     };
@@ -589,7 +599,8 @@ const Acordeon = (() => {
         detenerGrabacion,
         reproducir,
         teclas_presionadas,
-        KEYBOARD
+        KEYBOARD,
+        detenerTodosLosSonidos
     };
 
 })();
