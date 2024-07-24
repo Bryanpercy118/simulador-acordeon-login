@@ -36,11 +36,11 @@ function cargarComposiciones() {
         const nota = notas[composicion.nombre] || 'N/A';
         contenido.append(`
             <div class="composicion">
-                <span class="nombre" title="${composicion.nombre}">${composicion.nombre} -  ${nota}</span>
+                <span class="nombre" title="${composicion.nombre}">${composicion.nombre} - ${nota}</span>
                 <div class="acciones">
-                    <button class="reproducir" data-index="${index}" title="Reproducir">Reproducir</button>
-                    <button class="practicar" data-index="${index}">Iniciar</button>
-                    <button class="borrar" data-index="${index}">Borrar</button>
+                    <button class="reproducir" data-index="${index}" title="Reproducir" style="border: none; background: none; cursor: pointer; padding: 0;">🔊</button>
+                   <button class="practicar text-xs" data-index="${index}" style="border: none; background: none; cursor: pointer; padding: 0;">✏️</button>
+
                 </div>
                 <div class="progreso">
                     <div class="porcentaje"></div>
@@ -306,12 +306,6 @@ function mostrarMapaNotas(score, nota) {
 
 // Manejar el clic en el botón para reiniciar la página
 $(".reiniciar-pagina").on("click", () => location.reload());
-
-$("body").on("click", ".acciones .borrar", function () {
-    const composicion = composiciones[this.dataset.index];
-    localStorage.removeItem(`acordeon-${composicion.nombre}`);
-    cargarComposiciones();
-});
 
 document.getElementById("grabar").onclick = function () {
     if (this.classList.contains("grabar")) {
