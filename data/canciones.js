@@ -1,450 +1,3578 @@
 // Canciones
 const examenAFQ = {
-    nombre: "Asi Fue mi Q",
+    nombre: "Pases Medios",
     cancion: [
-        { "tecla": "T", "inicio": 2642.3, "fin": 2763.7, "duracion": 121.4 },
-        { "tecla": "Y", "inicio": 2653.5, "fin": 2771.4, "duracion": 117.9 },
-        { "tecla": "T", "inicio": 2881.2, "fin": 2976.1, "duracion": 94.9 },
-        { "tecla": "Y", "inicio": 2888.4, "fin": 2984, "duracion": 95.6 },
-        { "tecla": "T", "inicio": 3082.5, "fin": 3200.5, "duracion": 118 },
-        { "tecla": "Y", "inicio": 3088.5, "fin": 3208.4, "duracion": 119.9 },
-        { "tecla": "T", "inicio": 3314.4, "fin": 3408.4, "duracion": 94 },
-        { "tecla": "Y", "inicio": 3327.6, "fin": 3400.3, "duracion": 72.7 },
-        { "tecla": "T", "inicio": 3528.5, "fin": 3817.7, "duracion": 289.2 },
-        { "tecla": "Y", "inicio": 3530.7, "fin": 3809.6, "duracion": 278.9 },
-        { "tecla": "ESCAPE", "inicio": 3856.4, "fin": 4129.1, "duracion": 272.7 },
-        { "tecla": "R", "inicio": 3938.4, "fin": 4129.9, "duracion": 191.5 },
-        { "tecla": "T", "inicio": 3940.3, "fin": 4130.4, "duracion": 190.1 },
-        { "tecla": "R", "inicio": 4133.1, "fin": 4449.6, "duracion": 316.5 },
-        { "tecla": "T", "inicio": 4136.9, "fin": 4462.9, "duracion": 326 },
-        { "tecla": "Y", "inicio": 4547.6, "fin": 4843.7, "duracion": 296.1 },
-        { "tecla": "T", "inicio": 4557.4, "fin": 4825.6, "duracion": 268.2 },
-        { "tecla": "ESCAPE", "inicio": 4857.8, "fin": 5156, "duracion": 298.2 },
-        { "tecla": "R", "inicio": 4938.3, "fin": 5157.4, "duracion": 219.1 },
-        { "tecla": "T", "inicio": 4944, "fin": 5158.5, "duracion": 214.5 },
-        { "tecla": "R", "inicio": 5160.9, "fin": 7666.5, "duracion": 2505.6 },
-        { "tecla": "T", "inicio": 5164, "fin": 7667.2, "duracion": 2503.2 },
-        { "tecla": "U", "inicio": 7672.9, "fin": 7728.1, "duracion": 55.2 },
-        { "tecla": "M", "inicio": 7679.4, "fin": 7755.2, "duracion": 75.8 },
-        { "tecla": "M", "inicio": 7853.1, "fin": 7961.3, "duracion": 108.2 },
-        { "tecla": "U", "inicio": 7863.2, "fin": 7938.4, "duracion": 75.2 },
-        { "tecla": "M", "inicio": 8055, "fin": 8170.2, "duracion": 115.2 },
-        { "tecla": "U", "inicio": 8063.5, "fin": 8145.5, "duracion": 82 },
-        { "tecla": "U", "inicio": 8272.6, "fin": 8370.2, "duracion": 97.6 },
-        { "tecla": "M", "inicio": 8277.1, "fin": 8377.2, "duracion": 100.1 },
-        { "tecla": "U", "inicio": 8492.1, "fin": 8892.1, "duracion": 400 },
-        { "tecla": "M", "inicio": 8500.3, "fin": 8893, "duracion": 392.7 },
-        { "tecla": "ESCAPE", "inicio": 8889.4, "fin": 9473.3, "duracion": 583.9 },
-        { "tecla": "U", "inicio": 8898.4, "fin": 9037.6, "duracion": 139.2 },
-        { "tecla": "M", "inicio": 8904.4, "fin": 9064.4, "duracion": 160 },
-        { "tecla": ",", "inicio": 9124, "fin": 9400.5, "duracion": 276.5 },
-        { "tecla": "I", "inicio": 9128.6, "fin": 9392.4, "duracion": 263.8 },
-        { "tecla": "U", "inicio": 9523.6, "fin": 9746.7, "duracion": 223.1 },
-        { "tecla": "M", "inicio": 9529.3, "fin": 9747.2, "duracion": 217.9 },
-        { "tecla": "ESCAPE", "inicio": 9744.6, "fin": 10080.1, "duracion": 335.5 },
-        { "tecla": "U", "inicio": 9753.8, "fin": 9872.4, "duracion": 118.6 },
-        { "tecla": "M", "inicio": 9756.2, "fin": 9864.4, "duracion": 108.2 },
-        { "tecla": "Y", "inicio": 9916.4, "fin": 10080.5, "duracion": 164.1 },
-        { "tecla": "T", "inicio": 9928.3, "fin": 10080.7, "duracion": 152.4 },
-        { "tecla": "Y", "inicio": 10080.9, "fin": 10445.3, "duracion": 364.4 },
-        { "tecla": "T", "inicio": 10081.6, "fin": 10446.1, "duracion": 364.5 },
-        { "tecla": "U", "inicio": 10497.3, "fin": 10513.4, "duracion": 16.1 },
-        { "tecla": "ESCAPE", "inicio": 10511.7, "fin": 11107.3, "duracion": 595.6 },
-        { "tecla": "U", "inicio": 10515.2, "fin": 10646.5, "duracion": 131.3 },
-        { "tecla": "M", "inicio": 10526, "fin": 10665.2, "duracion": 139.2 },
-        { "tecla": "T", "inicio": 10715.1, "fin": 11108.4, "duracion": 393.3 },
-        { "tecla": "Y", "inicio": 10725.9, "fin": 11108.9, "duracion": 383 },
-        { "tecla": "T", "inicio": 11113.3, "fin": 11386.5, "duracion": 273.2 },
-        { "tecla": "Y", "inicio": 11118.1, "fin": 11410.5, "duracion": 292.4 },
-        { "tecla": "E", "inicio": 11513.8, "fin": 11753.9, "duracion": 240.1 },
-        { "tecla": "Y", "inicio": 11699.4, "fin": 12026.8, "duracion": 327.4 },
-        { "tecla": "T", "inicio": 11718.3, "fin": 12009.5, "duracion": 291.2 },
-        { "tecla": "R", "inicio": 12109.1, "fin": 12240.5, "duracion": 131.4 },
-        { "tecla": "T", "inicio": 12116.2, "fin": 12232.3, "duracion": 116.1 },
-        { "tecla": "ESCAPE", "inicio": 12255.5, "fin": 15608.5, "duracion": 3353 },
-        { "tecla": "R", "inicio": 12355.1, "fin": 12648.8, "duracion": 293.7 },
-        { "tecla": "E", "inicio": 12361.4, "fin": 12640.6, "duracion": 279.2 },
-        { "tecla": "M", "inicio": 12778.9, "fin": 14339.2, "duracion": 1560.3 },
-        { "tecla": "C", "inicio": 12788.8, "fin": 14129.5, "duracion": 1340.7 },
-        { "tecla": "V", "inicio": 12792, "fin": 14145.3, "duracion": 1353.3 },
-        { "tecla": "U", "inicio": 14411.6, "fin": 14488.1, "duracion": 76.5 },
-        { "tecla": "M", "inicio": 14418.7, "fin": 14504.6, "duracion": 85.9 },
-        { "tecla": "U", "inicio": 14601.7, "fin": 14688.1, "duracion": 86.4 },
-        { "tecla": "M", "inicio": 14608.5, "fin": 14696.4, "duracion": 87.9 },
-        { "tecla": "U", "inicio": 14802.7, "fin": 14904.3, "duracion": 101.6 },
-        { "tecla": "M", "inicio": 14808.7, "fin": 14904.5, "duracion": 95.8 },
-        { "tecla": "U", "inicio": 15018.2, "fin": 15273.9, "duracion": 255.7 },
-        { "tecla": "M", "inicio": 15022.1, "fin": 15281.4, "duracion": 259.3 },
-        { "tecla": "U", "inicio": 15406.9, "fin": 15609, "duracion": 202.1 },
-        { "tecla": "M", "inicio": 15414.2, "fin": 15609.2, "duracion": 195 },
-        { "tecla": "U", "inicio": 15610.1, "fin": 15988.9, "duracion": 378.8 },
-        { "tecla": "M", "inicio": 15611.6, "fin": 15989.6, "duracion": 378 },
-        { "tecla": "ESCAPE", "inicio": 15986.4, "fin": 17249.7, "duracion": 1263.3 },
-        { "tecla": "U", "inicio": 15992.5, "fin": 16112.3, "duracion": 119.8 },
-        { "tecla": "M", "inicio": 15994.1, "fin": 16128.5, "duracion": 134.4 },
-        { "tecla": "U", "inicio": 16237, "fin": 16330.7, "duracion": 93.7 },
-        { "tecla": "M", "inicio": 16245.3, "fin": 16331.5, "duracion": 86.2 },
-        { "tecla": "M", "inicio": 16439.1, "fin": 16560.5, "duracion": 121.4 },
-        { "tecla": "U", "inicio": 16448.6, "fin": 16545.5, "duracion": 96.9 },
-        { "tecla": "M", "inicio": 16659.1, "fin": 16907.1, "duracion": 248 },
-        { "tecla": "U", "inicio": 16669, "fin": 16881.5, "duracion": 212.5 },
-        { "tecla": "U", "inicio": 17022.4, "fin": 17251.1, "duracion": 228.7 },
-        { "tecla": "M", "inicio": 17028.9, "fin": 17253.9, "duracion": 225 },
-        { "tecla": "U", "inicio": 17257.9, "fin": 17644.8, "duracion": 386.9 },
-        { "tecla": "M", "inicio": 17261.3, "fin": 17645.3, "duracion": 384 },
-        { "tecla": "ESCAPE", "inicio": 17642.1, "fin": 19912.3, "duracion": 2270.2 },
-        { "tecla": "U", "inicio": 17649.5, "fin": 18096.9, "duracion": 447.4 },
-        { "tecla": "M", "inicio": 17653.8, "fin": 18144.3, "duracion": 490.5 },
-        { "tecla": "M", "inicio": 18257.8, "fin": 18657.4, "duracion": 399.6 },
-        { "tecla": "H", "inicio": 18678.2, "fin": 19066.1, "duracion": 387.9 },
-        { "tecla": "T", "inicio": 19071.9, "fin": 19192.3, "duracion": 120.4 },
-        { "tecla": "Y", "inicio": 19078.1, "fin": 19185.7, "duracion": 107.6 },
-        { "tecla": "T", "inicio": 19302.7, "fin": 19401, "duracion": 98.3 },
-        { "tecla": "Y", "inicio": 19308.7, "fin": 19419.7, "duracion": 111 },
-        { "tecla": "T", "inicio": 19488.4, "fin": 19763.2, "duracion": 274.8 },
-        { "tecla": "Y", "inicio": 19496.3, "fin": 19745.9, "duracion": 249.6 },
-        { "tecla": "U", "inicio": 19748.4, "fin": 19912.8, "duracion": 164.4 },
-        { "tecla": "M", "inicio": 19758.3, "fin": 19913.1, "duracion": 154.8 },
-        { "tecla": "U", "inicio": 19914.3, "fin": 20177.4, "duracion": 263.1 },
-        { "tecla": "M", "inicio": 19916.1, "fin": 20187.6, "duracion": 271.5 },
-        { "tecla": "M", "inicio": 20319.7, "fin": 20496.9, "duracion": 177.2 },
-        { "tecla": "U", "inicio": 20325.5, "fin": 20497.1, "duracion": 171.6 },
-        { "tecla": "ESCAPE", "inicio": 20495.4, "fin": 22176.6, "duracion": 1681.2 },
-        { "tecla": "M", "inicio": 20498, "fin": 20816.6, "duracion": 318.6 },
-        { "tecla": "U", "inicio": 20499.5, "fin": 20786.5, "duracion": 287 },
-        { "tecla": "M", "inicio": 20931.7, "fin": 21217.3, "duracion": 285.6 },
-        { "tecla": "U", "inicio": 20944.3, "fin": 21203.6, "duracion": 259.3 },
-        { "tecla": "U", "inicio": 21309.4, "fin": 21512.7, "duracion": 203.3 },
-        { "tecla": "M", "inicio": 21315.8, "fin": 21545.2, "duracion": 229.4 },
-        { "tecla": "Y", "inicio": 21557.2, "fin": 21865.2, "duracion": 308 },
-        { "tecla": "T", "inicio": 21577.8, "fin": 21857.4, "duracion": 279.6 },
-        { "tecla": "Y", "inicio": 21963.8, "fin": 22177.1, "duracion": 213.3 },
-        { "tecla": "T", "inicio": 21975.4, "fin": 22177.4, "duracion": 202 },
-        { "tecla": "Y", "inicio": 22178.4, "fin": 22442.1, "duracion": 263.7 },
-        { "tecla": "T", "inicio": 22179.9, "fin": 22442.9, "duracion": 263 },
-        { "tecla": "R", "inicio": 22541.2, "fin": 23232.2, "duracion": 691 },
-        { "tecla": "T", "inicio": 22560.9, "fin": 23248.3, "duracion": 687.4 },
-        { "tecla": "T", "inicio": 23361.9, "fin": 23456.2, "duracion": 94.3 },
-        { "tecla": "Y", "inicio": 23371, "fin": 23465.5, "duracion": 94.5 },
-        { "tecla": "T", "inicio": 23586.2, "fin": 23753.7, "duracion": 167.5 },
-        { "tecla": "Y", "inicio": 23592.5, "fin": 23754, "duracion": 161.5 },
-        { "tecla": "ESCAPE", "inicio": 23752.1, "fin": 25209.6, "duracion": 1457.5 },
-        { "tecla": "T", "inicio": 23754.7, "fin": 23986.7, "duracion": 232 },
-        { "tecla": "Y", "inicio": 23755.9, "fin": 23996.5, "duracion": 240.6 },
-        { "tecla": "U", "inicio": 23988.3, "fin": 24321.8, "duracion": 333.5 },
-        { "tecla": "M", "inicio": 24008.7, "fin": 24361.3, "duracion": 352.6 },
-        { "tecla": "T", "inicio": 24373.2, "fin": 24505.3, "duracion": 132.1 },
-        { "tecla": "Y", "inicio": 24387.8, "fin": 24496.8, "duracion": 109 },
-        { "tecla": "T", "inicio": 24612.5, "fin": 24723.8, "duracion": 111.3 },
-        { "tecla": "Y", "inicio": 24622.8, "fin": 24729.1, "duracion": 106.3 },
-        { "tecla": "T", "inicio": 24827, "fin": 25211, "duracion": 384 },
-        { "tecla": "Y", "inicio": 24837.8, "fin": 25211.6, "duracion": 373.8 },
-        { "tecla": "T", "inicio": 25216, "fin": 25306, "duracion": 90 },
-        { "tecla": "Y", "inicio": 25220.7, "fin": 25314.7, "duracion": 94 },
-        { "tecla": "ESCAPE", "inicio": 25335.7, "fin": 27024.7, "duracion": 1689 },
-        { "tecla": "R", "inicio": 25425.4, "fin": 25657, "duracion": 231.6 },
-        { "tecla": "T", "inicio": 25430.1, "fin": 25697.6, "duracion": 267.5 },
-        { "tecla": "C", "inicio": 25822.2, "fin": 26505.8, "duracion": 683.6 },
-        { "tecla": "M", "inicio": 25830.2, "fin": 26536.6, "duracion": 706.4 },
-        { "tecla": "V", "inicio": 25840.7, "fin": 26506.5, "duracion": 665.8 },
-        { "tecla": "R", "inicio": 26634.7, "fin": 26753.6, "duracion": 118.9 },
-        { "tecla": "T", "inicio": 26644.8, "fin": 26744.2, "duracion": 99.4 },
-        { "tecla": "R", "inicio": 26842, "fin": 26969, "duracion": 127 },
-        { "tecla": "T", "inicio": 26845.3, "fin": 26969.8, "duracion": 124.5 },
-        { "tecla": "T", "inicio": 27064.1, "fin": 27235.7, "duracion": 171.6 },
-        { "tecla": "Y", "inicio": 27089.4, "fin": 27237.4, "duracion": 148 },
-        { "tecla": "ESCAPE", "inicio": 27232.3, "fin": 27657.3, "duracion": 425 },
-        { "tecla": "T", "inicio": 27242, "fin": 27658.5, "duracion": 416.5 },
-        { "tecla": "Y", "inicio": 27245.8, "fin": 27658.9, "duracion": 413.1 },
-        { "tecla": "T", "inicio": 27663.1, "fin": 27755.2, "duracion": 92.1 },
-        { "tecla": "Y", "inicio": 27668, "fin": 27755.6, "duracion": 87.6 },
-        { "tecla": "T", "inicio": 27880, "fin": 27970.3, "duracion": 90.3 },
-        { "tecla": "Y", "inicio": 27886, "fin": 27985.4, "duracion": 99.4 },
-        { "tecla": "T", "inicio": 28092, "fin": 28361.4, "duracion": 269.4 },
-        { "tecla": "Y", "inicio": 28097.5, "fin": 28386.2, "duracion": 288.7 },
-        { "tecla": "ESCAPE", "inicio": 28393.1, "fin": 28659.7, "duracion": 266.6 },
-        { "tecla": "T", "inicio": 28464.8, "fin": 28661.8, "duracion": 197 },
-        { "tecla": "R", "inicio": 28476.8, "fin": 28663, "duracion": 186.2 },
-        { "tecla": "T", "inicio": 28670.5, "fin": 29739.3, "duracion": 1068.8 },
-        { "tecla": "R", "inicio": 28672.5, "fin": 29729.4, "duracion": 1056.9 },
-        { "tecla": "T", "inicio": 29848.8, "fin": 29960.3, "duracion": 111.5 },
-        { "tecla": "Y", "inicio": 29856.7, "fin": 29969.4, "duracion": 112.7 },
-        { "tecla": "T", "inicio": 30056.7, "fin": 30272.7, "duracion": 216 },
-        { "tecla": "Y", "inicio": 30072.5, "fin": 30272.9, "duracion": 200.4 },
-        { "tecla": "ESCAPE", "inicio": 30271.2, "fin": 31665, "duracion": 1393.8 },
-        { "tecla": "T", "inicio": 30274.1, "fin": 30505.4, "duracion": 231.3 },
-        { "tecla": "Y", "inicio": 30275.7, "fin": 30512.3, "duracion": 236.6 },
-        { "tecla": "U", "inicio": 30506.5, "fin": 30976.7, "duracion": 470.2 },
-        { "tecla": "M", "inicio": 30524.1, "fin": 30976.9, "duracion": 452.8 },
-        { "tecla": "Y", "inicio": 30889, "fin": 31008.3, "duracion": 119.3 },
-        { "tecla": "T", "inicio": 30976.9, "fin": 31000.2, "duracion": 23.3 },
-        { "tecla": "T", "inicio": 31121.1, "fin": 31208.4, "duracion": 87.3 },
-        { "tecla": "Y", "inicio": 31128.7, "fin": 31216.3, "duracion": 87.6 },
-        { "tecla": "T", "inicio": 31304.6, "fin": 31665.8, "duracion": 361.2 },
-        { "tecla": "Y", "inicio": 31320.7, "fin": 31666.3, "duracion": 345.6 },
-        { "tecla": "T", "inicio": 31669.3, "fin": 31772.3, "duracion": 103 },
-        { "tecla": "Y", "inicio": 31672, "fin": 31792.1, "duracion": 120.1 },
-        { "tecla": "ESCAPE", "inicio": 31855.1, "fin": 33488.3, "duracion": 1633.2 },
-        { "tecla": "R", "inicio": 31904.9, "fin": 32208.3, "duracion": 303.4 },
-        { "tecla": "T", "inicio": 31907, "fin": 32224.3, "duracion": 317.3 },
-        { "tecla": "M", "inicio": 32345.4, "fin": 33024.3, "duracion": 678.9 }
-    ]
+        {
+           "tecla":"ESCAPE",
+           "inicio":605,
+           "fin":3604,
+           "duracion":2999
+        },
+        {
+           "tecla":"E",
+           "inicio":1309,
+           "fin":1410,
+           "duracion":101
+        },
+        {
+           "tecla":"R",
+           "inicio":1564,
+           "fin":1640,
+           "duracion":76
+        },
+        {
+           "tecla":"T",
+           "inicio":1830,
+           "fin":1942,
+           "duracion":112
+        },
+        {
+           "tecla":"Y",
+           "inicio":2068,
+           "fin":2160,
+           "duracion":92
+        },
+        {
+           "tecla":"T",
+           "inicio":2318,
+           "fin":2431,
+           "duracion":113
+        },
+        {
+           "tecla":"R",
+           "inicio":2551,
+           "fin":2618,
+           "duracion":67
+        },
+        {
+           "tecla":"M",
+           "inicio":2829,
+           "fin":2938,
+           "duracion":109
+        },
+        {
+           "tecla":"U",
+           "inicio":2833,
+           "fin":2943,
+           "duracion":110
+        },
+        {
+           "tecla":"M",
+           "inicio":3199,
+           "fin":3337,
+           "duracion":138
+        },
+        {
+           "tecla":"U",
+           "inicio":3201,
+           "fin":3323,
+           "duracion":122
+        },
+        {
+           "tecla":"U",
+           "inicio":3679,
+           "fin":3785,
+           "duracion":106
+        },
+        {
+           "tecla":"M",
+           "inicio":3699,
+           "fin":3759,
+           "duracion":60
+        },
+        {
+           "tecla":"M",
+           "inicio":3989,
+           "fin":4079,
+           "duracion":90
+        },
+        {
+           "tecla":"U",
+           "inicio":3991,
+           "fin":4058,
+           "duracion":67
+        },
+        {
+           "tecla":"T",
+           "inicio":4390,
+           "fin":4476,
+           "duracion":86
+        },
+        {
+           "tecla":"Y",
+           "inicio":4394,
+           "fin":4493,
+           "duracion":99
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":4854,
+           "fin":5230,
+           "duracion":376
+        },
+        {
+           "tecla":"E",
+           "inicio":5080,
+           "fin":5179,
+           "duracion":99
+        },
+        {
+           "tecla":"E",
+           "inicio":5347,
+           "fin":5447,
+           "duracion":100
+        },
+        {
+           "tecla":"R",
+           "inicio":5591,
+           "fin":5688,
+           "duracion":97
+        },
+        {
+           "tecla":"T",
+           "inicio":5849,
+           "fin":5953,
+           "duracion":104
+        },
+        {
+           "tecla":"R",
+           "inicio":6085,
+           "fin":6186,
+           "duracion":101
+        },
+        {
+           "tecla":"E",
+           "inicio":6309,
+           "fin":6384,
+           "duracion":75
+        },
+        {
+           "tecla":"U",
+           "inicio":6584,
+           "fin":6696,
+           "duracion":112
+        },
+        {
+           "tecla":"M",
+           "inicio":6595,
+           "fin":6709,
+           "duracion":114
+        },
+        {
+           "tecla":"M",
+           "inicio":7024,
+           "fin":7143,
+           "duracion":119
+        },
+        {
+           "tecla":"U",
+           "inicio":7029,
+           "fin":7123,
+           "duracion":94
+        },
+        {
+           "tecla":"T",
+           "inicio":7460,
+           "fin":7546,
+           "duracion":86
+        },
+        {
+           "tecla":"Y",
+           "inicio":7467,
+           "fin":7569,
+           "duracion":102
+        },
+        {
+           "tecla":"T",
+           "inicio":7734,
+           "fin":7818,
+           "duracion":84
+        },
+        {
+           "tecla":"Y",
+           "inicio":7736,
+           "fin":7826,
+           "duracion":90
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":8100,
+           "fin":10395,
+           "duracion":2295
+        },
+        {
+           "tecla":"T",
+           "inicio":8199,
+           "fin":8304,
+           "duracion":105
+        },
+        {
+           "tecla":"Y",
+           "inicio":8201,
+           "fin":8310,
+           "duracion":109
+        },
+        {
+           "tecla":"E",
+           "inicio":8917,
+           "fin":9038,
+           "duracion":121
+        },
+        {
+           "tecla":"R",
+           "inicio":9214,
+           "fin":9324,
+           "duracion":110
+        },
+        {
+           "tecla":"T",
+           "inicio":9462,
+           "fin":9561,
+           "duracion":99
+        },
+        {
+           "tecla":"Y",
+           "inicio":9698,
+           "fin":9801,
+           "duracion":103
+        },
+        {
+           "tecla":"T",
+           "inicio":9943,
+           "fin":10044,
+           "duracion":101
+        },
+        {
+           "tecla":"R",
+           "inicio":10191,
+           "fin":10207,
+           "duracion":16
+        },
+        {
+           "tecla":"T",
+           "inicio":10518,
+           "fin":10589,
+           "duracion":71
+        },
+        {
+           "tecla":"Y",
+           "inicio":10557,
+           "fin":10605,
+           "duracion":48
+        },
+        {
+           "tecla":"T",
+           "inicio":10998,
+           "fin":11098,
+           "duracion":100
+        },
+        {
+           "tecla":"Y",
+           "inicio":11002,
+           "fin":11102,
+           "duracion":100
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":11402,
+           "fin":12082,
+           "duracion":680
+        },
+        {
+           "tecla":"T",
+           "inicio":11511,
+           "fin":11609,
+           "duracion":98
+        },
+        {
+           "tecla":"Y",
+           "inicio":11514,
+           "fin":11601,
+           "duracion":87
+        },
+        {
+           "tecla":"T",
+           "inicio":11811,
+           "fin":11901,
+           "duracion":90
+        },
+        {
+           "tecla":"Y",
+           "inicio":11814,
+           "fin":11914,
+           "duracion":100
+        },
+        {
+           "tecla":"R",
+           "inicio":12270,
+           "fin":12383,
+           "duracion":113
+        },
+        {
+           "tecla":"T",
+           "inicio":12271,
+           "fin":12371,
+           "duracion":100
+        },
+        {
+           "tecla":"M",
+           "inicio":13000,
+           "fin":13162,
+           "duracion":162
+        },
+        {
+           "tecla":"U",
+           "inicio":13008,
+           "fin":13166,
+           "duracion":158
+        },
+        {
+           "tecla":"M",
+           "inicio":13324,
+           "fin":13410,
+           "duracion":86
+        },
+        {
+           "tecla":"U",
+           "inicio":13329,
+           "fin":13417,
+           "duracion":88
+        },
+        {
+           "tecla":"U",
+           "inicio":13592,
+           "fin":13691,
+           "duracion":99
+        },
+        {
+           "tecla":"M",
+           "inicio":13602,
+           "fin":13681,
+           "duracion":79
+        },
+        {
+           "tecla":"T",
+           "inicio":13864,
+           "fin":13936,
+           "duracion":72
+        },
+        {
+           "tecla":"Y",
+           "inicio":13867,
+           "fin":13942,
+           "duracion":75
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":14057,
+           "fin":14450,
+           "duracion":393
+        },
+        {
+           "tecla":"T",
+           "inicio":14153,
+           "fin":14233,
+           "duracion":80
+        },
+        {
+           "tecla":"Y",
+           "inicio":14171,
+           "fin":14241,
+           "duracion":70
+        },
+        {
+           "tecla":"T",
+           "inicio":14598,
+           "fin":14723,
+           "duracion":125
+        },
+        {
+           "tecla":"Y",
+           "inicio":14611,
+           "fin":14729,
+           "duracion":118
+        },
+        {
+           "tecla":"R",
+           "inicio":15045,
+           "fin":15160,
+           "duracion":115
+        },
+        {
+           "tecla":"T",
+           "inicio":15046,
+           "fin":15151,
+           "duracion":105
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":15414,
+           "fin":19238,
+           "duracion":3824
+        },
+        {
+           "tecla":"Y",
+           "inicio":15507,
+           "fin":15626,
+           "duracion":119
+        },
+        {
+           "tecla":"T",
+           "inicio":15516,
+           "fin":15621,
+           "duracion":105
+        },
+        {
+           "tecla":"R",
+           "inicio":15810,
+           "fin":15910,
+           "duracion":100
+        },
+        {
+           "tecla":"T",
+           "inicio":15811,
+           "fin":15916,
+           "duracion":105
+        },
+        {
+           "tecla":"E",
+           "inicio":16888,
+           "fin":16985,
+           "duracion":97
+        },
+        {
+           "tecla":"R",
+           "inicio":17155,
+           "fin":17253,
+           "duracion":98
+        },
+        {
+           "tecla":"T",
+           "inicio":17438,
+           "fin":17543,
+           "duracion":105
+        },
+        {
+           "tecla":"Y",
+           "inicio":17669,
+           "fin":17773,
+           "duracion":104
+        },
+        {
+           "tecla":"T",
+           "inicio":17931,
+           "fin":18038,
+           "duracion":107
+        },
+        {
+           "tecla":"R",
+           "inicio":18192,
+           "fin":18281,
+           "duracion":89
+        },
+        {
+           "tecla":"M",
+           "inicio":18478,
+           "fin":18575,
+           "duracion":97
+        },
+        {
+           "tecla":"U",
+           "inicio":18479,
+           "fin":18579,
+           "duracion":100
+        },
+        {
+           "tecla":"M",
+           "inicio":18948,
+           "fin":19059,
+           "duracion":111
+        },
+        {
+           "tecla":"U",
+           "inicio":18950,
+           "fin":19063,
+           "duracion":113
+        },
+        {
+           "tecla":"M",
+           "inicio":19489,
+           "fin":19572,
+           "duracion":83
+        },
+        {
+           "tecla":"U",
+           "inicio":19491,
+           "fin":19590,
+           "duracion":99
+        },
+        {
+           "tecla":"M",
+           "inicio":19778,
+           "fin":19870,
+           "duracion":92
+        },
+        {
+           "tecla":"U",
+           "inicio":19779,
+           "fin":19876,
+           "duracion":97
+        },
+        {
+           "tecla":"T",
+           "inicio":20234,
+           "fin":20319,
+           "duracion":85
+        },
+        {
+           "tecla":"Y",
+           "inicio":20235,
+           "fin":20328,
+           "duracion":93
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":20814,
+           "fin":21165,
+           "duracion":351
+        },
+        {
+           "tecla":"E",
+           "inicio":21012,
+           "fin":21123,
+           "duracion":111
+        },
+        {
+           "tecla":"E",
+           "inicio":21301,
+           "fin":21401,
+           "duracion":100
+        },
+        {
+           "tecla":"R",
+           "inicio":21561,
+           "fin":21663,
+           "duracion":102
+        },
+        {
+           "tecla":"T",
+           "inicio":21815,
+           "fin":21898,
+           "duracion":83
+        },
+        {
+           "tecla":"R",
+           "inicio":22105,
+           "fin":22197,
+           "duracion":92
+        },
+        {
+           "tecla":"E",
+           "inicio":22340,
+           "fin":22418,
+           "duracion":78
+        },
+        {
+           "tecla":"M",
+           "inicio":22657,
+           "fin":22752,
+           "duracion":95
+        },
+        {
+           "tecla":"U",
+           "inicio":22658,
+           "fin":22767,
+           "duracion":109
+        },
+        {
+           "tecla":"M",
+           "inicio":23120,
+           "fin":23212,
+           "duracion":92
+        },
+        {
+           "tecla":"U",
+           "inicio":23125,
+           "fin":23217,
+           "duracion":92
+        },
+        {
+           "tecla":"T",
+           "inicio":23619,
+           "fin":23702,
+           "duracion":83
+        },
+        {
+           "tecla":"Y",
+           "inicio":23620,
+           "fin":23711,
+           "duracion":91
+        },
+        {
+           "tecla":"T",
+           "inicio":23914,
+           "fin":23992,
+           "duracion":78
+        },
+        {
+           "tecla":"Y",
+           "inicio":23917,
+           "fin":23998,
+           "duracion":81
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":24246,
+           "fin":26846,
+           "duracion":2600
+        },
+        {
+           "tecla":"T",
+           "inicio":24389,
+           "fin":24482,
+           "duracion":93
+        },
+        {
+           "tecla":"Y",
+           "inicio":24391,
+           "fin":24491,
+           "duracion":100
+        },
+        {
+           "tecla":"E",
+           "inicio":25246,
+           "fin":25337,
+           "duracion":91
+        },
+        {
+           "tecla":"R",
+           "inicio":25528,
+           "fin":25622,
+           "duracion":94
+        },
+        {
+           "tecla":"T",
+           "inicio":25789,
+           "fin":25913,
+           "duracion":124
+        },
+        {
+           "tecla":"Y",
+           "inicio":26032,
+           "fin":26127,
+           "duracion":95
+        },
+        {
+           "tecla":"T",
+           "inicio":26331,
+           "fin":26414,
+           "duracion":83
+        },
+        {
+           "tecla":"R",
+           "inicio":26611,
+           "fin":26677,
+           "duracion":66
+        },
+        {
+           "tecla":"T",
+           "inicio":26963,
+           "fin":27043,
+           "duracion":80
+        },
+        {
+           "tecla":"Y",
+           "inicio":26965,
+           "fin":27047,
+           "duracion":82
+        },
+        {
+           "tecla":"T",
+           "inicio":27457,
+           "fin":27564,
+           "duracion":107
+        },
+        {
+           "tecla":"Y",
+           "inicio":27459,
+           "fin":27571,
+           "duracion":112
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":27881,
+           "fin":28544,
+           "duracion":663
+        },
+        {
+           "tecla":"T",
+           "inicio":28003,
+           "fin":28108,
+           "duracion":105
+        },
+        {
+           "tecla":"Y",
+           "inicio":28007,
+           "fin":28108,
+           "duracion":101
+        },
+        {
+           "tecla":"T",
+           "inicio":28310,
+           "fin":28396,
+           "duracion":86
+        },
+        {
+           "tecla":"Y",
+           "inicio":28311,
+           "fin":28405,
+           "duracion":94
+        },
+        {
+           "tecla":"R",
+           "inicio":28844,
+           "fin":28947,
+           "duracion":103
+        },
+        {
+           "tecla":"T",
+           "inicio":28849,
+           "fin":28938,
+           "duracion":89
+        },
+        {
+           "tecla":"M",
+           "inicio":29871,
+           "fin":29978,
+           "duracion":107
+        },
+        {
+           "tecla":"U",
+           "inicio":29875,
+           "fin":29985,
+           "duracion":110
+        },
+        {
+           "tecla":"M",
+           "inicio":30162,
+           "fin":30260,
+           "duracion":98
+        },
+        {
+           "tecla":"U",
+           "inicio":30163,
+           "fin":30270,
+           "duracion":107
+        },
+        {
+           "tecla":"M",
+           "inicio":30437,
+           "fin":30520,
+           "duracion":83
+        },
+        {
+           "tecla":"U",
+           "inicio":30439,
+           "fin":30524,
+           "duracion":85
+        },
+        {
+           "tecla":"Y",
+           "inicio":30704,
+           "fin":30787,
+           "duracion":83
+        },
+        {
+           "tecla":"T",
+           "inicio":30714,
+           "fin":30776,
+           "duracion":62
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":30986,
+           "fin":31423,
+           "duracion":437
+        },
+        {
+           "tecla":"T",
+           "inicio":31032,
+           "fin":31112,
+           "duracion":80
+        },
+        {
+           "tecla":"Y",
+           "inicio":31043,
+           "fin":31123,
+           "duracion":80
+        },
+        {
+           "tecla":"T",
+           "inicio":31586,
+           "fin":31674,
+           "duracion":88
+        },
+        {
+           "tecla":"Y",
+           "inicio":31589,
+           "fin":31685,
+           "duracion":96
+        },
+        {
+           "tecla":"R",
+           "inicio":32081,
+           "fin":32180,
+           "duracion":99
+        },
+        {
+           "tecla":"T",
+           "inicio":32086,
+           "fin":32168,
+           "duracion":82
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":32436,
+           "fin":34626,
+           "duracion":2190
+        },
+        {
+           "tecla":"T",
+           "inicio":32598,
+           "fin":32698,
+           "duracion":100
+        },
+        {
+           "tecla":"Y",
+           "inicio":32600,
+           "fin":32703,
+           "duracion":103
+        },
+        {
+           "tecla":"R",
+           "inicio":32919,
+           "fin":33009,
+           "duracion":90
+        },
+        {
+           "tecla":"T",
+           "inicio":32920,
+           "fin":33000,
+           "duracion":80
+        },
+        {
+           "tecla":"E",
+           "inicio":33656,
+           "fin":33764,
+           "duracion":108
+        },
+        {
+           "tecla":"R",
+           "inicio":33657,
+           "fin":33769,
+           "duracion":112
+        },
+        {
+           "tecla":"R",
+           "inicio":33992,
+           "fin":34079,
+           "duracion":87
+        },
+        {
+           "tecla":"T",
+           "inicio":33994,
+           "fin":34091,
+           "duracion":97
+        }
+     ]
 };
 
 
 const ejercicio1 = {
-    nombre: "Ejercicio 1",
+    nombre: "Introduccion",
     cancion: [
-        { "tecla": "S", "inicio": 2003, "fin": 2178, "duracion": 175 }, 
-        { "tecla": "D", "inicio": 2004, "fin": 2179, "duracion": 175 }, 
-        { "tecla": "D", "inicio": 2184, "fin": 2388, "duracion": 204 }, 
-        { "tecla": "S", "inicio": 2182, "fin": 2403, "duracion": 221 }, 
-        { "tecla": "S", "inicio": 2423, "fin": 2425, "duracion": 2 }, 
-        { "tecla": "D", "inicio": 2425, "fin": 2426, "duracion": 1 }, 
-        { "tecla": "S", "inicio": 2706, "fin": 2823, "duracion": 117 }, 
-        { "tecla": "D", "inicio": 2708, "fin": 2823, "duracion": 115 }, 
-        { "tecla": "G", "inicio": 3320, "fin": 3499, "duracion": 179 }, 
-        { "tecla": "F", "inicio": 3305, "fin": 3500, "duracion": 195 }, 
-        { "tecla": "F", "inicio": 3606, "fin": 3606, "duracion": 0 }, 
-        { "tecla": "G", "inicio": 3604, "fin": 3679, "duracion": 75 }, 
-        { "tecla": "G", "inicio": 3682, "fin": 3844, "duracion": 162 }, 
-        { "tecla": "F", "inicio": 3771, "fin": 3845, "duracion": 74 }, 
-        { "tecla": "T", "inicio": 4265, "fin": 4324, "duracion": 59 }, 
-        { "tecla": "T", "inicio": 4386, "fin": 4565, "duracion": 179 }, 
-        { "tecla": "Y", "inicio": 4388, "fin": 4565, "duracion": 177 }, 
-        { "tecla": "T", "inicio": 4672, "fin": 5196, "duracion": 524 }, 
-        { "tecla": "Y", "inicio": 4674, "fin": 5196, "duracion": 522 }, 
-        { "tecla": "Y", "inicio": 5304, "fin": 5330, "duracion": 26 }, 
-        { "tecla": "T", "inicio": 5302, "fin": 5375, "duracion": 73 }, 
-        { "tecla": "H", "inicio": 5424, "fin": 5824, "duracion": 400 }, 
-        { "tecla": "G", "inicio": 5423, "fin": 6078, "duracion": 655 }, 
-        { "tecla": "D", "inicio": 6108, "fin": 6244, "duracion": 136 }, 
-        { "tecla": "F", "inicio": 6109, "fin": 6320, "duracion": 211 }, 
-        { "tecla": "F", "inicio": 6321, "fin": 6321, "duracion": 0 }, 
-        { "tecla": "W", "inicio": 6503, "fin": 6574, "duracion": 71 }, 
-        { "tecla": "E", "inicio": 6505, "fin": 6650, "duracion": 145 }, 
-        { "tecla": "W", "inicio": 6995, "fin": 7432, "duracion": 437 }, 
-        { "tecla": "E", "inicio": 6998, "fin": 7433, "duracion": 435 }, 
-        { "tecla": "W", "inicio": 7434, "fin": 7732, "duracion": 298 }, 
-        { "tecla": "E", "inicio": 7436, "fin": 7732, "duracion": 296 }, 
-        { "tecla": "D", "inicio": 7738, "fin": 7741, "duracion": 3 }, 
-        { "tecla": "F", "inicio": 7739, "fin": 7742, "duracion": 3 }, 
-        { "tecla": "F", "inicio": 8240, "fin": 8242, "duracion": 2 }, 
-        { "tecla": "F", "inicio": 8798, "fin": 8802, "duracion": 4 }, 
-        { "tecla": "G", "inicio": 8796, "fin": 8839, "duracion": 43 }, 
-        { "tecla": "G", "inicio": 9051, "fin": 9228, "duracion": 177 }, 
-        { "tecla": "F", "inicio": 9053, "fin": 9229, "duracion": 176 }, 
-        { "tecla": "S", "inicio": 10133, "fin": 10136, "duracion": 3 }, 
-        { "tecla": "D", "inicio": 10135, "fin": 10136, "duracion": 1 }, 
-        { "tecla": "D", "inicio": 10192, "fin": 10443, "duracion": 251 }, 
-        { "tecla": "F", "inicio": 10193, "fin": 10550, "duracion": 357 }, 
-        { "tecla": "G", "inicio": 11043, "fin": 11147, "duracion": 104 }, 
-        { "tecla": "F", "inicio": 10896, "fin": 11253, "duracion": 357 }, 
-        { "tecla": "R", "inicio": 11389, "fin": 12651, "duracion": 1262 }, 
-        { "tecla": "E", "inicio": 11358, "fin": 12651, "duracion": 1293 }
-    ]
+        {
+           "tecla":"ESCAPE",
+           "inicio":2102,
+           "fin":3922,
+           "duracion":1820
+        },
+        {
+           "tecla":"T",
+           "inicio":2697,
+           "fin":2753,
+           "duracion":56
+        },
+        {
+           "tecla":"Y",
+           "inicio":2699,
+           "fin":2759,
+           "duracion":60
+        },
+        {
+           "tecla":"T",
+           "inicio":2978,
+           "fin":3023,
+           "duracion":45
+        },
+        {
+           "tecla":"Y",
+           "inicio":2982,
+           "fin":3032,
+           "duracion":50
+        },
+        {
+           "tecla":"T",
+           "inicio":3214,
+           "fin":3269,
+           "duracion":55
+        },
+        {
+           "tecla":"Y",
+           "inicio":3219,
+           "fin":3274,
+           "duracion":55
+        },
+        {
+           "tecla":"T",
+           "inicio":3450,
+           "fin":3508,
+           "duracion":58
+        },
+        {
+           "tecla":"Y",
+           "inicio":3453,
+           "fin":3516,
+           "duracion":63
+        },
+        {
+           "tecla":"T",
+           "inicio":3681,
+           "fin":3746,
+           "duracion":65
+        },
+        {
+           "tecla":"Y",
+           "inicio":3685,
+           "fin":3751,
+           "duracion":66
+        },
+        {
+           "tecla":"R",
+           "inicio":4092,
+           "fin":4175,
+           "duracion":83
+        },
+        {
+           "tecla":"T",
+           "inicio":4104,
+           "fin":4182,
+           "duracion":78
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":4362,
+           "fin":5195,
+           "duracion":833
+        },
+        {
+           "tecla":"R",
+           "inicio":4391,
+           "fin":4471,
+           "duracion":80
+        },
+        {
+           "tecla":"T",
+           "inicio":4398,
+           "fin":4483,
+           "duracion":85
+        },
+        {
+           "tecla":"T",
+           "inicio":4878,
+           "fin":4972,
+           "duracion":94
+        },
+        {
+           "tecla":"Y",
+           "inicio":4882,
+           "fin":4977,
+           "duracion":95
+        },
+        {
+           "tecla":"R",
+           "inicio":5349,
+           "fin":5437,
+           "duracion":88
+        },
+        {
+           "tecla":"T",
+           "inicio":5350,
+           "fin":5438,
+           "duracion":88
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":5569,
+           "fin":9654,
+           "duracion":4085
+        },
+        {
+           "tecla":"R",
+           "inicio":5655,
+           "fin":5746,
+           "duracion":91
+        },
+        {
+           "tecla":"T",
+           "inicio":5657,
+           "fin":5751,
+           "duracion":94
+        },
+        {
+           "tecla":"E",
+           "inicio":6227,
+           "fin":6319,
+           "duracion":92
+        },
+        {
+           "tecla":"R",
+           "inicio":6228,
+           "fin":6324,
+           "duracion":96
+        },
+        {
+           "tecla":"R",
+           "inicio":6535,
+           "fin":6615,
+           "duracion":80
+        },
+        {
+           "tecla":"T",
+           "inicio":6538,
+           "fin":6635,
+           "duracion":97
+        },
+        {
+           "tecla":"Y",
+           "inicio":7264,
+           "fin":7386,
+           "duracion":122
+        },
+        {
+           "tecla":"T",
+           "inicio":7559,
+           "fin":7644,
+           "duracion":85
+        },
+        {
+           "tecla":"U",
+           "inicio":7825,
+           "fin":7915,
+           "duracion":90
+        },
+        {
+           "tecla":"I",
+           "inicio":7828,
+           "fin":7920,
+           "duracion":92
+        },
+        {
+           "tecla":"M",
+           "inicio":8379,
+           "fin":8460,
+           "duracion":81
+        },
+        {
+           "tecla":"U",
+           "inicio":8384,
+           "fin":8465,
+           "duracion":81
+        },
+        {
+           "tecla":"M",
+           "inicio":8640,
+           "fin":8694,
+           "duracion":54
+        },
+        {
+           "tecla":"U",
+           "inicio":8644,
+           "fin":8709,
+           "duracion":65
+        },
+        {
+           "tecla":"M",
+           "inicio":8888,
+           "fin":8948,
+           "duracion":60
+        },
+        {
+           "tecla":"U",
+           "inicio":8891,
+           "fin":8954,
+           "duracion":63
+        },
+        {
+           "tecla":"M",
+           "inicio":9129,
+           "fin":9159,
+           "duracion":30
+        },
+        {
+           "tecla":"U",
+           "inicio":9134,
+           "fin":9176,
+           "duracion":42
+        },
+        {
+           "tecla":"M",
+           "inicio":9369,
+           "fin":9413,
+           "duracion":44
+        },
+        {
+           "tecla":"U",
+           "inicio":9373,
+           "fin":9427,
+           "duracion":54
+        },
+        {
+           "tecla":"U",
+           "inicio":9786,
+           "fin":9891,
+           "duracion":105
+        },
+        {
+           "tecla":"M",
+           "inicio":9804,
+           "fin":9886,
+           "duracion":82
+        },
+        {
+           "tecla":",",
+           "inicio":10089,
+           "fin":10156,
+           "duracion":67
+        },
+        {
+           "tecla":"I",
+           "inicio":10091,
+           "fin":10166,
+           "duracion":75
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":10478,
+           "fin":10720,
+           "duracion":242
+        },
+        {
+           "tecla":"M",
+           "inicio":10498,
+           "fin":10581,
+           "duracion":83
+        },
+        {
+           "tecla":"U",
+           "inicio":10506,
+           "fin":10600,
+           "duracion":94
+        },
+        {
+           "tecla":"M",
+           "inicio":10806,
+           "fin":10877,
+           "duracion":71
+        },
+        {
+           "tecla":"U",
+           "inicio":10808,
+           "fin":10882,
+           "duracion":74
+        },
+        {
+           "tecla":"T",
+           "inicio":11069,
+           "fin":11142,
+           "duracion":73
+        },
+        {
+           "tecla":"Y",
+           "inicio":11102,
+           "fin":11116,
+           "duracion":14
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":11291,
+           "fin":11636,
+           "duracion":345
+        },
+        {
+           "tecla":"T",
+           "inicio":11330,
+           "fin":11399,
+           "duracion":69
+        },
+        {
+           "tecla":"Y",
+           "inicio":11339,
+           "fin":11403,
+           "duracion":64
+        },
+        {
+           "tecla":"U",
+           "inicio":11765,
+           "fin":11881,
+           "duracion":116
+        },
+        {
+           "tecla":"M",
+           "inicio":11774,
+           "fin":11874,
+           "duracion":100
+        },
+        {
+           "tecla":"T",
+           "inicio":12056,
+           "fin":12119,
+           "duracion":63
+        },
+        {
+           "tecla":"Y",
+           "inicio":12059,
+           "fin":12124,
+           "duracion":65
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":12388,
+           "fin":13913,
+           "duracion":1525
+        },
+        {
+           "tecla":"T",
+           "inicio":12533,
+           "fin":12599,
+           "duracion":66
+        },
+        {
+           "tecla":"Y",
+           "inicio":12537,
+           "fin":12615,
+           "duracion":78
+        },
+        {
+           "tecla":"R",
+           "inicio":12966,
+           "fin":13033,
+           "duracion":67
+        },
+        {
+           "tecla":"T",
+           "inicio":12971,
+           "fin":12979,
+           "duracion":8
+        },
+        {
+           "tecla":"T",
+           "inicio":13263,
+           "fin":13341,
+           "duracion":78
+        },
+        {
+           "tecla":"Y",
+           "inicio":13266,
+           "fin":13352,
+           "duracion":86
+        },
+        {
+           "tecla":"R",
+           "inicio":13687,
+           "fin":13777,
+           "duracion":90
+        },
+        {
+           "tecla":"E",
+           "inicio":14022,
+           "fin":14107,
+           "duracion":85
+        },
+        {
+           "tecla":"R",
+           "inicio":14025,
+           "fin":14116,
+           "duracion":91
+        },
+        {
+           "tecla":"E",
+           "inicio":14533,
+           "fin":14623,
+           "duracion":90
+        },
+        {
+           "tecla":"R",
+           "inicio":14535,
+           "fin":14629,
+           "duracion":94
+        },
+        {
+           "tecla":"D",
+           "inicio":14632,
+           "fin":14687,
+           "duracion":55
+        },
+        {
+           "tecla":"F",
+           "inicio":14635,
+           "fin":14694,
+           "duracion":59
+        },
+        {
+           "tecla":"C",
+           "inicio":14695,
+           "fin":14834,
+           "duracion":139
+        },
+        {
+           "tecla":"V",
+           "inicio":14697,
+           "fin":14840,
+           "duracion":143
+        },
+        {
+           "tecla":"M",
+           "inicio":15705,
+           "fin":15797,
+           "duracion":92
+        },
+        {
+           "tecla":"U",
+           "inicio":15712,
+           "fin":15782,
+           "duracion":70
+        },
+        {
+           "tecla":"M",
+           "inicio":15980,
+           "fin":16051,
+           "duracion":71
+        },
+        {
+           "tecla":"U",
+           "inicio":15982,
+           "fin":16057,
+           "duracion":75
+        },
+        {
+           "tecla":"M",
+           "inicio":16233,
+           "fin":16295,
+           "duracion":62
+        },
+        {
+           "tecla":"U",
+           "inicio":16234,
+           "fin":16299,
+           "duracion":65
+        },
+        {
+           "tecla":"M",
+           "inicio":16469,
+           "fin":16530,
+           "duracion":61
+        },
+        {
+           "tecla":"U",
+           "inicio":16473,
+           "fin":16483,
+           "duracion":10
+        },
+        {
+           "tecla":"M",
+           "inicio":16698,
+           "fin":16776,
+           "duracion":78
+        },
+        {
+           "tecla":"U",
+           "inicio":16713,
+           "fin":16723,
+           "duracion":10
+        },
+        {
+           "tecla":"M",
+           "inicio":17168,
+           "fin":17253,
+           "duracion":85
+        },
+        {
+           "tecla":"U",
+           "inicio":17173,
+           "fin":17258,
+           "duracion":85
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":17415,
+           "fin":17875,
+           "duracion":460
+        },
+        {
+           "tecla":"M",
+           "inicio":17481,
+           "fin":17549,
+           "duracion":68
+        },
+        {
+           "tecla":"U",
+           "inicio":17498,
+           "fin":17555,
+           "duracion":57
+        },
+        {
+           "tecla":"M",
+           "inicio":17910,
+           "fin":17976,
+           "duracion":66
+        },
+        {
+           "tecla":"U",
+           "inicio":17911,
+           "fin":17932,
+           "duracion":21
+        },
+        {
+           "tecla":"M",
+           "inicio":18174,
+           "fin":18241,
+           "duracion":67
+        },
+        {
+           "tecla":"U",
+           "inicio":18178,
+           "fin":18248,
+           "duracion":70
+        },
+        {
+           "tecla":"M",
+           "inicio":18414,
+           "fin":18486,
+           "duracion":72
+        },
+        {
+           "tecla":"U",
+           "inicio":18417,
+           "fin":18496,
+           "duracion":79
+        },
+        {
+           "tecla":"M",
+           "inicio":18652,
+           "fin":18718,
+           "duracion":66
+        },
+        {
+           "tecla":"U",
+           "inicio":18654,
+           "fin":18724,
+           "duracion":70
+        },
+        {
+           "tecla":"M",
+           "inicio":19113,
+           "fin":19179,
+           "duracion":66
+        },
+        {
+           "tecla":"U",
+           "inicio":19115,
+           "fin":19183,
+           "duracion":68
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":19370,
+           "fin":19748,
+           "duracion":378
+        },
+        {
+           "tecla":"M",
+           "inicio":19436,
+           "fin":19513,
+           "duracion":77
+        },
+        {
+           "tecla":"U",
+           "inicio":19438,
+           "fin":19506,
+           "duracion":68
+        },
+        {
+           "tecla":"M",
+           "inicio":19906,
+           "fin":19996,
+           "duracion":90
+        },
+        {
+           "tecla":"U",
+           "inicio":19914,
+           "fin":20001,
+           "duracion":87
+        },
+        {
+           "tecla":"M",
+           "inicio":20549,
+           "fin":20662,
+           "duracion":113
+        },
+        {
+           "tecla":"H",
+           "inicio":21014,
+           "fin":21110,
+           "duracion":96
+        },
+        {
+           "tecla":"T",
+           "inicio":21513,
+           "fin":21588,
+           "duracion":75
+        },
+        {
+           "tecla":"Y",
+           "inicio":21514,
+           "fin":21593,
+           "duracion":79
+        },
+        {
+           "tecla":"T",
+           "inicio":21787,
+           "fin":21865,
+           "duracion":78
+        },
+        {
+           "tecla":"Y",
+           "inicio":21788,
+           "fin":21870,
+           "duracion":82
+        },
+        {
+           "tecla":"T",
+           "inicio":22021,
+           "fin":22083,
+           "duracion":62
+        },
+        {
+           "tecla":"Y",
+           "inicio":22024,
+           "fin":22096,
+           "duracion":72
+        },
+        {
+           "tecla":"M",
+           "inicio":22266,
+           "fin":22343,
+           "duracion":77
+        },
+        {
+           "tecla":"U",
+           "inicio":22269,
+           "fin":22348,
+           "duracion":79
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":22485,
+           "fin":23259,
+           "duracion":774
+        },
+        {
+           "tecla":"M",
+           "inicio":22539,
+           "fin":22619,
+           "duracion":80
+        },
+        {
+           "tecla":"U",
+           "inicio":22542,
+           "fin":22623,
+           "duracion":81
+        },
+        {
+           "tecla":"M",
+           "inicio":22967,
+           "fin":23048,
+           "duracion":81
+        },
+        {
+           "tecla":"U",
+           "inicio":22968,
+           "fin":23059,
+           "duracion":91
+        },
+        {
+           "tecla":"U",
+           "inicio":23306,
+           "fin":23397,
+           "duracion":91
+        },
+        {
+           "tecla":"M",
+           "inicio":23316,
+           "fin":23387,
+           "duracion":71
+        },
+        {
+           "tecla":"M",
+           "inicio":23769,
+           "fin":23833,
+           "duracion":64
+        },
+        {
+           "tecla":"U",
+           "inicio":23775,
+           "fin":23822,
+           "duracion":47
+        },
+        {
+           "tecla":"M",
+           "inicio":24220,
+           "fin":24303,
+           "duracion":83
+        },
+        {
+           "tecla":"U",
+           "inicio":24225,
+           "fin":24309,
+           "duracion":84
+        },
+        {
+           "tecla":"T",
+           "inicio":24548,
+           "fin":24614,
+           "duracion":66
+        },
+        {
+           "tecla":"Y",
+           "inicio":24549,
+           "fin":24618,
+           "duracion":69
+        },
+        {
+           "tecla":"T",
+           "inicio":24999,
+           "fin":25070,
+           "duracion":71
+        },
+        {
+           "tecla":"Y",
+           "inicio":25003,
+           "fin":25086,
+           "duracion":83
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":25338,
+           "fin":26757,
+           "duracion":1419
+        },
+        {
+           "tecla":"T",
+           "inicio":25386,
+           "fin":25448,
+           "duracion":62
+        },
+        {
+           "tecla":"Y",
+           "inicio":25388,
+           "fin":25452,
+           "duracion":64
+        },
+        {
+           "tecla":"R",
+           "inicio":26070,
+           "fin":26134,
+           "duracion":64
+        },
+        {
+           "tecla":"T",
+           "inicio":26072,
+           "fin":26145,
+           "duracion":73
+        }
+     ]
 };
 
 const ejercicio2 = {
-    nombre: "Ejercicio 2",
-    cancion: [
-        { "tecla": "W", "inicio": 1081, "fin": 1190, "duracion": 109 },
-        { "tecla": "E", "inicio": 1081, "fin": 1190, "duracion": 109 },
-        { "tecla": "A", "inicio": 1081, "fin": 1190, "duracion": 109 },
-        { "tecla": "S", "inicio": 1094, "fin": 1206, "duracion": 112 },
-        { "tecla": "D", "inicio": 1323, "fin": 1434, "duracion": 111 }
-    ]
-};
+    nombre: "Pases Medio",
+    cancion: []
+    };
 
 const cancionBCEL = {
-    nombre: "BCEA",
+    nombre: "Pase Final",
     cancion: [
-        { "tecla": "T", "inicio": 3627.3, "fin": 3727.8, "duracion": 100.5 },
-        { "tecla": "Y", "inicio": 3632.1, "fin": 3743.6, "duracion": 111.5 },
-        { "tecla": "T", "inicio": 3874.4, "fin": 3967.9, "duracion": 93.5 },
-        { "tecla": "Y", "inicio": 3883.3, "fin": 4008.2, "duracion": 124.9 },
-        { "tecla": "T", "inicio": 4109, "fin": 4223.9, "duracion": 114.9 },
-        { "tecla": "Y", "inicio": 4118.3, "fin": 4216.2, "duracion": 97.9 },
-        { "tecla": "U", "inicio": 4315.2, "fin": 4572.8, "duracion": 257.6 },
-        { "tecla": "M", "inicio": 4353.7, "fin": 4573.7, "duracion": 220 },
-        { "tecla": "U", "inicio": 4579.7, "fin": 4671.8, "duracion": 92.1 },
-        { "tecla": "M", "inicio": 4583.3, "fin": 4695.8, "duracion": 112.5 },
-        { "tecla": "U", "inicio": 4827.4, "fin": 5112.4, "duracion": 285 },
-        { "tecla": "M", "inicio": 4837.4, "fin": 5113.4, "duracion": 276 },
-        { "tecla": "ESCAPE", "inicio": 5110.6, "fin": 5585.7, "duracion": 475.1 },
-        { "tecla": "U", "inicio": 5123.4, "fin": 5207.9, "duracion": 84.5 },
-        { "tecla": "M", "inicio": 5128.8, "fin": 5239.7, "duracion": 110.9 },
-        { "tecla": "T", "inicio": 5388.8, "fin": 5586.4, "duracion": 197.6 },
-        { "tecla": "Y", "inicio": 5392.3, "fin": 5586.8, "duracion": 194.5 },
-        { "tecla": "T", "inicio": 5589.2, "fin": 5695.7, "duracion": 106.5 },
-        { "tecla": "Y", "inicio": 5590.7, "fin": 5704.4, "duracion": 113.7 },
-        { "tecla": "T", "inicio": 5882.9, "fin": 5992.7, "duracion": 109.8 },
-        { "tecla": "Y", "inicio": 5890.2, "fin": 6000.5, "duracion": 110.3 },
-        { "tecla": "T", "inicio": 6133.6, "fin": 6378.3, "duracion": 244.7 },
-        { "tecla": "Y", "inicio": 6141.7, "fin": 6379.1, "duracion": 237.4 },
-        { "tecla": "ESCAPE", "inicio": 6376.8, "fin": 7360.8, "duracion": 984 },
-        { "tecla": "T", "inicio": 6384.9, "fin": 6652.3, "duracion": 267.4 },
-        { "tecla": "Y", "inicio": 6387.6, "fin": 6621.1, "duracion": 233.5 },
-        { "tecla": "U", "inicio": 6644.8, "fin": 6775.7, "duracion": 130.9 },
-        { "tecla": "M", "inicio": 6674.4, "fin": 6786.2, "duracion": 111.8 },
-        { "tecla": "U", "inicio": 6890.4, "fin": 7055.8, "duracion": 165.4 },
-        { "tecla": "M", "inicio": 6900.1, "fin": 7064.4, "duracion": 164.3 },
-        { "tecla": "Y", "inicio": 7150.4, "fin": 7362.2, "duracion": 211.8 },
-        { "tecla": "T", "inicio": 7157.7, "fin": 7363.1, "duracion": 205.4 },
-        { "tecla": "Y", "inicio": 7369.9, "fin": 7553, "duracion": 183.1 },
-        { "tecla": "T", "inicio": 7374.4, "fin": 7519.9, "duracion": 145.5 },
-        { "tecla": "ESCAPE", "inicio": 7621.2, "fin": 8354.3, "duracion": 733.1 },
-        { "tecla": "T", "inicio": 7678.5, "fin": 7786.7, "duracion": 108.2 },
-        { "tecla": "R", "inicio": 7682, "fin": 7775.8, "duracion": 93.8 },
-        { "tecla": "T", "inicio": 7904.9, "fin": 8016.4, "duracion": 111.5 },
-        { "tecla": "R", "inicio": 7912, "fin": 8008.3, "duracion": 96.3 },
-        { "tecla": "R", "inicio": 8141.3, "fin": 8239.7, "duracion": 98.4 },
-        { "tecla": "T", "inicio": 8148.3, "fin": 8248.2, "duracion": 99.9 },
-        { "tecla": "T", "inicio": 8404.1, "fin": 8625.6, "duracion": 221.5 },
-        { "tecla": "Y", "inicio": 8440.3, "fin": 8626.5, "duracion": 186.2 },
-        { "tecla": "ESCAPE", "inicio": 8624.2, "fin": 9095.9, "duracion": 471.7 },
-        { "tecla": "T", "inicio": 8634.1, "fin": 8770, "duracion": 135.9 },
-        { "tecla": "Y", "inicio": 8636.3, "fin": 8776.2, "duracion": 139.9 },
-        { "tecla": "T", "inicio": 8890.6, "fin": 9096.5, "duracion": 205.9 },
-        { "tecla": "Y", "inicio": 8902.1, "fin": 9096.6, "duracion": 194.5 },
-        { "tecla": "T", "inicio": 9100.6, "fin": 9216, "duracion": 115.4 },
-        { "tecla": "Y", "inicio": 9102.2, "fin": 9235.6, "duracion": 133.4 },
-        { "tecla": "ESCAPE", "inicio": 9295.9, "fin": 9608.4, "duracion": 312.5 },
-        { "tecla": "T", "inicio": 9361.4, "fin": 9609.5, "duracion": 248.1 },
-        { "tecla": "R", "inicio": 9396, "fin": 9610.5, "duracion": 214.5 },
-        { "tecla": "T", "inicio": 9614.9, "fin": 10183.6, "duracion": 568.7 },
-        { "tecla": "R", "inicio": 9617.9, "fin": 10159.7, "duracion": 541.8 },
-        { "tecla": "W", "inicio": 10365.2, "fin": 11440.7, "duracion": 1075.5 },
-        { "tecla": "Y", "inicio": 10390.3, "fin": 11465.8, "duracion": 1075.5 },
-        { "tecla": "ESCAPE", "inicio": 11496.1, "fin": 12569.1, "duracion": 1073 },
-        { "tecla": "T", "inicio": 11603, "fin": 11719.9, "duracion": 116.9 },
-        { "tecla": "Y", "inicio": 11608.4, "fin": 11727.8, "duracion": 119.4 },
-        { "tecla": "Y", "inicio": 11839, "fin": 11951.5, "duracion": 112.5 },
-        { "tecla": "T", "inicio": 11853.1, "fin": 11943.8, "duracion": 90.7 },
-        { "tecla": "T", "inicio": 12073.6, "fin": 12167.5, "duracion": 93.9 },
-        { "tecla": "Y", "inicio": 12082.5, "fin": 12175.5, "duracion": 93 },
-        { "tecla": "U", "inicio": 12317.3, "fin": 12570.8, "duracion": 253.5 },
-        { "tecla": "M", "inicio": 12336.4, "fin": 12571.5, "duracion": 235.1 },
-        { "tecla": "U", "inicio": 12575.5, "fin": 12687.5, "duracion": 112 },
-        { "tecla": "M", "inicio": 12578.2, "fin": 12695.7, "duracion": 117.5 },
-        { "tecla": "U", "inicio": 12823, "fin": 13113.1, "duracion": 290.1 },
-        { "tecla": "M", "inicio": 12827.9, "fin": 13115, "duracion": 287.1 },
-        { "tecla": "ESCAPE", "inicio": 13112.4, "fin": 13529, "duracion": 416.6 },
-        { "tecla": "U", "inicio": 13120.6, "fin": 13184.1, "duracion": 63.5 },
-        { "tecla": "M", "inicio": 13122.6, "fin": 13224.6, "duracion": 102 },
-        { "tecla": "T", "inicio": 13319.6, "fin": 13533.5, "duracion": 213.9 },
-        { "tecla": "Y", "inicio": 13328.1, "fin": 13534.2, "duracion": 206.1 },
-        { "tecla": "T", "inicio": 13542.2, "fin": 13673.2, "duracion": 131 },
-        { "tecla": "Y", "inicio": 13546.9, "fin": 13697.5, "duracion": 150.6 },
-        { "tecla": "T", "inicio": 13824.4, "fin": 13936.1, "duracion": 111.7 },
-        { "tecla": "Y", "inicio": 13827.5, "fin": 13961.5, "duracion": 134 },
-        { "tecla": "Y", "inicio": 14068, "fin": 14251.8, "duracion": 183.8 },
-        { "tecla": "T", "inicio": 14077.5, "fin": 14252.6, "duracion": 175.1 },
-        { "tecla": "ESCAPE", "inicio": 14250.2, "fin": 15256.8, "duracion": 1006.6 },
-        { "tecla": "Y", "inicio": 14257, "fin": 14535.8, "duracion": 278.8 },
-        { "tecla": "T", "inicio": 14259.9, "fin": 14497, "duracion": 237.1 },
-        { "tecla": "U", "inicio": 14545.5, "fin": 14697, "duracion": 151.5 },
-        { "tecla": "M", "inicio": 14551.3, "fin": 14710.6, "duracion": 159.3 },
-        { "tecla": "U", "inicio": 14815.5, "fin": 14976, "duracion": 160.5 },
-        { "tecla": "M", "inicio": 14824.6, "fin": 14991.9, "duracion": 167.3 },
-        { "tecla": "T", "inicio": 15052.6, "fin": 15258.2, "duracion": 205.6 },
-        { "tecla": "Y", "inicio": 15062.3, "fin": 15258.8, "duracion": 196.5 },
-        { "tecla": "T", "inicio": 15264.7, "fin": 15367.9, "duracion": 103.2 },
-        { "tecla": "Y", "inicio": 15268.8, "fin": 15401.6, "duracion": 132.8 },
-        { "tecla": "ESCAPE", "inicio": 15487.9, "fin": 16202.4, "duracion": 714.5 },
-        { "tecla": "R", "inicio": 15527.8, "fin": 15642.4, "duracion": 114.6 },
-        { "tecla": "T", "inicio": 15529.6, "fin": 15642.8, "duracion": 113.2 },
-        { "tecla": "R", "inicio": 15781.3, "fin": 15858.2, "duracion": 76.9 },
-        { "tecla": "T", "inicio": 15790.5, "fin": 15865.7, "duracion": 75.2 },
-        { "tecla": "R", "inicio": 15976.9, "fin": 16087.5, "duracion": 110.6 },
-        { "tecla": "T", "inicio": 15984.7, "fin": 16095.5, "duracion": 110.8 },
-        { "tecla": "T", "inicio": 16242.6, "fin": 16480.2, "duracion": 237.6 },
-        { "tecla": "Y", "inicio": 16288.4, "fin": 16481.1, "duracion": 192.7 },
-        { "tecla": "ESCAPE", "inicio": 16479.4, "fin": 16936, "duracion": 456.6 },
-        { "tecla": "T", "inicio": 16484.3, "fin": 16602.8, "duracion": 118.5 },
-        { "tecla": "Y", "inicio": 16485.1, "fin": 16616.1, "duracion": 131 },
-        { "tecla": "T", "inicio": 16739.5, "fin": 16936.7, "duracion": 197.2 },
-        { "tecla": "Y", "inicio": 16764.4, "fin": 16936.9, "duracion": 172.5 },
-        { "tecla": "T", "inicio": 16939.3, "fin": 17066.6, "duracion": 127.3 },
-        { "tecla": "Y", "inicio": 16940.5, "fin": 17083.9, "duracion": 143.4 },
-        { "tecla": "ESCAPE", "inicio": 17160.7, "fin": 17441.1, "duracion": 280.4 },
-        { "tecla": "R", "inicio": 17199.4, "fin": 17442.5, "duracion": 243.1 },
-        { "tecla": "T", "inicio": 17201.6, "fin": 17442.9, "duracion": 241.3 },
-        { "tecla": "R", "inicio": 17449.4, "fin": 18049, "duracion": 599.6 },
-        { "tecla": "T", "inicio": 17451.9, "fin": 18056.5, "duracion": 604.6 },
-        { "tecla": "E", "inicio": 18155.5, "fin": 18295.9, "duracion": 140.4 },
-        { "tecla": "Y", "inicio": 18201.8, "fin": 18319.7, "duracion": 117.9 },
-        { "tecla": "R", "inicio": 18421.5, "fin": 18512.6, "duracion": 91.1 },
-        { "tecla": "U", "inicio": 18426.5, "fin": 18520.9, "duracion": 94.4 },
-        { "tecla": "E", "inicio": 18638.1, "fin": 18736.1, "duracion": 98 },
-        { "tecla": "Y", "inicio": 18649.2, "fin": 18767.8, "duracion": 118.6 },
-        { "tecla": "R", "inicio": 18892.7, "fin": 18983.6, "duracion": 90.9 },
-        { "tecla": "U", "inicio": 18902.3, "fin": 18992.2, "duracion": 89.9 },
-        { "tecla": "E", "inicio": 19123.6, "fin": 19264.6, "duracion": 141 },
-        { "tecla": "Y", "inicio": 19147.1, "fin": 19271.8, "duracion": 124.7 },
-        { "tecla": "R", "inicio": 19384.7, "fin": 19527.5, "duracion": 142.8 },
-        { "tecla": "U", "inicio": 19390.7, "fin": 19519.5, "duracion": 128.8 },
-        { "tecla": "E", "inicio": 19626.4, "fin": 19768.9, "duracion": 142.5 },
-        { "tecla": "R", "inicio": 19859.5, "fin": 19959.7, "duracion": 100.2 },
-        { "tecla": "T", "inicio": 20070.1, "fin": 20183.8, "duracion": 113.7 },
-        { "tecla": "Y", "inicio": 20276, "fin": 20624.9, "duracion": 348.9 },
-        { "tecla": "ESCAPE", "inicio": 20698.7, "fin": 20970.8, "duracion": 272.1 },
-        { "tecla": "T", "inicio": 20738.3, "fin": 20971.8, "duracion": 233.5 },
-        { "tecla": "T", "inicio": 20975.1, "fin": 21328.8, "duracion": 353.7 },
-        { "tecla": "ESCAPE", "inicio": 21340.6, "fin": 21807.3, "duracion": 466.7 },
-        { "tecla": "R", "inicio": 21450.2, "fin": 21776.6, "duracion": 326.4 },
-        { "tecla": "H", "inicio": 21915.7, "fin": 22039.9, "duracion": 124.2 },
-        { "tecla": "D", "inicio": 21931.8, "fin": 22024.6, "duracion": 92.8 },
-        { "tecla": "F", "inicio": 22135.1, "fin": 22232.4, "duracion": 97.3 },
-        { "tecla": "J", "inicio": 22148, "fin": 22240, "duracion": 92 },
-        { "tecla": "D", "inicio": 22344.7, "fin": 22471.9, "duracion": 127.2 },
-        { "tecla": "H", "inicio": 22353.4, "fin": 22487.5, "duracion": 134.1 },
-        { "tecla": "J", "inicio": 22587.7, "fin": 22688.8, "duracion": 101.1 },
-        { "tecla": "F", "inicio": 22597.6, "fin": 22689.3, "duracion": 91.7 },
-        { "tecla": "D", "inicio": 22815.7, "fin": 22944, "duracion": 128.3 },
-        { "tecla": "H", "inicio": 22823.5, "fin": 22951.5, "duracion": 128 },
-        { "tecla": "F", "inicio": 23038.1, "fin": 23183.7, "duracion": 145.6 },
-        { "tecla": "J", "inicio": 23052.7, "fin": 23200, "duracion": 147.3 },
-        { "tecla": "D", "inicio": 23298.9, "fin": 23472.4, "duracion": 173.5 },
-        { "tecla": "F", "inicio": 23503.6, "fin": 23599.6, "duracion": 96 },
-        { "tecla": "G", "inicio": 23707.5, "fin": 23850.2, "duracion": 142.7 },
-        { "tecla": "ESCAPE", "inicio": 23898.8, "fin": 24377, "duracion": 478.2 },
-        { "tecla": "T", "inicio": 23945.7, "fin": 24378.9, "duracion": 433.2 },
-        { "tecla": "Y", "inicio": 23955.3, "fin": 24383.4, "duracion": 428.1 },
-        { "tecla": "T", "inicio": 24387.4, "fin": 24528, "duracion": 140.6 },
-        { "tecla": "Y", "inicio": 24390.2, "fin": 24544, "duracion": 153.8 },
-        { "tecla": "ESCAPE", "inicio": 24608.8, "fin": 25097, "duracion": 488.2 },
-        { "tecla": "R", "inicio": 24653.5, "fin": 25097.8, "duracion": 444.3 },
-        { "tecla": "T", "inicio": 24659.7, "fin": 25098.3, "duracion": 438.6 },
-        { "tecla": "R", "inicio": 25100.2, "fin": 25490.1, "duracion": 389.9 },
-        { "tecla": "T", "inicio": 25101.2, "fin": 25483.1, "duracion": 381.9 },
-        { "tecla": "E", "inicio": 25602.4, "fin": 25727.7, "duracion": 125.3 },
-        { "tecla": "Y", "inicio": 25627.8, "fin": 25743.8, "duracion": 116 },
-        { "tecla": "R", "inicio": 25843.8, "fin": 25935.6, "duracion": 91.8 },
-        { "tecla": "U", "inicio": 25855.2, "fin": 25943.7, "duracion": 88.5 },
-        { "tecla": "E", "inicio": 26040.6, "fin": 26183.6, "duracion": 143 },
-        { "tecla": "Y", "inicio": 26049.1, "fin": 26191.8, "duracion": 142.7 },
-        { "tecla": "R", "inicio": 26292.2, "fin": 26407.7, "duracion": 115.5 },
-        { "tecla": "U", "inicio": 26304.3, "fin": 26392.7, "duracion": 88.4 },
-        { "tecla": "E", "inicio": 26507.5, "fin": 26633, "duracion": 125.5 },
-        { "tecla": "Y", "inicio": 26524.1, "fin": 26655.8, "duracion": 131.7 },
-        { "tecla": "R", "inicio": 26761.8, "fin": 26856.4, "duracion": 94.6 },
-        { "tecla": "U", "inicio": 26771.5, "fin": 26872.3, "duracion": 100.8 },
-        { "tecla": "E", "inicio": 26986.7, "fin": 27097.5, "duracion": 110.8 },
-        { "tecla": "R", "inicio": 27213.3, "fin": 27303.9, "duracion": 90.6 },
-        { "tecla": "T", "inicio": 27437.9, "fin": 27543.7, "duracion": 105.8 },
-        { "tecla": "Y", "inicio": 27651.3, "fin": 27977.2, "duracion": 325.9 },
-        { "tecla": "ESCAPE", "inicio": 28008.8, "fin": 28340.2, "duracion": 331.4 },
-        { "tecla": "T", "inicio": 28104.3, "fin": 28341.7, "duracion": 237.4 },
-        { "tecla": "T", "inicio": 28345.3, "fin": 28705.5, "duracion": 360.2 },
-        { "tecla": "ESCAPE", "inicio": 28752.8, "fin": 29385.5, "duracion": 632.7 },
-        { "tecla": "R", "inicio": 28790.7, "fin": 29120.8, "duracion": 330.1 },
-        { "tecla": "O", "inicio": 29451.4, "fin": 29713.4, "duracion": 262 },
-        { "tecla": "ESCAPE", "inicio": 29712, "fin": 31304.6, "duracion": 1592.6 },
-        { "tecla": "O", "inicio": 29716.5, "fin": 29959.5, "duracion": 243 },
-        { "tecla": "I", "inicio": 29905.8, "fin": 30151.8, "duracion": 246 },
-        { "tecla": "U", "inicio": 30132.2, "fin": 30272.4, "duracion": 140.2 }
-    ]
+        {
+           "tecla":"E",
+           "inicio":1582,
+           "fin":1674,
+           "duracion":92
+        },
+        {
+           "tecla":"Y",
+           "inicio":1588,
+           "fin":1677,
+           "duracion":89
+        },
+        {
+           "tecla":"E",
+           "inicio":1884,
+           "fin":1950,
+           "duracion":66
+        },
+        {
+           "tecla":"Y",
+           "inicio":1871,
+           "fin":1961,
+           "duracion":90
+        },
+        {
+           "tecla":"E",
+           "inicio":2169,
+           "fin":2247,
+           "duracion":78
+        },
+        {
+           "tecla":"Y",
+           "inicio":2176,
+           "fin":2255,
+           "duracion":79
+        },
+        {
+           "tecla":"E",
+           "inicio":2439,
+           "fin":2508,
+           "duracion":69
+        },
+        {
+           "tecla":"Y",
+           "inicio":2432,
+           "fin":2528,
+           "duracion":96
+        },
+        {
+           "tecla":"E",
+           "inicio":2689,
+           "fin":2775,
+           "duracion":86
+        },
+        {
+           "tecla":"Y",
+           "inicio":2690,
+           "fin":2791,
+           "duracion":101
+        },
+        {
+           "tecla":"T",
+           "inicio":2973,
+           "fin":3100,
+           "duracion":127
+        },
+        {
+           "tecla":"R",
+           "inicio":3257,
+           "fin":3351,
+           "duracion":94
+        },
+        {
+           "tecla":"M",
+           "inicio":3553,
+           "fin":3649,
+           "duracion":96
+        },
+        {
+           "tecla":"U",
+           "inicio":3557,
+           "fin":3662,
+           "duracion":105
+        },
+        {
+           "tecla":"M",
+           "inicio":3841,
+           "fin":3916,
+           "duracion":75
+        },
+        {
+           "tecla":"U",
+           "inicio":3831,
+           "fin":3939,
+           "duracion":108
+        },
+        {
+           "tecla":"M",
+           "inicio":4127,
+           "fin":4189,
+           "duracion":62
+        },
+        {
+           "tecla":"U",
+           "inicio":4112,
+           "fin":4208,
+           "duracion":96
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":970,
+           "fin":4417,
+           "duracion":3447
+        },
+        {
+           "tecla":"T",
+           "inicio":4448,
+           "fin":4541,
+           "duracion":93
+        },
+        {
+           "tecla":"M",
+           "inicio":4726,
+           "fin":4818,
+           "duracion":92
+        },
+        {
+           "tecla":"U",
+           "inicio":4717,
+           "fin":4823,
+           "duracion":106
+        },
+        {
+           "tecla":"M",
+           "inicio":5007,
+           "fin":5086,
+           "duracion":79
+        },
+        {
+           "tecla":"U",
+           "inicio":5009,
+           "fin":5102,
+           "duracion":93
+        },
+        {
+           "tecla":"M",
+           "inicio":5271,
+           "fin":5374,
+           "duracion":103
+        },
+        {
+           "tecla":"U",
+           "inicio":5274,
+           "fin":5377,
+           "duracion":103
+        },
+        {
+           "tecla":"R",
+           "inicio":5807,
+           "fin":5930,
+           "duracion":123
+        },
+        {
+           "tecla":"E",
+           "inicio":6100,
+           "fin":6172,
+           "duracion":72
+        },
+        {
+           "tecla":"E",
+           "inicio":6420,
+           "fin":6489,
+           "duracion":69
+        },
+        {
+           "tecla":"Y",
+           "inicio":6425,
+           "fin":6506,
+           "duracion":81
+        },
+        {
+           "tecla":"E",
+           "inicio":6701,
+           "fin":6767,
+           "duracion":66
+        },
+        {
+           "tecla":"Y",
+           "inicio":6680,
+           "fin":6776,
+           "duracion":96
+        },
+        {
+           "tecla":"E",
+           "inicio":6988,
+           "fin":7061,
+           "duracion":73
+        },
+        {
+           "tecla":"Y",
+           "inicio":6990,
+           "fin":7069,
+           "duracion":79
+        },
+        {
+           "tecla":"E",
+           "inicio":7268,
+           "fin":7333,
+           "duracion":65
+        },
+        {
+           "tecla":"Y",
+           "inicio":7271,
+           "fin":7342,
+           "duracion":71
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":6346,
+           "fin":7525,
+           "duracion":1179
+        },
+        {
+           "tecla":"R",
+           "inicio":7617,
+           "fin":7716,
+           "duracion":99
+        },
+        {
+           "tecla":"E",
+           "inicio":7916,
+           "fin":8006,
+           "duracion":90
+        },
+        {
+           "tecla":"M",
+           "inicio":8289,
+           "fin":8371,
+           "duracion":82
+        },
+        {
+           "tecla":"U",
+           "inicio":8276,
+           "fin":8386,
+           "duracion":110
+        },
+        {
+           "tecla":"M",
+           "inicio":8577,
+           "fin":8666,
+           "duracion":89
+        },
+        {
+           "tecla":"U",
+           "inicio":8579,
+           "fin":8669,
+           "duracion":90
+        },
+        {
+           "tecla":"M",
+           "inicio":8892,
+           "fin":8988,
+           "duracion":96
+        },
+        {
+           "tecla":"U",
+           "inicio":8894,
+           "fin":8993,
+           "duracion":99
+        },
+        {
+           "tecla":"R",
+           "inicio":9176,
+           "fin":9279,
+           "duracion":103
+        },
+        {
+           "tecla":"Y",
+           "inicio":9453,
+           "fin":9539,
+           "duracion":86
+        },
+        {
+           "tecla":"T",
+           "inicio":9776,
+           "fin":9876,
+           "duracion":100
+        },
+        {
+           "tecla":"Y",
+           "inicio":9778,
+           "fin":9885,
+           "duracion":107
+        },
+        {
+           "tecla":"T",
+           "inicio":10076,
+           "fin":10178,
+           "duracion":102
+        },
+        {
+           "tecla":"Y",
+           "inicio":10078,
+           "fin":10188,
+           "duracion":110
+        },
+        {
+           "tecla":"T",
+           "inicio":10606,
+           "fin":10724,
+           "duracion":118
+        },
+        {
+           "tecla":"Y",
+           "inicio":10610,
+           "fin":10744,
+           "duracion":134
+        },
+        {
+           "tecla":"R",
+           "inicio":11179,
+           "fin":11285,
+           "duracion":106
+        },
+        {
+           "tecla":"T",
+           "inicio":11186,
+           "fin":11302,
+           "duracion":116
+        },
+        {
+           "tecla":"R",
+           "inicio":11517,
+           "fin":11609,
+           "duracion":92
+        },
+        {
+           "tecla":"T",
+           "inicio":11520,
+           "fin":11617,
+           "duracion":97
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":10431,
+           "fin":11704,
+           "duracion":1273
+        },
+        {
+           "tecla":"R",
+           "inicio":11838,
+           "fin":11941,
+           "duracion":103
+        },
+        {
+           "tecla":"T",
+           "inicio":11841,
+           "fin":11950,
+           "duracion":109
+        },
+        {
+           "tecla":"T",
+           "inicio":12135,
+           "fin":12246,
+           "duracion":111
+        },
+        {
+           "tecla":"Y",
+           "inicio":12144,
+           "fin":12251,
+           "duracion":107
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":12101,
+           "fin":12341,
+           "duracion":240
+        },
+        {
+           "tecla":"T",
+           "inicio":12454,
+           "fin":12562,
+           "duracion":108
+        },
+        {
+           "tecla":"Y",
+           "inicio":12456,
+           "fin":12572,
+           "duracion":116
+        },
+        {
+           "tecla":"T",
+           "inicio":12773,
+           "fin":12863,
+           "duracion":90
+        },
+        {
+           "tecla":"Y",
+           "inicio":12775,
+           "fin":12869,
+           "duracion":94
+        },
+        {
+           "tecla":"T",
+           "inicio":13079,
+           "fin":13156,
+           "duracion":77
+        },
+        {
+           "tecla":"Y",
+           "inicio":13081,
+           "fin":13168,
+           "duracion":87
+        },
+        {
+           "tecla":"T",
+           "inicio":13373,
+           "fin":13467,
+           "duracion":94
+        },
+        {
+           "tecla":"Y",
+           "inicio":13375,
+           "fin":13483,
+           "duracion":108
+        },
+        {
+           "tecla":"M",
+           "inicio":13719,
+           "fin":13787,
+           "duracion":68
+        },
+        {
+           "tecla":"U",
+           "inicio":13708,
+           "fin":13807,
+           "duracion":99
+        },
+        {
+           "tecla":"M",
+           "inicio":14007,
+           "fin":14086,
+           "duracion":79
+        },
+        {
+           "tecla":"U",
+           "inicio":14012,
+           "fin":14099,
+           "duracion":87
+        },
+        {
+           "tecla":"M",
+           "inicio":14346,
+           "fin":14426,
+           "duracion":80
+        },
+        {
+           "tecla":"U",
+           "inicio":14349,
+           "fin":14436,
+           "duracion":87
+        },
+        {
+           "tecla":"M",
+           "inicio":14619,
+           "fin":14699,
+           "duracion":80
+        },
+        {
+           "tecla":"U",
+           "inicio":14620,
+           "fin":14708,
+           "duracion":88
+        },
+        {
+           "tecla":"M",
+           "inicio":14952,
+           "fin":15052,
+           "duracion":100
+        },
+        {
+           "tecla":"U",
+           "inicio":14955,
+           "fin":15057,
+           "duracion":102
+        },
+        {
+           "tecla":"T",
+           "inicio":15290,
+           "fin":15367,
+           "duracion":77
+        },
+        {
+           "tecla":"Y",
+           "inicio":15295,
+           "fin":15373,
+           "duracion":78
+        },
+        {
+           "tecla":"T",
+           "inicio":15578,
+           "fin":15651,
+           "duracion":73
+        },
+        {
+           "tecla":"Y",
+           "inicio":15581,
+           "fin":15667,
+           "duracion":86
+        },
+        {
+           "tecla":"T",
+           "inicio":15870,
+           "fin":15932,
+           "duracion":62
+        },
+        {
+           "tecla":"Y",
+           "inicio":15872,
+           "fin":15942,
+           "duracion":70
+        },
+        {
+           "tecla":"T",
+           "inicio":16172,
+           "fin":16252,
+           "duracion":80
+        },
+        {
+           "tecla":"Y",
+           "inicio":16175,
+           "fin":16258,
+           "duracion":83
+        },
+        {
+           "tecla":"T",
+           "inicio":16475,
+           "fin":16575,
+           "duracion":100
+        },
+        {
+           "tecla":"Y",
+           "inicio":16476,
+           "fin":16583,
+           "duracion":107
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":14853,
+           "fin":16701,
+           "duracion":1848
+        },
+        {
+           "tecla":"T",
+           "inicio":16825,
+           "fin":16891,
+           "duracion":66
+        },
+        {
+           "tecla":"Y",
+           "inicio":16827,
+           "fin":16902,
+           "duracion":75
+        },
+        {
+           "tecla":"T",
+           "inicio":17121,
+           "fin":17207,
+           "duracion":86
+        },
+        {
+           "tecla":"Y",
+           "inicio":17124,
+           "fin":17217,
+           "duracion":93
+        },
+        {
+           "tecla":"R",
+           "inicio":17457,
+           "fin":17529,
+           "duracion":72
+        },
+        {
+           "tecla":"T",
+           "inicio":17459,
+           "fin":17538,
+           "duracion":79
+        },
+        {
+           "tecla":"R",
+           "inicio":17774,
+           "fin":17865,
+           "duracion":91
+        },
+        {
+           "tecla":"T",
+           "inicio":17777,
+           "fin":17870,
+           "duracion":93
+        },
+        {
+           "tecla":"R",
+           "inicio":18081,
+           "fin":18172,
+           "duracion":91
+        },
+        {
+           "tecla":"T",
+           "inicio":18083,
+           "fin":18182,
+           "duracion":99
+        },
+        {
+           "tecla":"R",
+           "inicio":18400,
+           "fin":18480,
+           "duracion":80
+        },
+        {
+           "tecla":"T",
+           "inicio":18404,
+           "fin":18489,
+           "duracion":85
+        },
+        {
+           "tecla":"R",
+           "inicio":18716,
+           "fin":18798,
+           "duracion":82
+        },
+        {
+           "tecla":"T",
+           "inicio":18730,
+           "fin":18803,
+           "duracion":73
+        },
+        {
+           "tecla":"R",
+           "inicio":19031,
+           "fin":19128,
+           "duracion":97
+        },
+        {
+           "tecla":"T",
+           "inicio":19033,
+           "fin":19134,
+           "duracion":101
+        },
+        {
+           "tecla":"T",
+           "inicio":19387,
+           "fin":19476,
+           "duracion":89
+        },
+        {
+           "tecla":"Y",
+           "inicio":19388,
+           "fin":19482,
+           "duracion":94
+        },
+        {
+           "tecla":"T",
+           "inicio":19737,
+           "fin":19806,
+           "duracion":69
+        },
+        {
+           "tecla":"Y",
+           "inicio":19739,
+           "fin":19817,
+           "duracion":78
+        },
+        {
+           "tecla":"R",
+           "inicio":20058,
+           "fin":20175,
+           "duracion":117
+        },
+        {
+           "tecla":"T",
+           "inicio":20060,
+           "fin":20187,
+           "duracion":127
+        },
+        {
+           "tecla":"E",
+           "inicio":20841,
+           "fin":20985,
+           "duracion":144
+        },
+        {
+           "tecla":"R",
+           "inicio":20844,
+           "fin":21009,
+           "duracion":165
+        },
+        {
+           "tecla":"R",
+           "inicio":21199,
+           "fin":21387,
+           "duracion":188
+        },
+        {
+           "tecla":"T",
+           "inicio":21201,
+           "fin":21391,
+           "duracion":190
+        },
+        {
+           "tecla":"R",
+           "inicio":22143,
+           "fin":22295,
+           "duracion":152
+        },
+        {
+           "tecla":"T",
+           "inicio":22156,
+           "fin":22302,
+           "duracion":146
+        },
+        {
+           "tecla":"Y",
+           "inicio":22521,
+           "fin":22589,
+           "duracion":68
+        },
+        {
+           "tecla":"T",
+           "inicio":22514,
+           "fin":22601,
+           "duracion":87
+        },
+        {
+           "tecla":"U",
+           "inicio":22802,
+           "fin":22876,
+           "duracion":74
+        },
+        {
+           "tecla":"Y",
+           "inicio":22801,
+           "fin":22886,
+           "duracion":85
+        },
+        {
+           "tecla":"U",
+           "inicio":23133,
+           "fin":23220,
+           "duracion":87
+        },
+        {
+           "tecla":"I",
+           "inicio":23135,
+           "fin":23225,
+           "duracion":90
+        },
+        {
+           "tecla":"U",
+           "inicio":23646,
+           "fin":23752,
+           "duracion":106
+        },
+        {
+           "tecla":"I",
+           "inicio":23647,
+           "fin":23756,
+           "duracion":109
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":19275,
+           "fin":23930,
+           "duracion":4655
+        },
+        {
+           "tecla":"U",
+           "inicio":24037,
+           "fin":24122,
+           "duracion":85
+        },
+        {
+           "tecla":"I",
+           "inicio":24038,
+           "fin":24135,
+           "duracion":97
+        },
+        {
+           "tecla":",",
+           "inicio":24574,
+           "fin":24677,
+           "duracion":103
+        },
+        {
+           "tecla":"M",
+           "inicio":24567,
+           "fin":24692,
+           "duracion":125
+        },
+        {
+           "tecla":"M",
+           "inicio":25578,
+           "fin":25714,
+           "duracion":136
+        },
+        {
+           "tecla":",",
+           "inicio":25579,
+           "fin":25720,
+           "duracion":141
+        },
+        {
+           "tecla":"U",
+           "inicio":25954,
+           "fin":26034,
+           "duracion":80
+        },
+        {
+           "tecla":"I",
+           "inicio":25955,
+           "fin":26040,
+           "duracion":85
+        },
+        {
+           "tecla":",",
+           "inicio":26428,
+           "fin":26555,
+           "duracion":127
+        },
+        {
+           "tecla":"M",
+           "inicio":26427,
+           "fin":26566,
+           "duracion":139
+        },
+        {
+           "tecla":",",
+           "inicio":26895,
+           "fin":26994,
+           "duracion":99
+        },
+        {
+           "tecla":"M",
+           "inicio":26893,
+           "fin":27002,
+           "duracion":109
+        },
+        {
+           "tecla":"T",
+           "inicio":27215,
+           "fin":27311,
+           "duracion":96
+        },
+        {
+           "tecla":"Y",
+           "inicio":27217,
+           "fin":27319,
+           "duracion":102
+        },
+        {
+           "tecla":"T",
+           "inicio":27677,
+           "fin":27765,
+           "duracion":88
+        },
+        {
+           "tecla":"Y",
+           "inicio":27678,
+           "fin":27781,
+           "duracion":103
+        },
+        {
+           "tecla":"T",
+           "inicio":28029,
+           "fin":28121,
+           "duracion":92
+        },
+        {
+           "tecla":"Y",
+           "inicio":28037,
+           "fin":28135,
+           "duracion":98
+        },
+        {
+           "tecla":"R",
+           "inicio":28520,
+           "fin":28636,
+           "duracion":116
+        },
+        {
+           "tecla":"T",
+           "inicio":28521,
+           "fin":28641,
+           "duracion":120
+        },
+        {
+           "tecla":"Y",
+           "inicio":29222,
+           "fin":29349,
+           "duracion":127
+        },
+        {
+           "tecla":"T",
+           "inicio":29511,
+           "fin":29633,
+           "duracion":122
+        },
+        {
+           "tecla":"R",
+           "inicio":29796,
+           "fin":29918,
+           "duracion":122
+        },
+        {
+           "tecla":"R",
+           "inicio":30568,
+           "fin":30665,
+           "duracion":97
+        },
+        {
+           "tecla":"T",
+           "inicio":30569,
+           "fin":30682,
+           "duracion":113
+        },
+        {
+           "tecla":"T",
+           "inicio":30877,
+           "fin":30970,
+           "duracion":93
+        },
+        {
+           "tecla":"Y",
+           "inicio":30887,
+           "fin":30979,
+           "duracion":92
+        },
+        {
+           "tecla":"Y",
+           "inicio":31170,
+           "fin":31256,
+           "duracion":86
+        },
+        {
+           "tecla":"U",
+           "inicio":31174,
+           "fin":31263,
+           "duracion":89
+        },
+        {
+           "tecla":"I",
+           "inicio":31486,
+           "fin":31544,
+           "duracion":58
+        },
+        {
+           "tecla":"U",
+           "inicio":31478,
+           "fin":31552,
+           "duracion":74
+        },
+        {
+           "tecla":"U",
+           "inicio":31982,
+           "fin":32061,
+           "duracion":79
+        },
+        {
+           "tecla":"I",
+           "inicio":31984,
+           "fin":32067,
+           "duracion":83
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":27922,
+           "fin":32218,
+           "duracion":4296
+        },
+        {
+           "tecla":"U",
+           "inicio":32326,
+           "fin":32427,
+           "duracion":101
+        },
+        {
+           "tecla":"I",
+           "inicio":32330,
+           "fin":32433,
+           "duracion":103
+        },
+        {
+           "tecla":"M",
+           "inicio":32807,
+           "fin":32913,
+           "duracion":106
+        },
+        {
+           "tecla":",",
+           "inicio":32809,
+           "fin":32918,
+           "duracion":109
+        },
+        {
+           "tecla":"M",
+           "inicio":33939,
+           "fin":34044,
+           "duracion":105
+        },
+        {
+           "tecla":",",
+           "inicio":33946,
+           "fin":34066,
+           "duracion":120
+        },
+        {
+           "tecla":"U",
+           "inicio":34278,
+           "fin":34368,
+           "duracion":90
+        },
+        {
+           "tecla":"I",
+           "inicio":34281,
+           "fin":34374,
+           "duracion":93
+        },
+        {
+           "tecla":",",
+           "inicio":34756,
+           "fin":34864,
+           "duracion":108
+        },
+        {
+           "tecla":"M",
+           "inicio":34754,
+           "fin":34885,
+           "duracion":131
+        },
+        {
+           "tecla":",",
+           "inicio":35232,
+           "fin":35321,
+           "duracion":89
+        },
+        {
+           "tecla":"M",
+           "inicio":35215,
+           "fin":35340,
+           "duracion":125
+        },
+        {
+           "tecla":"T",
+           "inicio":35565,
+           "fin":35647,
+           "duracion":82
+        },
+        {
+           "tecla":"Y",
+           "inicio":35567,
+           "fin":35660,
+           "duracion":93
+        },
+        {
+           "tecla":"Y",
+           "inicio":36008,
+           "fin":36124,
+           "duracion":116
+        },
+        {
+           "tecla":"T",
+           "inicio":36006,
+           "fin":36137,
+           "duracion":131
+        },
+        {
+           "tecla":"T",
+           "inicio":36361,
+           "fin":36484,
+           "duracion":123
+        },
+        {
+           "tecla":"Y",
+           "inicio":36365,
+           "fin":36489,
+           "duracion":124
+        },
+        {
+           "tecla":"R",
+           "inicio":36848,
+           "fin":36991,
+           "duracion":143
+        },
+        {
+           "tecla":"T",
+           "inicio":36850,
+           "fin":36998,
+           "duracion":148
+        },
+        {
+           "tecla":"Y",
+           "inicio":37577,
+           "fin":37718,
+           "duracion":141
+        },
+        {
+           "tecla":"T",
+           "inicio":37893,
+           "fin":38001,
+           "duracion":108
+        },
+        {
+           "tecla":"R",
+           "inicio":38166,
+           "fin":38271,
+           "duracion":105
+        },
+        {
+           "tecla":"T",
+           "inicio":38928,
+           "fin":39036,
+           "duracion":108
+        },
+        {
+           "tecla":"R",
+           "inicio":38927,
+           "fin":39045,
+           "duracion":118
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":36317,
+           "fin":39098,
+           "duracion":2781
+        },
+        {
+           "tecla":"R",
+           "inicio":39244,
+           "fin":39344,
+           "duracion":100
+        },
+        {
+           "tecla":"T",
+           "inicio":39245,
+           "fin":39350,
+           "duracion":105
+        },
+        {
+           "tecla":"T",
+           "inicio":39538,
+           "fin":39625,
+           "duracion":87
+        },
+        {
+           "tecla":"Y",
+           "inicio":39541,
+           "fin":39629,
+           "duracion":88
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":39479,
+           "fin":39780,
+           "duracion":301
+        },
+        {
+           "tecla":"T",
+           "inicio":39833,
+           "fin":39919,
+           "duracion":86
+        },
+        {
+           "tecla":"Y",
+           "inicio":39836,
+           "fin":39930,
+           "duracion":94
+        },
+        {
+           "tecla":"T",
+           "inicio":40321,
+           "fin":40426,
+           "duracion":105
+        },
+        {
+           "tecla":"Y",
+           "inicio":40322,
+           "fin":40448,
+           "duracion":126
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":40283,
+           "fin":40486,
+           "duracion":203
+        },
+        {
+           "tecla":"M",
+           "inicio":40775,
+           "fin":40851,
+           "duracion":76
+        },
+        {
+           "tecla":"U",
+           "inicio":40732,
+           "fin":40869,
+           "duracion":137
+        },
+        {
+           "tecla":"M",
+           "inicio":41794,
+           "fin":41943,
+           "duracion":149
+        },
+        {
+           "tecla":"U",
+           "inicio":41800,
+           "fin":41952,
+           "duracion":152
+        },
+        {
+           "tecla":"T",
+           "inicio":42276,
+           "fin":42412,
+           "duracion":136
+        },
+        {
+           "tecla":"Y",
+           "inicio":42279,
+           "fin":42419,
+           "duracion":140
+        },
+        {
+           "tecla":"T",
+           "inicio":42634,
+           "fin":42740,
+           "duracion":106
+        },
+        {
+           "tecla":"Y",
+           "inicio":42637,
+           "fin":42749,
+           "duracion":112
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":42550,
+           "fin":43150,
+           "duracion":600
+        },
+        {
+           "tecla":"T",
+           "inicio":43381,
+           "fin":43515,
+           "duracion":134
+        },
+        {
+           "tecla":"Y",
+           "inicio":43385,
+           "fin":43528,
+           "duracion":143
+        },
+        {
+           "tecla":"R",
+           "inicio":43705,
+           "fin":43828,
+           "duracion":123
+        },
+        {
+           "tecla":"T",
+           "inicio":43714,
+           "fin":43834,
+           "duracion":120
+        },
+        {
+           "tecla":"T",
+           "inicio":44167,
+           "fin":44289,
+           "duracion":122
+        },
+        {
+           "tecla":"Y",
+           "inicio":44167,
+           "fin":44296,
+           "duracion":129
+        },
+        {
+           "tecla":"T",
+           "inicio":44491,
+           "fin":44629,
+           "duracion":138
+        },
+        {
+           "tecla":"R",
+           "inicio":44488,
+           "fin":44636,
+           "duracion":148
+        },
+        {
+           "tecla":"E",
+           "inicio":45606,
+           "fin":45695,
+           "duracion":89
+        },
+        {
+           "tecla":"Y",
+           "inicio":45596,
+           "fin":45710,
+           "duracion":114
+        },
+        {
+           "tecla":"E",
+           "inicio":45897,
+           "fin":45968,
+           "duracion":71
+        },
+        {
+           "tecla":"Y",
+           "inicio":45899,
+           "fin":45980,
+           "duracion":81
+        },
+        {
+           "tecla":"E",
+           "inicio":46186,
+           "fin":46256,
+           "duracion":70
+        },
+        {
+           "tecla":"Y",
+           "inicio":46190,
+           "fin":46264,
+           "duracion":74
+        },
+        {
+           "tecla":"E",
+           "inicio":46465,
+           "fin":46537,
+           "duracion":72
+        },
+        {
+           "tecla":"Y",
+           "inicio":46466,
+           "fin":46544,
+           "duracion":78
+        },
+        {
+           "tecla":"T",
+           "inicio":46778,
+           "fin":46870,
+           "duracion":92
+        },
+        {
+           "tecla":"R",
+           "inicio":47085,
+           "fin":47177,
+           "duracion":92
+        },
+        {
+           "tecla":"M",
+           "inicio":47390,
+           "fin":47497,
+           "duracion":107
+        },
+        {
+           "tecla":"U",
+           "inicio":47391,
+           "fin":47501,
+           "duracion":110
+        },
+        {
+           "tecla":"M",
+           "inicio":47689,
+           "fin":47789,
+           "duracion":100
+        },
+        {
+           "tecla":"U",
+           "inicio":47691,
+           "fin":47794,
+           "duracion":103
+        },
+        {
+           "tecla":"M",
+           "inicio":47975,
+           "fin":48038,
+           "duracion":63
+        },
+        {
+           "tecla":"U",
+           "inicio":47958,
+           "fin":48073,
+           "duracion":115
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":43990,
+           "fin":48188,
+           "duracion":4198
+        },
+        {
+           "tecla":"T",
+           "inicio":48265,
+           "fin":48388,
+           "duracion":123
+        },
+        {
+           "tecla":"M",
+           "inicio":48552,
+           "fin":48648,
+           "duracion":96
+        },
+        {
+           "tecla":"U",
+           "inicio":48556,
+           "fin":48661,
+           "duracion":105
+        },
+        {
+           "tecla":"M",
+           "inicio":48857,
+           "fin":48950,
+           "duracion":93
+        },
+        {
+           "tecla":"U",
+           "inicio":48861,
+           "fin":48960,
+           "duracion":99
+        },
+        {
+           "tecla":"M",
+           "inicio":49135,
+           "fin":49228,
+           "duracion":93
+        },
+        {
+           "tecla":"U",
+           "inicio":49137,
+           "fin":49235,
+           "duracion":98
+        },
+        {
+           "tecla":"R",
+           "inicio":49731,
+           "fin":49861,
+           "duracion":130
+        },
+        {
+           "tecla":"E",
+           "inicio":50038,
+           "fin":50135,
+           "duracion":97
+        },
+        {
+           "tecla":"E",
+           "inicio":50425,
+           "fin":50501,
+           "duracion":76
+        },
+        {
+           "tecla":"Y",
+           "inicio":50428,
+           "fin":50514,
+           "duracion":86
+        },
+        {
+           "tecla":"E",
+           "inicio":50716,
+           "fin":50799,
+           "duracion":83
+        },
+        {
+           "tecla":"Y",
+           "inicio":50718,
+           "fin":50811,
+           "duracion":93
+        },
+        {
+           "tecla":"E",
+           "inicio":51015,
+           "fin":51084,
+           "duracion":69
+        },
+        {
+           "tecla":"Y",
+           "inicio":51009,
+           "fin":51115,
+           "duracion":106
+        },
+        {
+           "tecla":"E",
+           "inicio":51313,
+           "fin":51393,
+           "duracion":80
+        },
+        {
+           "tecla":"Y",
+           "inicio":51294,
+           "fin":51429,
+           "duracion":135
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":50396,
+           "fin":51513,
+           "duracion":1117
+        },
+        {
+           "tecla":"R",
+           "inicio":51665,
+           "fin":51774,
+           "duracion":109
+        },
+        {
+           "tecla":"E",
+           "inicio":51992,
+           "fin":52079,
+           "duracion":87
+        },
+        {
+           "tecla":"M",
+           "inicio":52325,
+           "fin":52442,
+           "duracion":117
+        },
+        {
+           "tecla":"U",
+           "inicio":52326,
+           "fin":52447,
+           "duracion":121
+        },
+        {
+           "tecla":"M",
+           "inicio":52657,
+           "fin":52757,
+           "duracion":100
+        },
+        {
+           "tecla":"U",
+           "inicio":52666,
+           "fin":52763,
+           "duracion":97
+        },
+        {
+           "tecla":"M",
+           "inicio":52935,
+           "fin":53039,
+           "duracion":104
+        },
+        {
+           "tecla":"U",
+           "inicio":52937,
+           "fin":53045,
+           "duracion":108
+        },
+        {
+           "tecla":"R",
+           "inicio":53260,
+           "fin":53375,
+           "duracion":115
+        },
+        {
+           "tecla":"T",
+           "inicio":53563,
+           "fin":53666,
+           "duracion":103
+        },
+        {
+           "tecla":"Y",
+           "inicio":53565,
+           "fin":53679,
+           "duracion":114
+        },
+        {
+           "tecla":"T",
+           "inicio":53861,
+           "fin":53943,
+           "duracion":82
+        },
+        {
+           "tecla":"Y",
+           "inicio":53864,
+           "fin":53959,
+           "duracion":95
+        },
+        {
+           "tecla":"Y",
+           "inicio":54187,
+           "fin":54304,
+           "duracion":117
+        },
+        {
+           "tecla":"T",
+           "inicio":54182,
+           "fin":54312,
+           "duracion":130
+        },
+        {
+           "tecla":"T",
+           "inicio":54766,
+           "fin":54924,
+           "duracion":158
+        },
+        {
+           "tecla":"Y",
+           "inicio":54770,
+           "fin":54934,
+           "duracion":164
+        },
+        {
+           "tecla":"E",
+           "inicio":55407,
+           "fin":55526,
+           "duracion":119
+        },
+        {
+           "tecla":"Y",
+           "inicio":55408,
+           "fin":55546,
+           "duracion":138
+        },
+        {
+           "tecla":"E",
+           "inicio":55758,
+           "fin":55858,
+           "duracion":100
+        },
+        {
+           "tecla":"Y",
+           "inicio":55760,
+           "fin":55867,
+           "duracion":107
+        },
+        {
+           "tecla":"E",
+           "inicio":56080,
+           "fin":56159,
+           "duracion":79
+        },
+        {
+           "tecla":"Y",
+           "inicio":56067,
+           "fin":56174,
+           "duracion":107
+        },
+        {
+           "tecla":"E",
+           "inicio":56365,
+           "fin":56460,
+           "duracion":95
+        },
+        {
+           "tecla":"Y",
+           "inicio":56366,
+           "fin":56464,
+           "duracion":98
+        },
+        {
+           "tecla":"T",
+           "inicio":56681,
+           "fin":56820,
+           "duracion":139
+        },
+        {
+           "tecla":"R",
+           "inicio":56981,
+           "fin":57068,
+           "duracion":87
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":54575,
+           "fin":57211,
+           "duracion":2636
+        },
+        {
+           "tecla":"T",
+           "inicio":57326,
+           "fin":57446,
+           "duracion":120
+        },
+        {
+           "tecla":"Y",
+           "inicio":57328,
+           "fin":57450,
+           "duracion":122
+        },
+        {
+           "tecla":"T",
+           "inicio":57631,
+           "fin":57724,
+           "duracion":93
+        },
+        {
+           "tecla":"Y",
+           "inicio":57634,
+           "fin":57745,
+           "duracion":111
+        },
+        {
+           "tecla":"T",
+           "inicio":57940,
+           "fin":58051,
+           "duracion":111
+        },
+        {
+           "tecla":"Y",
+           "inicio":57945,
+           "fin":58070,
+           "duracion":125
+        },
+        {
+           "tecla":"T",
+           "inicio":58287,
+           "fin":58410,
+           "duracion":123
+        },
+        {
+           "tecla":"R",
+           "inicio":58277,
+           "fin":58417,
+           "duracion":140
+        },
+        {
+           "tecla":"T",
+           "inicio":58597,
+           "fin":58689,
+           "duracion":92
+        },
+        {
+           "tecla":"Y",
+           "inicio":58599,
+           "fin":58715,
+           "duracion":116
+        },
+        {
+           "tecla":"T",
+           "inicio":58916,
+           "fin":59015,
+           "duracion":99
+        },
+        {
+           "tecla":"R",
+           "inicio":58908,
+           "fin":59039,
+           "duracion":131
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":58175,
+           "fin":59135,
+           "duracion":960
+        },
+        {
+           "tecla":"R",
+           "inicio":59221,
+           "fin":59363,
+           "duracion":142
+        },
+        {
+           "tecla":"T",
+           "inicio":59224,
+           "fin":59378,
+           "duracion":154
+        },
+        {
+           "tecla":"E",
+           "inicio":59771,
+           "fin":59906,
+           "duracion":135
+        },
+        {
+           "tecla":"R",
+           "inicio":59774,
+           "fin":59945,
+           "duracion":171
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":60425,
+           "fin":60848,
+           "duracion":423
+        },
+        {
+           "tecla":"E",
+           "inicio":60687,
+           "fin":60848,
+           "duracion":161
+        },
+        {
+           "tecla":"E",
+           "inicio":60849,
+           "fin":61083,
+           "duracion":234
+        },
+        {
+           "tecla":"R",
+           "inicio":61268,
+           "fin":61397,
+           "duracion":129
+        },
+        {
+           "tecla":"T",
+           "inicio":61593,
+           "fin":61748,
+           "duracion":155
+        },
+        {
+           "tecla":"Y",
+           "inicio":61594,
+           "fin":61773,
+           "duracion":179
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":61557,
+           "fin":61945,
+           "duracion":388
+        },
+        {
+           "tecla":"E",
+           "inicio":62387,
+           "fin":62592,
+           "duracion":205
+        },
+        {
+           "tecla":"R",
+           "inicio":62691,
+           "fin":62922,
+           "duracion":231
+        },
+        {
+           "tecla":"T",
+           "inicio":62693,
+           "fin":62945,
+           "duracion":252
+        },
+        {
+           "tecla":"Y",
+           "inicio":63398,
+           "fin":63626,
+           "duracion":228
+        },
+        {
+           "tecla":"T",
+           "inicio":63777,
+           "fin":64099,
+           "duracion":322
+        },
+        {
+           "tecla":"U",
+           "inicio":63779,
+           "fin":64107,
+           "duracion":328
+        },
+        {
+           "tecla":"ESCAPE",
+           "inicio":63161,
+           "fin":64648,
+           "duracion":1487
+        }
+     ]
 };
 
 const cancionDiana = {
@@ -833,12 +3961,11 @@ const cancionDiana2 = {
 
 //Menu de Canciones
 const canciones = [
-    examenAFQ,
     ejercicio1,
-    ejercicio2,
+    examenAFQ,
     cancionBCEL,
-    cancionDiana,
-    cancionDiana2,
+    // cancionDiana,
+    // cancionDiana2,
 
 ];
 
