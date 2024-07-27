@@ -31,104 +31,108 @@
             display: none;
             z-index: 1000;
         }
+        
     </style>
 </head>
 <body>
-    <div class="cargando" id="app-container">
-        <!-- Menu deslizable -->
-        <div id="menu-toggle">
-            <span title="Menú" class="material-symbols-outlined">menu</span>
-        </div>
-
-        <!-- Barra lateral izquierda -->
-        <div class="menu open">
-            <div>
+    <div>
+        <div class="cargando" id="app-container">
+            <!-- Menu deslizable -->
+            <div id="menu-toggle">
                 <span title="Menú" class="material-symbols-outlined">menu</span>
             </div>
-
-            <div class="control" id="cambiar-mano">
-                <div class="opcion seleccionada" id="mano-derecha" title="Seleccionar pitos">Diapasón</div>
-                <div class="opcion" id="mano-izquierda" title="Seleccionar bajo">Bajos</div>
-                <div class="opcion" id="dos-manos" title="Seleccionar todo"></div>
-            </div>
-
-            <div class="control" id="cambiar-tono">
-                <div class="opcion seleccionada" title="Seleccionar ADG (La, Re, Sol)" id="tono-adg">ADG</div>
-                <div class="opcion" title="Seleccionar 5 Letras (Si bemol, Mi bemol, La bemol)" id="tono-5l">5L</div>
-                <div class="opcion" title="Seleccionar GCF (Sol, Do, Fa)" id="tono-gcf">GCF</div>
-            </div>
-
-            <div class="control" id="cambiar-modo">
-                <div class="opcion seleccionada" title="Modo de teclado" id="modo-teclado">
-                    <span class="material-symbols-outlined">keyboard</span>
+    
+            <!-- Barra lateral izquierda -->
+            <div class="menu open">
+                <div>
+                    <span title="Menú" class="material-symbols-outlined">menu</span>
                 </div>
-
-                <div class="opcion" title="Notas musicales" id="modo-notas">
-                    <span class="material-symbols-outlined">music_note</span>
+    
+                <div class="control" id="cambiar-mano">
+                    <div class="opcion seleccionada" id="mano-derecha" title="Seleccionar pitos">Diapasón</div>
+                    <div class="opcion" id="mano-izquierda" title="Seleccionar bajo">Bajos</div>
+                    <div class="opcion" id="dos-manos" title="Seleccionar todo"></div>
                 </div>
-
-                <div class="opcion" title="Modo númerico" id="modo-numero">
-                    <span class="material-symbols-outlined">123</span>
+    
+                <div class="control" id="cambiar-tono">
+                    <div class="opcion seleccionada" title="Seleccionar ADG (La, Re, Sol)" id="tono-adg">ADG</div>
+                    <div class="opcion" title="Seleccionar 5 Letras (Si bemol, Mi bemol, La bemol)" id="tono-5l">5L</div>
+                    <div class="opcion" title="Seleccionar GCF (Sol, Do, Fa)" id="tono-gcf">GCF</div>
                 </div>
-            </div>
-
-            <div id="composiciones">
-                <div class="fila"
-                    style="border-bottom: 1px solid silver; padding: 16px; display: flex; justify-content: space-between;">
-                    <div>
-                        <span class="material-symbols-outlined">queue_music</span>
-                        <span>Exámen</span>
+    
+                <div class="control" id="cambiar-modo">
+                    <div class="opcion seleccionada" title="Modo de teclado" id="modo-teclado">
+                        <span class="material-symbols-outlined">keyboard</span>
                     </div>
-                    <!-- <button style="border: none; background: none; cursor: pointer; padding: 0;">
-                        <span title="Componer">✍️</span>
-                    </button> -->
-                    
-                    <button class="reiniciar-pagina">
-                        <span class="material-symbols-outlined" title="Actualizar">🔄</span>
-                    </button>
+    
+                    <div class="opcion" title="Notas musicales" id="modo-notas">
+                        <span class="material-symbols-outlined">music_note</span>
+                    </div>
+    
+                    <div class="opcion" title="Modo númerico" id="modo-numero">
+                        <span class="material-symbols-outlined">123</span>
+                    </div>
                 </div>
-
-                <div class="contenido" style="max-height: 400px; overflow-y: auto;"></div>
-
-                <div id="grabar" class="grabar">
-                    <span class="text"></span>
-                    <span class="material-symbols-outlined">sound_sampler</span>
+    
+                <div id="composiciones">
+                    <div class="fila"
+                        style="border-bottom: 1px solid silver; padding: 16px; display: flex; justify-content: space-between;">
+                        <div>
+                            <span class="material-symbols-outlined">queue_music</span>
+                            <span>Exámen</span>
+                        </div>
+                        <!-- <button style="border: none; background: none; cursor: pointer; padding: 0;">
+                            <span title="Componer">✍️</span>
+                        </button> -->
+                        
+                        <button class="reiniciar-pagina">
+                            <span class="material-symbols-outlined" title="Actualizar">🔄</span>
+                        </button>
+                    </div>
+    
+                    <div class="contenido" style="max-height: 400px; overflow-y: auto;"></div>
+    
+                    <div id="grabar" class="grabar">
+                        <span class="text"></span>
+                        <span class="material-symbols-outlined">sound_sampler</span>
+                    </div>
                 </div>
+    
+                <div id="melodias-guardadas" style="display: none; max-height: 400px; overflow-y: auto;">
+                    <div style="display: flex; justify-content: space-between; padding: 16px; border-bottom: 1px solid silver;">
+                        <button class="volver-menu">
+                            <span class="material-symbols-outlined" title="Volver">arrow_back</span>
+                        </button>
+                        <h3 style="margin: 0;">Melodías Guardadas</h3>
+                        <button class="nueva-melodia">
+                            <span class="material-symbols-outlined" title="Nueva Melodía">add</span>
+                        </button>
+                    </div>
+                    <div class="lista-melodias" style="padding: 16px;"></div>
+                </div>
+    
+                <a href="https://huellasdelmaestro.com/plataforma-virtual" title="Ir a la plataforma virtual" target="_blank">
+                    <img class="logo" src="logo.png" />
+                </a>
+    
+                <a class="link-pie" href="https://maps.app.goo.gl/ifKj8i46eAWydXzy9" target="_blank">
+                    <div class="pie">
+                        <img class="bandera" />
+                        <span>Valledupar,</span>
+                        <span>Cesar-</span>
+                        <span>Colombia</span>
+                    </div>
+                </a>
             </div>
-
-            <div id="melodias-guardadas" style="display: none; max-height: 400px; overflow-y: auto;">
-                <div style="display: flex; justify-content: space-between; padding: 16px; border-bottom: 1px solid silver;">
-                    <button class="volver-menu">
-                        <span class="material-symbols-outlined" title="Volver">arrow_back</span>
-                    </button>
-                    <h3 style="margin: 0;">Melodías Guardadas</h3>
-                    <button class="nueva-melodia">
-                        <span class="material-symbols-outlined" title="Nueva Melodía">add</span>
-                    </button>
-                </div>
-                <div class="lista-melodias" style="padding: 16px;"></div>
+            
+            <button class="btn-detener material-symbols-outlined">stop</button>
+    
+            <div class="contenidor">
+                <div id="acordeon"></div>
             </div>
-
-            <a href="https://huellasdelmaestro.com/plataforma-virtual" title="Ir a la plataforma virtual" target="_blank">
-                <img class="logo" src="logo.png" />
-            </a>
-
-            <a class="link-pie" href="https://maps.app.goo.gl/ifKj8i46eAWydXzy9" target="_blank">
-                <div class="pie">
-                    <img class="bandera" />
-                    <span>Valledupar,</span>
-                    <span>Cesar-</span>
-                    <span>Colombia</span>
-                </div>
-            </a>
-        </div>
-        
-        <button class="btn-detener material-symbols-outlined">stop</button>
-
-        <div class="contenidor">
-            <div id="acordeon"></div>
         </div>
     </div>
+    
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"
         integrity="sha512-Siyxh4gyNM5SaERNa9BOZSPcu/auHyFUWn9OVFD7MxI3/dVPQklE7tfqS+pLmPHF1zo6UdDaJAp/thihrf0c7w=="
@@ -139,4 +143,4 @@
     <script src="canciones.js"></script>
     <script src="melodias.js"></script>
 </body>
-</html>
+</html
