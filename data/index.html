@@ -7,22 +7,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600;700&family=Roboto:wght@300&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="lib/estilo.css" />
     <link rel="stylesheet" href="ui.css" />
     <script src="canciones.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
-        integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"
-        integrity="sha512-zMfrMAZYAlNClPKjN+JMuslK/B6sPM09BGvrWlW+cymmPmsUT1xJF3P4kxI3lOh9zypakSgWaTpY6vDJY/3Dig=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"
-        integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js" integrity="sha512-zMfrMAZYAlNClPKjN+JMuslK/B6sPM09BGvrWlW+cymmPmsUT1xJF3P4kxI3lOh9zypakSgWaTpY6vDJY/3Dig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
     <style>
         .btn-detener {
             position: fixed;
@@ -31,73 +24,106 @@
             display: none;
             z-index: 1000;
         }
-        
+
+        .menu-toggle {
+            display: none;
+        }
+
+        .menu {
+            transition: transform 0.3s ease;
+            transform: translateX(0);
+        }
+
+        .menu.closed {
+            transform: translateX(-100%);
+        }
+
+        @media (max-width: 768px) {
+            .menu {
+                transform: translateX(-100%);
+            }
+
+            .menu.open {
+                transform: translateX(0);
+            }
+
+            .menu-toggle {
+                display: block;
+                cursor: pointer;
+                font-size: 2rem;
+                position: absolute;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+            }
+        }
+
+        .contenidor.expanded {
+            width: calc(100% - 60px); /* Adjust this value according to your needs */
+            transition: width 0.3s ease;
+        }
     </style>
 </head>
 <body>
     <div>
         <div class="cargando" id="app-container">
             <!-- Menu deslizable -->
-            <div id="menu-toggle">
+            <div id="menu-toggle" class="menu-toggle">
                 <span title="Menú" class="material-symbols-outlined">menu</span>
             </div>
-    
+
             <!-- Barra lateral izquierda -->
-            <div class="menu open">
+            <div id="sidebar" class="menu open">
                 <div>
-                    <span title="Menú" class="material-symbols-outlined">menu</span>
+                    <span title="Menú" class="material-symbols-outlined" id="menu-close">menu</span>
                 </div>
-    
+
                 <div class="control" id="cambiar-mano">
                     <div class="opcion seleccionada" id="mano-derecha" title="Seleccionar pitos">Diapasón</div>
                     <div class="opcion" id="mano-izquierda" title="Seleccionar bajo">Bajos</div>
                     <div class="opcion" id="dos-manos" title="Seleccionar todo"></div>
                 </div>
-    
+
                 <div class="control" id="cambiar-tono">
                     <div class="opcion seleccionada" title="Seleccionar ADG (La, Re, Sol)" id="tono-adg">ADG</div>
                     <div class="opcion" title="Seleccionar 5 Letras (Si bemol, Mi bemol, La bemol)" id="tono-5l">5L</div>
                     <div class="opcion" title="Seleccionar GCF (Sol, Do, Fa)" id="tono-gcf">GCF</div>
                 </div>
-    
+
                 <div class="control" id="cambiar-modo">
                     <div class="opcion seleccionada" title="Modo de teclado" id="modo-teclado">
                         <span class="material-symbols-outlined">keyboard</span>
                     </div>
-    
+
                     <div class="opcion" title="Notas musicales" id="modo-notas">
                         <span class="material-symbols-outlined">music_note</span>
                     </div>
-    
+
                     <div class="opcion" title="Modo númerico" id="modo-numero">
                         <span class="material-symbols-outlined">123</span>
                     </div>
                 </div>
-    
+
                 <div id="composiciones">
-                    <div class="fila"
-                        style="border-bottom: 1px solid silver; padding: 16px; display: flex; justify-content: space-between;">
+                    <div class="fila" style="border-bottom: 1px solid silver; padding: 16px; display: flex; justify-content: space-between;">
                         <div>
                             <span class="material-symbols-outlined">queue_music</span>
                             <span>Exámen</span>
                         </div>
-                        <!-- <button style="border: none; background: none; cursor: pointer; padding: 0;">
-                            <span title="Componer">✍️</span>
-                        </button> -->
                         
                         <button class="reiniciar-pagina">
                             <span class="material-symbols-outlined" title="Actualizar">🔄</span>
                         </button>
                     </div>
-    
+
                     <div class="contenido" style="max-height: 400px; overflow-y: auto;"></div>
-    
+
                     <div id="grabar" class="grabar">
                         <span class="text"></span>
                         <span class="material-symbols-outlined">sound_sampler</span>
                     </div>
                 </div>
-    
+
                 <div id="melodias-guardadas" style="display: none; max-height: 400px; overflow-y: auto;">
                     <div style="display: flex; justify-content: space-between; padding: 16px; border-bottom: 1px solid silver;">
                         <button class="volver-menu">
@@ -110,11 +136,11 @@
                     </div>
                     <div class="lista-melodias" style="padding: 16px;"></div>
                 </div>
-    
+
                 <a href="https://huellasdelmaestro.com/plataforma-virtual" title="Ir a la plataforma virtual" target="_blank">
                     <img class="logo" src="logo.png" />
                 </a>
-    
+
                 <a class="link-pie" href="https://maps.app.goo.gl/ifKj8i46eAWydXzy9" target="_blank">
                     <div class="pie">
                         <img class="bandera" />
@@ -124,23 +150,31 @@
                     </div>
                 </a>
             </div>
-            
+
             <button class="btn-detener material-symbols-outlined">stop</button>
-    
+
             <div class="contenidor">
                 <div id="acordeon"></div>
             </div>
         </div>
     </div>
-    
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js"
-        integrity="sha512-Siyxh4gyNM5SaERNa9BOZSPcu/auHyFUWn9OVFD7MxI3/dVPQklE7tfqS+pLmPHF1zo6UdDaJAp/thihrf0c7w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js" integrity="sha512-Siyxh4gyNM5SaERNa9BOZSPcu/auHyFUWn9OVFD7MxI3/dVPQklE7tfqS+pLmPHF1zo6UdDaJAp/thihrf0c7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="lib/js/Acordeon/Acordeon.js"></script>
     <script src="lib/js/ui/ui.js"></script>
     <script src="lib/js/canciones.js/AsiFueMiQuerer.js"></script>
     <script src="canciones.js"></script>
     <script src="melodias.js"></script>
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.querySelector('.contenidor').classList.toggle('expanded');
+        });
+
+        document.getElementById('menu-close').addEventListener('click', function () {
+            document.getElementById('sidebar').classList.remove('open');
+            document.querySelector('.contenidor').classList.remove('expanded');
+        });
+    </script>
 </body>
-</html
+</html>
