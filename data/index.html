@@ -94,13 +94,10 @@
                     <img class="logo" src="logo.png" />
                 </a>
 
-                <a class="link-pie" href="https://maps.app.goo.gl/ifKj8i46eAWydXzy9" target="_blank">
+                <a class="link-pie">
                     <div class="pie">
-                        <span id="welcome-message"></span><br>
-                        <!-- <img class="bandera" />
-                        <span>Valledupar,</span>
-                        <span>Cesar-</span>
-                        <span>Colombia</span> -->
+                        <span>Definitiva:</span>
+                        <span id="definitive-grade"></span><br>
                     </div>
                 </a>
             </div>
@@ -120,10 +117,15 @@
     <script src="canciones.js"></script>
     <script src="melodias.js"></script>
     <script>
-        window.addEventListener('message', function(event) {
-            if (event.data.displayName) {
-                document.getElementById('welcome-message').textContent = `Bienvenido: ${event.data.displayName}`;
-            }
+        // Cargar y mostrar la nota definitiva desde el localStorage
+        function mostrarNotaDefinitiva() {
+            const notaDefinitiva = localStorage.getItem('notaDefinitiva') || 'N/A';
+            document.getElementById('definitive-grade').textContent = notaDefinitiva;
+        }
+
+        // Llamar a la función para mostrar la nota definitiva al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            mostrarNotaDefinitiva();
         });
 
         document.getElementById('menu-toggle').addEventListener('click', function () {
