@@ -59,6 +59,7 @@
 
                 <div id="composiciones">
                     <div class="fila" style="border-bottom: 1px solid silver; padding: 16px; display: flex; justify-content: space-between;">
+                  
                         <div>
                             <span class="material-symbols-outlined">queue_music</span>
                             <span>Exámen</span>
@@ -96,9 +97,12 @@
 
                 <a class="link-pie" href="https://maps.app.goo.gl/ifKj8i46eAWydXzy9" target="_blank">
                     <div class="pie">
+                        
                         <span id="welcome-message"></span><br>
-                        <span>Definitiva:</span>
-                        <span id="definitive-grade"></span><br>
+                        <!-- <img class="bandera" />
+                        <span>Valledupar,</span>
+                        <span>Cesar-</span>
+                        <span>Colombia</span> -->
                     </div>
                 </a>
             </div>
@@ -118,19 +122,10 @@
     <script src="canciones.js"></script>
     <script src="melodias.js"></script>
     <script>
-        // Cargar y mostrar la nota definitiva y el nombre del usuario desde el localStorage
-        function mostrarNotaYNombre() {
-            const sessionData = JSON.parse(sessionStorage.getItem('bp_user') || '{}');
-            const displayName = sessionData.displayname || 'Usuario';
-            const notaDefinitiva = localStorage.getItem('notaDefinitiva') || 'N/A';
-
-            document.getElementById('welcome-message').textContent = `Bienvenido: ${displayName}`;
-            document.getElementById('definitive-grade').textContent = notaDefinitiva;
-        }
-
-        // Llamar a la función para mostrar la nota definitiva y el nombre al cargar la página
-        document.addEventListener('DOMContentLoaded', function() {
-            mostrarNotaYNombre();
+        window.addEventListener('message', function(event) {
+            if (event.data.displayName) {
+                document.getElementById('welcome-message').textContent = `Bienvenido: ${event.data.displayName}`;
+            }
         });
 
         document.getElementById('menu-toggle').addEventListener('click', function () {
