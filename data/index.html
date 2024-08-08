@@ -16,53 +16,6 @@
     <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js" integrity="sha512-zMfrMAZYAlNClPKjN+JMuslK/B6sPM09BGvrWlW+cymmPmsUT1xJF3P4kxI3lOh9zypakSgWaTpY6vDJY/3Dig==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
-    <style>
-        .btn-detener {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            display: none;
-            z-index: 1000;
-        }
-
-        .menu-toggle {
-            display: none;
-        }
-
-        .menu {
-            transition: transform 0.3s ease;
-            transform: translateX(0);
-        }
-
-        .menu.closed {
-            transform: translateX(-100%);
-        }
-
-        @media (max-width: 768px) {
-            .menu {
-                transform: translateX(-100%);
-            }
-
-            .menu.open {
-                transform: translateX(0);
-            }
-
-            .menu-toggle {
-                display: block;
-                cursor: pointer;
-                font-size: 2rem;
-                position: absolute;
-                top: 20px;
-                left: 20px;
-                z-index: 1001;
-            }
-        }
-
-        .contenidor.expanded {
-            width: calc(100% - 60px); /* Adjust this value according to your needs */
-            transition: width 0.3s ease;
-        }
-    </style>
 </head>
 <body>
     <div>
@@ -143,6 +96,7 @@
 
                 <a class="link-pie" href="https://maps.app.goo.gl/ifKj8i46eAWydXzy9" target="_blank">
                     <div class="pie">
+                        <span id="welcome-message"></span><br>
                         <img class="bandera" />
                         <span>Valledupar,</span>
                         <span>Cesar-</span>
@@ -166,6 +120,21 @@
     <script src="canciones.js"></script>
     <script src="melodias.js"></script>
     <script>
+        // Obtener el nombre de usuario del almacenamiento de sesión
+        const sessionData = JSON.parse(sessionStorage.getItem('user') || '{}');
+        const displayName = sessionData.displayname;
+
+        // Mostrar el mensaje de bienvenida
+        if (displayName) {
+            document.getElementById('welcome-message').textContent = `Bienvenido: ${displayName}`;
+        }
+
+        // Enviar el nombre de usuario al iframe del simulador
+        const iframe = document.getElementById('avirtual');
+        iframe.onload = function() {
+            iframe.contentWindow.postMessage({ displayName: displayName }, '*');
+        };
+
         document.getElementById('menu-toggle').addEventListener('click', function () {
             document.getElementById('sidebar').classList.toggle('open');
             document.querySelector('.contenidor').classList.toggle('expanded');
