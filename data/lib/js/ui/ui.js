@@ -36,7 +36,7 @@ function cargarComposiciones() {
                 <span class="nombre" title="${composicion.nombre}">${composicion.nombre} - ${nota}</span>
                 <div class="acciones">
                     <button class="reproducir" data-index="${index}" title="Reproducir" style="border: none; background: none; cursor: pointer; padding: 0;">🔊</button>
-                   <button class="practicar text-xs" data-index="${index}" style="border: none; background: none; cursor: pointer; padding: 0;">✏️</button>
+                    <button class="practicar text-xs" data-index="${index}" style="border: none; background: none; cursor: pointer; padding: 0;">✏️</button>
                 </div>
                 <div class="progreso">
                     <div class="porcentaje"></div>
@@ -44,6 +44,19 @@ function cargarComposiciones() {
             </div>
         `);
     });
+
+    // Calcular la nota definitiva y guardarla en localStorage
+    calcularYGuardarNotaDefinitiva(notas);
+}
+
+function calcularYGuardarNotaDefinitiva(notas) {
+    const notasValores = Object.values(notas).map(nota => parseFloat(nota)).filter(nota => !isNaN(nota));
+    if (notasValores.length > 0) {
+        const sumaNotas = notasValores.reduce((a, b) => a + b, 0);
+        const promedio = (sumaNotas / 3).toFixed(1); 
+        localStorage.setItem('notaDefinitiva', promedio);
+        console.log(`Nota definitiva calculada y guardada: ${promedio}`);
+    }
 }
 
 $("body").on("click", ".acciones .reproducir", function () {
@@ -215,6 +228,7 @@ function iniciarTemporizador(ele, duracion) {
             localStorage.setItem('notas', JSON.stringify(notas));
 
             mostrarMapaNotas(score, nota);
+            calcularYGuardarNotaDefinitiva(notas);
         }, duracion + 100);
     });
 }
@@ -247,6 +261,7 @@ function terminarExamen(ele) {
         localStorage.setItem('notas', JSON.stringify(notas));
 
         mostrarMapaNotas(score, nota);
+        calcularYGuardarNotaDefinitiva(notas);
     }, 1000);
 }
 
