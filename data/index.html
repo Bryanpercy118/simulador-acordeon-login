@@ -99,6 +99,8 @@
                     <div class="pie">
                         
                         <span id="welcome-message"></span><br>
+                        <span>Definitiva:</span>
+                        <span id="definitive-grade"></span><br>
                         <!-- <img class="bandera" />
                         <span>Valledupar,</span>
                         <span>Cesar-</span>
@@ -127,7 +129,14 @@
                 document.getElementById('welcome-message').textContent = `Bienvenido: ${event.data.displayName}`;
             }
         });
+        function mostrarNotaYNombre() {
+            const notaDefinitiva = localStorage.getItem('notaDefinitiva') || 'N/A';
+            document.getElementById('definitive-grade').textContent = notaDefinitiva;
+        }
 
+        document.addEventListener('DOMContentLoaded', function() {
+            mostrarNotaYNombre();
+        });
         document.getElementById('menu-toggle').addEventListener('click', function () {
             document.getElementById('sidebar').classList.toggle('open');
             document.querySelector('.contenidor').classList.toggle('expanded');
