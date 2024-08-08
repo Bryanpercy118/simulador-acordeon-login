@@ -96,7 +96,6 @@
 
                 <a class="link-pie" href="https://maps.app.goo.gl/ifKj8i46eAWydXzy9" target="_blank">
                     <div class="pie">
-                        <span id="welcome-message"></span><br>
                         <img class="bandera" />
                         <span>Valledupar,</span>
                         <span>Cesar-</span>
@@ -120,21 +119,6 @@
     <script src="canciones.js"></script>
     <script src="melodias.js"></script>
     <script>
-        // Obtener el nombre de usuario del almacenamiento de sesión
-        const sessionData = JSON.parse(sessionStorage.getItem('user') || '{}');
-        const displayName = sessionData.displayname;
-
-        // Mostrar el mensaje de bienvenida
-        if (displayName) {
-            document.getElementById('welcome-message').textContent = `Bienvenido: ${displayName}`;
-        }
-
-        // Enviar el nombre de usuario al iframe del simulador
-        const iframe = document.getElementById('avirtual');
-        iframe.onload = function() {
-            iframe.contentWindow.postMessage({ displayName: displayName }, '*');
-        };
-
         document.getElementById('menu-toggle').addEventListener('click', function () {
             document.getElementById('sidebar').classList.toggle('open');
             document.querySelector('.contenidor').classList.toggle('expanded');
