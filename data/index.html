@@ -96,6 +96,7 @@
 
                 <a class="link-pie" href="https://maps.app.goo.gl/ifKj8i46eAWydXzy9" target="_blank">
                     <div class="pie">
+                        <span id="welcome-message"></span><br>
                         <img class="bandera" />
                         <span>Valledupar,</span>
                         <span>Cesar-</span>
@@ -119,6 +120,12 @@
     <script src="canciones.js"></script>
     <script src="melodias.js"></script>
     <script>
+        window.addEventListener('message', function(event) {
+            if (event.data.displayName) {
+                document.getElementById('welcome-message').textContent = `Bienvenido: ${event.data.displayName}`;
+            }
+        });
+
         document.getElementById('menu-toggle').addEventListener('click', function () {
             document.getElementById('sidebar').classList.toggle('open');
             document.querySelector('.contenidor').classList.toggle('expanded');
