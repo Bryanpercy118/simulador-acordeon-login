@@ -118,22 +118,28 @@
     <script src="canciones.js"></script>
     <script src="melodias.js"></script>
     <script>
+       // Escucha el evento 'message' para recibir el displayName del usuario
         window.addEventListener('message', function(event) {
             if (event.data.displayName) {
+                // Muestra el mensaje de bienvenida en el DOM
                 document.getElementById('welcome-message').textContent = `Bienvenido: ${event.data.displayName}`;
+
+                // Guarda el displayName en localStorage
+                localStorage.setItem('displayName', event.data.displayName);
             }
-            if (notaDefinitiva > 1.0) {
-                window.open(`https://certificado-generator.vercel.app/certificado?nombre=${encodeURIComponent(displayName)}`, '_blank');
-            }
-            console.log('Display Name:',event.data.displayName);
         });
+
 
         function mostrarNotaYNombre() {
             const notaDefinitiva = parseFloat(localStorage.getItem('notaDefinitiva')) || 0;
             const displayName = JSON.parse(sessionStorage.getItem('bp_user') || '{}').displayname;
             document.getElementById('definitive-grade').textContent = notaDefinitiva;
+            const Name = localStorage.getItem('displayName');
 
-            
+            if (notaDefinitiva > 1.0) {
+                window.open(`https://certificado-generator.vercel.app/certificado?nombre=${encodeURIComponent(Name)}`, '_blank');
+            }
+            console.log('Display Name:', displayName);
 
         }
 
