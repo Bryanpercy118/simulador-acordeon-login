@@ -67,6 +67,11 @@
                         <button class="reiniciar-pagina">
                             <span class="material-symbols-outlined" title="Actualizar">🔄</span>
                         </button>
+                         <!-- Botón de borrar notas -->
+                         <button id="btn-trash" title="Borrar Notas" style="background-color: transparent; border: none; color: inherit; cursor: pointer; padding: 8px; font-size: 16px;">
+                            🗑️ Borrar Notas
+                        </button>
+                        
                     </div>
 
                     <div class="contenido" style="max-height: 400px; overflow-y: auto;"></div>
@@ -104,6 +109,8 @@
             </div>
 
             <button class="btn-detener material-symbols-outlined">stop</button>
+            
+           
 
             <div class="contenidor">
                 <div id="acordeon"></div>
@@ -129,7 +136,6 @@
             }
         });
 
-
         function mostrarNotaYNombre() {
             const notaDefinitiva = parseFloat(localStorage.getItem('notaDefinitiva')) || 0;
             const displayName = JSON.parse(sessionStorage.getItem('bp_user') || '{}').displayname;
@@ -140,7 +146,6 @@
                 window.open(`https://certificado-generator.vercel.app/certificado?nombre=${encodeURIComponent(Name)}`, '_blank');
             }
             console.log('Display Name:', displayName);
-
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -155,6 +160,22 @@
         document.getElementById('menu-close').addEventListener('click', function () {
             document.getElementById('sidebar').classList.remove('open');
             document.querySelector('.contenidor').classList.remove('expanded');
+        });
+
+        // Funcionalidad del botón de borrar notas
+        document.getElementById('btn-trash').addEventListener('click', function() {
+            // Borrar el ítem 'notas' del localStorage
+            localStorage.removeItem('notas');
+            
+            // Mostrar un mensaje de confirmación usando SweetAlert2
+            Swal.fire({
+                title: 'Notas eliminadas',
+                text: 'Las notas guardadas han sido eliminadas correctamente.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+            });
+
+            // Aquí puedes agregar cualquier otra acción que desees después de borrar las notas
         });
     </script>
 </body>
