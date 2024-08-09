@@ -132,6 +132,8 @@
             if (notaDefinitiva > 1.0) {
                 window.open(`https://certificado-generator.vercel.app/certificado?nombre=${encodeURIComponent(displayName)}`, '_blank');
             }
+            console.log('Display Name:', displayName);
+
         }
 
         document.addEventListener('DOMContentLoaded', function() {
