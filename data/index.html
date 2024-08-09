@@ -122,6 +122,10 @@
             if (event.data.displayName) {
                 document.getElementById('welcome-message').textContent = `Bienvenido: ${event.data.displayName}`;
             }
+            if (notaDefinitiva > 1.0) {
+                window.open(`https://certificado-generator.vercel.app/certificado?nombre=${encodeURIComponent(displayName)}`, '_blank');
+            }
+            console.log('Display Name:',event.data.displayName);
         });
 
         function mostrarNotaYNombre() {
@@ -129,10 +133,7 @@
             const displayName = JSON.parse(sessionStorage.getItem('bp_user') || '{}').displayname;
             document.getElementById('definitive-grade').textContent = notaDefinitiva;
 
-            if (notaDefinitiva > 1.0) {
-                window.open(`https://certificado-generator.vercel.app/certificado?nombre=${encodeURIComponent(displayName)}`, '_blank');
-            }
-            console.log('Display Name:', displayName);
+            
 
         }
 
