@@ -64,11 +64,11 @@
                             <span>Exámen</span>
                         </div>
                         
-                        <button class="reiniciar-pagina">
+                        <!-- <button class="reiniciar-pagina">
                             <span class="material-symbols-outlined" title="Actualizar">🔄</span>
-                        </button>
+                        </button> -->
                          <!-- Botón de borrar notas -->
-                         <button id="btn-trash" title="Borrar Notas" style="background-color: transparent; border: none; color: inherit; cursor: pointer; padding: 8px; font-size: 16px;">
+                         <button id="btn-trash" title="Borrar Notas" style="background-color: transparent; border: none; color: inherit; cursor: pointer; padding: 8px; font-size: 10px;">
                             🗑️ Borrar Notas
                         </button>
                         
@@ -164,9 +164,10 @@
 
         // Funcionalidad del botón de borrar notas
         document.getElementById('btn-trash').addEventListener('click', function() {
-            // Borrar el ítem 'notas' del localStorage
+            // Borrar los ítems 'notas' y 'notaDefinitiva' del localStorage
             localStorage.removeItem('notas');
-            
+            localStorage.removeItem('notaDefinitiva');
+
             // Mostrar un mensaje de confirmación usando SweetAlert2
             Swal.fire({
                 title: 'Notas eliminadas',
@@ -175,8 +176,14 @@
                 confirmButtonText: 'Aceptar'
             });
 
+            // Recargar la página después de 8 segundos (8000 milisegundos)
+            setTimeout(function() {
+                location.reload();
+            }, 8000);
+
             // Aquí puedes agregar cualquier otra acción que desees después de borrar las notas
         });
+
     </script>
 </body>
 </html>

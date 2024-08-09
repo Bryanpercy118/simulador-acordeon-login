@@ -297,6 +297,9 @@ function mostrarMapaNotas(score, nota) {
         showClass: { popup: 'animated fadeInDown faster' },
         hideClass: { popup: 'animated fadeOutUp faster' }
     });
+    setTimeout(function() {
+        location.reload();
+    }, 8000);
 }
 
 $(".reiniciar-pagina").on("click", () => location.reload());
