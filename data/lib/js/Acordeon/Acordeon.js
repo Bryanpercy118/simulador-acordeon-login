@@ -30,7 +30,7 @@ const Acordeon = (() => {
     let grabando = false;
     let TONO = 'ADG';
     let tiempo_inicio = null;
-    const TECLA_CERRAR_ACORDEON = 'ESCAPE';
+    const TECLA_CERRAR_ACORDEON = '1';
     let ACORDEON_ABIERTO = 1;
     const teclas_presionadas = new Map();
     let teclas_sueltas = [];
