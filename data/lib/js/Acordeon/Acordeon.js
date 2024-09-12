@@ -81,6 +81,7 @@ const Acordeon = (() => {
         });
     };
 
+
     const reproducir = (cancion) => {
         totalNotas = cancion.length; // Total de notas en la canción
 
@@ -93,6 +94,7 @@ const Acordeon = (() => {
 
         const reproductor = [];
 
+        
         cancion.forEach((c) => {
             reproductor.push(new Promise((resolve) => {
                 setTimeout(() => {
