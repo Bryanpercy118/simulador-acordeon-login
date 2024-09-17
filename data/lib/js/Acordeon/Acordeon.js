@@ -335,6 +335,30 @@ const Acordeon = (() => {
         teclas_presionadas.delete(tecla);
     };
 
+    function keydown(event) {
+        if (event.defaultPrevented) {
+            return;
+        }
+    
+        let keyValue = event.key.toUpperCase();
+        if (keyValue == 'DEAD') {
+            keyValue = '´';
+        }
+        if (["SPACE", 'CONTROL'].includes(keyValue)) {
+            return;
+        }
+    
+        KEYBOARD[keyValue] = true;
+    
+        // Abrir el acordeón mientras se presione Escape
+        if (keyValue == TECLA_CERRAR_ACORDEON && ACORDEON_ABIERTO == 0) {
+            abrirAcordeon();  // Abrimos el acordeón
+            return;
+        }
+    
+        presionar(keyValue);
+    }
+    
     function keyup(event) {
         if (event.defaultPrevented) {
             return;
@@ -346,38 +370,18 @@ const Acordeon = (() => {
         if (["SPACE", 'CONTROL'].includes(keyValue)) {
             return;
         }
-
+    
         KEYBOARD[keyValue] = false;
-
-        if ((keyValue == TECLA_CERRAR_ACORDEON) && (ACORDEON_ABIERTO == 0)) {
-            abrirAcordeon();
+    
+        // Cerrar el acordeón cuando se suelte Escape
+        if (keyValue == TECLA_CERRAR_ACORDEON && ACORDEON_ABIERTO == 1) {
+            cerrarAcordeon();  // Cerramos el acordeón
             return;
         }
+    
         liberar(keyValue);
     }
-
-    function keydown(event) {
-        if (event.defaultPrevented) {
-            return;
-        }
-
-        let keyValue = event.key.toUpperCase();
-        if (keyValue == 'DEAD') {
-            keyValue = '´';
-        }
-        if (["SPACE", 'CONTROL'].includes(keyValue)) {
-            return;
-        }
-
-        KEYBOARD[keyValue] = true;
-
-        if (keyValue == TECLA_CERRAR_ACORDEON && ACORDEON_ABIERTO == 1) {
-            cerrarAcordeon();
-            return;
-        }
-
-        presionar(keyValue);
-    }
+    
 
     const tocarAmbas = () => {
         acordeon.classList.remove(`mano-${MANO}`);
