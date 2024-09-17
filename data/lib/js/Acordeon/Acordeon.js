@@ -573,8 +573,8 @@ const Acordeon = (() => {
         bajos = acordeon.querySelector(".bajos");
         foles = acordeon.querySelector(".foles");
 
-        acordeon.classList.remove("C");
-        acordeon.classList.add("A");
+        acordeon.classList.remove("A");
+        acordeon.classList.add("C");
 
         dibujar();
         await cargarSonidos();
