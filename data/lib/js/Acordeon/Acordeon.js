@@ -335,30 +335,6 @@ const Acordeon = (() => {
         teclas_presionadas.delete(tecla);
     };
 
-    function keydown(event) {
-        if (event.defaultPrevented) {
-            return;
-        }
-    
-        let keyValue = event.key.toUpperCase();
-        if (keyValue == 'DEAD') {
-            keyValue = '´';
-        }
-        if (["SPACE", 'CONTROL'].includes(keyValue)) {
-            return;
-        }
-    
-        KEYBOARD[keyValue] = true;
-    
-        // Abrir el acordeón mientras se presione Escape
-        if (keyValue == TECLA_CERRAR_ACORDEON && ACORDEON_ABIERTO == 0) {
-            abrirAcordeon();  // Abrimos el acordeón
-            return;
-        }
-    
-        presionar(keyValue);
-    }
-    
     function keyup(event) {
         if (event.defaultPrevented) {
             return;
@@ -370,18 +346,38 @@ const Acordeon = (() => {
         if (["SPACE", 'CONTROL'].includes(keyValue)) {
             return;
         }
-    
+
         KEYBOARD[keyValue] = false;
-    
-        // Cerrar el acordeón cuando se suelte Escape
-        if (keyValue == TECLA_CERRAR_ACORDEON && ACORDEON_ABIERTO == 1) {
-            cerrarAcordeon();  // Cerramos el acordeón
+
+        if ((keyValue == TECLA_CERRAR_ACORDEON) && (ACORDEON_ABIERTO == 0)) {
+            abrirAcordeon();
             return;
         }
-    
         liberar(keyValue);
     }
-    
+
+    function keydown(event) {
+        if (event.defaultPrevented) {
+            return;
+        }
+
+        let keyValue = event.key.toUpperCase();
+        if (keyValue == 'DEAD') {
+            keyValue = '´';
+        }
+        if (["SPACE", 'CONTROL'].includes(keyValue)) {
+            return;
+        }
+
+        KEYBOARD[keyValue] = true;
+
+        if (keyValue == TECLA_CERRAR_ACORDEON && ACORDEON_ABIERTO == 1) {
+            cerrarAcordeon();
+            return;
+        }
+
+        presionar(keyValue);
+    }
 
     const tocarAmbas = () => {
         acordeon.classList.remove(`mano-${MANO}`);
@@ -577,8 +573,8 @@ const Acordeon = (() => {
         bajos = acordeon.querySelector(".bajos");
         foles = acordeon.querySelector(".foles");
 
-        acordeon.classList.remove("A");
-        acordeon.classList.add("C");
+        acordeon.classList.remove("C");
+        acordeon.classList.add("A");
 
         dibujar();
         await cargarSonidos();

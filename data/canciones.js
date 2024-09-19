@@ -3964,8 +3964,8 @@ const canciones = [
    //  ejercicio1,
    //  examenAFQ,
    //  cancionBCEL,
-    // cancionDiana,
-    // cancionDiana2,
+   // cancionDiana,
+   // cancionDiana2,
 
 ];
 
