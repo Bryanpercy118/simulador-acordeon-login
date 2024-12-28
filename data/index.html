@@ -21,10 +21,9 @@
             overflow: hidden;
         }
 
-        /* Imagen de fondo */
         .background {
             position: absolute;
-            top: -100px; /* Ajusta la posición de la imagen para que se vea correctamente */
+            top: -100px;
             left: 0;
             width: 100%;
             height: 120%;
@@ -33,7 +32,6 @@
             z-index: -1;
         }
 
-        /* Contenedor del login */
         #login-container {
             background: rgba(255, 255, 255, 0.8);
             padding: 40px;
@@ -43,10 +41,9 @@
             width: 350px;
             z-index: 10;
             margin-top: 10%;
-            display: none; /* Por defecto oculto */
+            display: none; 
         }
 
-        /* Título principal */
         h1 {
             font-size: 2.5rem;
             color: white;
@@ -84,7 +81,6 @@
             background-color: #218838;
         }
 
-        /* Botón de logout */
         #logout-btn {
             position: absolute;
             top: 15px;
@@ -118,10 +114,8 @@
     </style>
 </head>
 <body>
-    <!-- Imagen de fondo -->
     <div class="background"></div>
 
-    <!-- Login -->
     <div id="login-container">
         <h2>Simulador de Acordeón Cocha Molina</h2>
         <h2>Iniciar Sesión</h2>
@@ -130,11 +124,9 @@
         <button id="login-btn">Ingresar</button>
     </div>
 
-    <!-- Formulario de Google -->
     <iframe id="formulario-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLScic7mXwOVYtGUbA0b2GgpJ00SGTAhJ-pcAJDWUXvl-Sp4qDQ/viewform?embedded=true"></iframe>
     <button id="confirmar-btn" style="display: none; margin-top: 20px;">Confirmar que he completado el formulario</button>
 
-    <!-- Simulador en Iframe -->
     <iframe id="simulador-iframe" src="https://simulador-acordeon.vercel.app/"></iframe>
     <button id="logout-btn">Cerrar sesión</button>
 
@@ -146,7 +138,6 @@
             const simuladorIframe = document.getElementById('simulador-iframe');
             const logoutBtn = document.getElementById('logout-btn');
 
-            // Función para mostrar el login
             function mostrarLogin() {
                 loginContainer.style.display = 'block';
                 formularioIframe.style.display = 'none';
@@ -155,7 +146,6 @@
                 logoutBtn.style.display = 'none';
             }
 
-            // Función para mostrar el formulario
             function mostrarFormulario() {
                 loginContainer.style.display = 'none';
                 formularioIframe.style.display = 'block';
@@ -164,7 +154,6 @@
                 logoutBtn.style.display = 'none';
             }
 
-            // Función para mostrar el simulador
             function mostrarSimulador() {
                 loginContainer.style.display = 'none';
                 formularioIframe.style.display = 'none';
@@ -173,7 +162,6 @@
                 logoutBtn.style.display = 'block';
             }
 
-            // Verificar el estado de la sesión al cargar la página
             if (localStorage.getItem('userSession') === 'true' && localStorage.getItem('formularioCompletado') === 'true') {
                 mostrarSimulador();
             } else if (localStorage.getItem('userSession') === 'true') {
@@ -182,7 +170,6 @@
                 mostrarLogin();
             }
 
-            // Login
             document.getElementById('login-btn').addEventListener('click', function () {
                 const username = document.getElementById('username').value;
                 const password = document.getElementById('password').value;
@@ -205,7 +192,6 @@
                 }
             });
 
-            // Confirmar formulario
             confirmarBtn.addEventListener('click', function () {
                 localStorage.setItem('formularioCompletado', 'true');
                 Swal.fire({
@@ -217,7 +203,6 @@
                 }).then(mostrarSimulador);
             });
 
-            // Cerrar sesión
             logoutBtn.addEventListener('click', function () {
                 Swal.fire({
                     icon: 'info',
