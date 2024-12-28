@@ -1,189 +1,196 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-    <title>Simulador de Acordeon | Huellas del Maestro</title>
-    <link rel="icon" type="image/x-icon" href="icono.png">
-    <meta name="Author" content="huellasdelmaestro.com">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@600;700&family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Acordeón | Huellas del Maestro</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="lib/estilo.css" />
-    <link rel="stylesheet" href="ui.css" />
-    <script src="canciones.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js" integrity="sha512-zMfrMAZYAlNClPKjN+JMuslK/B6sPM09BGvrWn9OVFD7MxI3/dVPQklE7tfqS+pLmPHF1zo6UdDaJAp/thihrf0c7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js" integrity="sha384-c79GN5VsunZvi+Q/WObgk2in0CbZsHnjEqvFxC5DxHn9lTfNce2WW6h2pH6u/kF+" crossorigin="anonymous"></script>
-</head>
-<body>
-    <div>
-        <div class="cargando" id="app-container">
-            <!-- Menu deslizable -->
-            <div id="menu-toggle" class="menu-toggle">
-                <span title="Menú" class="material-symbols-outlined">menu</span>
-            </div>
-
-            <!-- Barra lateral izquierda -->
-            <div id="sidebar" class="menu open">
-                <div>
-                    <span title="Menú" class="material-symbols-outlined" id="menu-close">menu</span>
-                </div>
-
-                <div class="control" id="cambiar-mano">
-                    <div class="opcion seleccionada" id="mano-derecha" title="Seleccionar pitos">Diapasón</div>
-                    <div class="opcion" id="mano-izquierda" title="Seleccionar bajo">Bajos</div>
-                    <div class="opcion" id="dos-manos" title="Seleccionar todo"></div>
-                </div>
-
-                <div class="control" id="cambiar-tono">
-                    <div class="opcion seleccionada" title="Seleccionar ADG (La, Re, Sol)" id="tono-adg">ADG</div>
-                    <div class="opcion" title="Seleccionar 5 Letras (Si bemol, Mi bemol, La bemol)" id="tono-5l">5L</div>
-                    <div class="opcion" title="Seleccionar GCF (Sol, Do, Fa)" id="tono-gcf">GCF</div>
-                </div>
-
-                <div class="control" id="cambiar-modo">
-                    <div class="opcion seleccionada" title="Modo de teclado" id="modo-teclado">
-                        <span class="material-symbols-outlined">keyboard</span>
-                    </div>
-
-                    <div class="opcion" title="Notas musicales" id="modo-notas">
-                        <span class="material-symbols-outlined">music_note</span>
-                    </div>
-
-                    <div class="opcion" title="Modo númerico" id="modo-numero">
-                        <span class="material-symbols-outlined">123</span>
-                    </div>
-                </div>
-
-                <div id="composiciones">
-                    <div class="fila" style="border-bottom: 1px solid silver; padding: 16px; display: flex; justify-content: space-between;">
-                        <!-- <div>
-                            <span class="material-symbols-outlined">queue_music</span>
-                            <span>Exámen</span>
-                        </div> -->
-                        
-                        <!-- <button class="reiniciar-pagina">
-                            <span class="material-symbols-outlined" title="Actualizar">🔄</span>
-                        </button> -->
-                         <!-- Botón de borrar notas -->
-                         <!-- <button id="btn-trash" title="Borrar Notas" style="background-color: transparent; border: none; color: inherit; cursor: pointer; padding: 8px; font-size: 10px;">
-                            🗑️ Borrar Notas
-                        </button>
-                         -->
-                    </div>
-
-                    <div class="contenido" style="max-height: 400px; overflow-y: auto;"></div>
-
-                    <div id="grabar" class="grabar">
-                        <span class="text"></span>
-                        <span class="material-symbols-outlined">sound_sampler</span>
-                    </div>
-                </div>
-
-                <div id="melodias-guardadas" style="display: none; max-height: 400px; overflow-y: auto;">
-                    <div style="display: flex; justify-content: space-between; padding: 16px; border-bottom: 1px solid silver;">
-                        <button class="volver-menu">
-                            <span class="material-symbols-outlined" title="Volver">arrow_back</span>
-                        </button>
-                        <h3 style="margin: 0;">Melodías Guardadas</h3>
-                        <button class="nueva-melodia">
-                            <span class="material-symbols-outlined" title="Nueva Melodía">add</span>
-                        </button>
-                    </div>
-                    <div class="lista-melodias" style="padding: 16px;"></div>
-                </div>
-
-                <a href="https://huellasdelmaestro.com/plataforma-virtual" title="Ir a la plataforma virtual" target="_blank">
-                    <img class="logo" src="logo.png" />
-                </a>
-
-                <!-- <a class="link-pie" href="https://maps.app.goo.gl/ifKj8i46eAWydXzy9" target="_blank">
-                    <div class="pie">
-                        <span id="welcome-message"></span><br>
-                        <span>Definitiva:</span>
-                        <span id="definitive-grade"></span><br>
-                    </div>
-                </a> -->
-            </div>
-
-            <button class="btn-detener material-symbols-outlined">stop</button>
-            
-           
-
-            <div class="contenidor">
-                <div id="acordeon"></div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.min.js" integrity="sha512-Siyxh4gyNM5SaERNa9BOZSPcu/auHyFUWn9OVFD7MxI3/dVPQklE7tfqS+pLmPHF1zo6UdDaJAp/thihrf0c7w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="lib/js/Acordeon/Acordeon.js"></script>
-    <script src="lib/js/ui/ui.js"></script>
-    <script src="lib/js/canciones.js/AsiFueMiQuerer.js"></script>
-    <script src="canciones.js"></script>
-    <script src="melodias.js"></script>
-    <script>
-       // Escucha el evento 'message' para recibir el displayName del usuario
-        window.addEventListener('message', function(event) {
-            if (event.data.displayName) {
-                // Muestra el mensaje de bienvenida en el DOM
-                document.getElementById('welcome-message').textContent = `Bienvenido: ${event.data.displayName}`;
-
-                // Guarda el displayName en localStorage
-                localStorage.setItem('displayName', event.data.displayName);
-            }
-        });
-
-        function mostrarNotaYNombre() {
-            const notaDefinitiva = parseFloat(localStorage.getItem('notaDefinitiva')) || 0;
-            const displayName = JSON.parse(sessionStorage.getItem('bp_user') || '{}').displayname;
-            document.getElementById('definitive-grade').textContent = notaDefinitiva;
-            const Name = localStorage.getItem('displayName');
-
-            if (notaDefinitiva > 1.0) {
-                window.open(`https://certificado-generator.vercel.app/certificado?nombre=${encodeURIComponent(Name)}`, '_blank');
-            }
-            console.log('Display Name:', displayName);
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f5f5f5;
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            mostrarNotaYNombre();
-        });
+        iframe {
+            display: none;
+            width: 90%;
+            max-width: 800px;
+            height: 80vh;
+            border: none;
+        }
 
-        document.getElementById('menu-toggle').addEventListener('click', function () {
-            document.getElementById('sidebar').classList.toggle('open');
-            document.querySelector('.contenidor').classList.toggle('expanded');
-        });
+        #logout-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
 
-        document.getElementById('menu-close').addEventListener('click', function () {
-            document.getElementById('sidebar').classList.remove('open');
-            document.querySelector('.contenidor').classList.remove('expanded');
-        });
+        #logout-btn:hover {
+            background-color: #ff4d4d;
+            color: #fff;
+            border-color: #ff4d4d;
+        }
 
-        // Funcionalidad del botón de borrar notas
-        document.getElementById('btn-trash').addEventListener('click', function() {
-            // Borrar los ítems 'notas' y 'notaDefinitiva' del localStorage
-            localStorage.removeItem('notas');
-            localStorage.removeItem('notaDefinitiva');
+        #login-container {
+            display: block;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+        }
 
-            // Mostrar un mensaje de confirmación usando SweetAlert2
-            Swal.fire({
-                title: 'Notas eliminadas',
-                text: 'Las notas guardadas han sido eliminadas correctamente.',
-                icon: 'success',
-                confirmButtonText: 'Aceptar'
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login -->
+    <div id="login-container">
+        <h2>Iniciar Sesión</h2>
+        <input type="text" id="username" placeholder="Usuario" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button id="login-btn">Ingresar</button>
+    </div>
+
+    <!-- Formulario de Google -->
+    <iframe id="formulario-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLScic7mXwOVYtGUbA0b2GgpJ00SGTAhJ-pcAJDWUXvl-Sp4qDQ/viewform?embedded=true"></iframe>
+    <button id="confirmar-btn" style="display: none; margin-top: 20px;">Confirmar que he completado el formulario</button>
+
+    <!-- Simulador en Iframe -->
+    <iframe id="simulador-iframe" src="https://simulador-acordeon.vercel.app/"></iframe>
+    <button id="logout-btn" style="display: none;">Cerrar sesión</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginContainer = document.getElementById('login-container');
+            const formularioIframe = document.getElementById('formulario-iframe');
+            const confirmarBtn = document.getElementById('confirmar-btn');
+            const simuladorIframe = document.getElementById('simulador-iframe');
+            const logoutBtn = document.getElementById('logout-btn');
+
+            // Verificar si hay sesión guardada
+            if (localStorage.getItem('userSession') === 'true' && localStorage.getItem('formularioCompletado') === 'true') {
+                mostrarSimulador();
+            } else if (localStorage.getItem('userSession') === 'true') {
+                mostrarFormulario();
+            }
+
+            // Validación del Login
+            document.getElementById('login-btn').addEventListener('click', function () {
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                if (username === 'fundacion' && password === '1234') {
+                    localStorage.setItem('userSession', 'true');
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Login Exitoso!',
+                        text: 'Por favor completa el formulario.',
+                        timer: 1500,
+                        showConfirmButton: false
+                    }).then(() => {
+                        mostrarFormulario();
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Usuario o contraseña incorrectos.',
+                    });
+                }
             });
 
-            // Recargar la página después de 8 segundos (8000 milisegundos)
-            setTimeout(function() {
-                location.reload();
-            }, 8000);
+            // Funciones auxiliares
+            function mostrarFormulario() {
+                loginContainer.style.display = 'none';
+                formularioIframe.style.display = 'block';
+                confirmarBtn.style.display = 'block';
+            }
 
-            // Aquí puedes agregar cualquier otra acción que desees después de borrar las notas
+            function mostrarSimulador() {
+                formularioIframe.style.display = 'none';
+                confirmarBtn.style.display = 'none';
+                simuladorIframe.style.display = 'block';
+                logoutBtn.style.display = 'block';
+            }
+
+            // Confirmar que el formulario fue completado
+            confirmarBtn.addEventListener('click', function () {
+                localStorage.setItem('formularioCompletado', 'true');
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Formulario completado',
+                    text: 'Ahora puedes usar el simulador.',
+                    timer: 1500,
+                    showConfirmButton: false
+                }).then(() => {
+                    mostrarSimulador();
+                });
+            });
+
+            // Cerrar sesión
+            logoutBtn.addEventListener('click', function () {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Cerrando sesión...',
+                    timer: 1500,
+                    showConfirmButton: false
+                }).then(() => {
+                    localStorage.clear(); // Eliminar toda la información
+                    formularioIframe.style.display = 'none';
+                    confirmarBtn.style.display = 'none';
+                    simuladorIframe.style.display = 'none';
+                    logoutBtn.style.display = 'none';
+                    loginContainer.style.display = 'block';
+                });
+            });
         });
-
     </script>
 </body>
 </html>
